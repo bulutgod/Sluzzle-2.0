@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000ad707568
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -385,6 +385,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   backgroundTilePrefab: {fileID: 2391176627473508039, guid: ae74b3a528df4e04d973fea078bbb2a4, type: 3}
+  colorTilePrefab: {fileID: 76080083358922165, guid: 506a7301a2c8f344dbf08f5e56bd7af2, type: 3}
+  tileLevels:
+  - {fileID: 11400000, guid: 04f3d4aba82c92c4292bccaa59b69906, type: 2}
+  - {fileID: 11400000, guid: 3fb3078ad3d751c469cb76a311b8cf02, type: 2}
+  - {fileID: 11400000, guid: f6864b8bb83c38846b82a57a641b0cdc, type: 2}
+  - {fileID: 11400000, guid: 57c9e48d0ee6c654abca93edd3609528, type: 2}
+  - {fileID: 11400000, guid: 63cee29e9c9990c47adbc20b8c92ca1e, type: 2}
   boardSize: 7
   tileSpacing: 1.1
 --- !u!1660057539 &9223372036854775807
