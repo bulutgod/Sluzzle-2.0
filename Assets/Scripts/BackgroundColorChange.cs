@@ -30,10 +30,10 @@ public class BackgroundColorChange : MonoBehaviour
 
     private void OnScoreChanged(int score)
     {
-        if (score >= lastCheckpoint + 500)
+        if (score >= lastCheckpoint + 2000)
         {
             SetRandomTargetColor();
-            lastCheckpoint += 500;
+            lastCheckpoint += 2000;
         }
     }
 
