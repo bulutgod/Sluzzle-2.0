@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     private IMoveHandler moveHandler;
     private IScoreSystem scoreSystem;
     private ScoreUI scoreUI;
-
+    public IScoreSystem ScoreSystem => scoreSystem;
     void Awake()
     {
         Input.multiTouchEnabled = false;

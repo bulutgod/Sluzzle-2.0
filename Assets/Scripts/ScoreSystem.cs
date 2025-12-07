@@ -2,7 +2,7 @@ using System;
 
 public class ScoreSystem : IScoreSystem
 {
-    private int currentScore;
+    public int currentScore;
 
     public int CurrentScore => currentScore;
     public event Action<int> OnScoreChanged;
