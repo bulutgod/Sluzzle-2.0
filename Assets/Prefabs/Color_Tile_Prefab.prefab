@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6299038167115167185}
   - component: {fileID: 3073858159726345160}
+  - component: {fileID: 7779599560487399025}
   m_Layer: 0
   m_Name: Color_Tile_Prefab
   m_TagString: Untagged
@@ -90,3 +91,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7779599560487399025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76080083358922165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691475bbcbe8efd4da705a597022b6b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tile
+  level: 0

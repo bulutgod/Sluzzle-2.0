@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd95ba881aa3a6d40852a23b6e66fc89, type: 3}
-  m_Name: Tile_03_Blue
+  m_Name: Tile_05_DarkOrange
   m_EditorClassIdentifier: Assembly-CSharp::TileData
-  tileColor: {r: 0.040850822, g: 0.5562983, b: 0.9622642, a: 1}
-  scoreValue: 20
+  tileColor: {r: 1, g: 0.5411765, b: 0.39607844, a: 1}
+  scoreValue: 50
