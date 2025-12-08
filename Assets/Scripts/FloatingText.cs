@@ -10,7 +10,7 @@ public class FloatingText : MonoBehaviour
 
         TextMeshPro tmp = obj.AddComponent<TextMeshPro>();
         tmp.text = text;
-        tmp.fontSize = 6;
+        tmp.fontSize = 4;
         tmp.color = color;
         tmp.alignment = TextAlignmentOptions.Center;
         tmp.sortingOrder = 100; 

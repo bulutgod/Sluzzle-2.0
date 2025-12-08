@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TileData[] tileLevels;
 
     [Header("Board Settings")]
-    [SerializeField] private int boardSize = 7;
+    [SerializeField] private int defaultBoardSize = 5;
     [SerializeField] private float tileSpacing = 1.1f;
 
     [Header("Input Settings")]
@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool useMaxRefreshRate = true;
     [SerializeField] private int fallbackFrameRate = 60;
 
+    private int boardSize; 
     private IGrid grid;
     private IBoardGenerator boardGenerator;
     private IInputHandler inputHandler;
@@ -37,6 +38,16 @@ public class GameManager : MonoBehaviour
         SetOptimalFrameRate();
         Input.multiTouchEnabled = false;
         QualitySettings.vSyncCount = 0;
+
+        boardSize = BoardSizeManager.Instance.GetBoardSize();
+
+        if (boardSize < 5 || boardSize > 7)
+        {
+            boardSize = defaultBoardSize;
+            Debug.LogWarning($"Invalid board size, using default: {defaultBoardSize}");
+        }
+
+        Debug.Log($"Initializing game with board size: {boardSize}x{boardSize}");
 
         InitializeSystems();
     }
@@ -66,8 +77,8 @@ public class GameManager : MonoBehaviour
     {
         var config = new BoardConfig(boardSize, tileSpacing);
         grid = new TileGrid(boardSize);
-
         var factory = new TileFactory(colorTilePrefab, tileLevels, transform);
+
         scoreSystem = new ScoreSystem();
         var scoreCalculator = new ScoreCalculator(tileLevels);
 
@@ -89,7 +100,6 @@ public class GameManager : MonoBehaviour
         if (useMaxRefreshRate)
         {
             int maxRefreshRate = Screen.currentResolution.refreshRate;
-
             if (maxRefreshRate > 60)
             {
                 Application.targetFrameRate = maxRefreshRate;
