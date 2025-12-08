@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     [Header("Animation Settings")]
     [SerializeField] private float moveAnimationDuration = 0.15f;
 
+    [Header("Performance")]
+    [SerializeField] private bool useMaxRefreshRate = true;
+    [SerializeField] private int fallbackFrameRate = 60;
+
     private IGrid grid;
     private IBoardGenerator boardGenerator;
     private IInputHandler inputHandler;
@@ -25,10 +29,15 @@ public class GameManager : MonoBehaviour
     private IMoveHandler moveHandler;
     private IScoreSystem scoreSystem;
     private ScoreUI scoreUI;
+
     public IScoreSystem ScoreSystem => scoreSystem;
+
     void Awake()
     {
+        SetOptimalFrameRate();
         Input.multiTouchEnabled = false;
+        QualitySettings.vSyncCount = 0;
+
         InitializeSystems();
     }
 
@@ -43,10 +52,13 @@ public class GameManager : MonoBehaviour
     {
         if (Pointer.current == null) return;
 
-        Vector2? direction = inputHandler.GetSwipeDirection(Pointer.current);
-        if (direction.HasValue)
+        if (Pointer.current.press.isPressed || Pointer.current.press.wasReleasedThisFrame)
         {
-            moveHandler.Execute(direction.Value);
+            Vector2? direction = inputHandler.GetSwipeDirection(Pointer.current);
+            if (direction.HasValue)
+            {
+                moveHandler.Execute(direction.Value);
+            }
         }
     }
 
@@ -69,6 +81,29 @@ public class GameManager : MonoBehaviour
         {
             scoreSystem.OnScoreChanged += scoreUI.UpdateScore;
             scoreUI.UpdateScore(0);
+        }
+    }
+
+    private void SetOptimalFrameRate()
+    {
+        if (useMaxRefreshRate)
+        {
+            int maxRefreshRate = Screen.currentResolution.refreshRate;
+
+            if (maxRefreshRate > 60)
+            {
+                Application.targetFrameRate = maxRefreshRate;
+                Debug.Log($"High refresh rate detected: {maxRefreshRate}Hz");
+            }
+            else
+            {
+                Application.targetFrameRate = fallbackFrameRate;
+                Debug.Log($"Standard refresh rate: {fallbackFrameRate}Hz");
+            }
+        }
+        else
+        {
+            Application.targetFrameRate = fallbackFrameRate;
         }
     }
 }

@@ -7,20 +7,26 @@ public class TileSpawner : ITileSpawner
     private readonly ITileFactory factory;
     private readonly BoardConfig config;
 
+    private List<Vector2Int> emptyPositionsCache;
+    private WaitForSeconds spawnDelay;
+
     public TileSpawner(IGrid tileGrid, ITileFactory tileFactory, BoardConfig boardConfig)
     {
         grid = tileGrid;
         factory = tileFactory;
         config = boardConfig;
+
+        emptyPositionsCache = new List<Vector2Int>(boardConfig.Size * boardConfig.Size);
+        spawnDelay = new WaitForSeconds(0.05f);
     }
 
     public void SpawnRandom()
     {
-        List<Vector2Int> emptyPositions = GetEmptyPositions();
+        GetEmptyPositions();
 
-        if (emptyPositions.Count == 0) return;
+        if (emptyPositionsCache.Count == 0) return;
 
-        Vector2Int randomPos = emptyPositions[Random.Range(0, emptyPositions.Count)];
+        Vector2Int randomPos = emptyPositionsCache[Random.Range(0, emptyPositionsCache.Count)];
         Spawn(randomPos.x, randomPos.y, 0);
     }
 
@@ -38,8 +44,8 @@ public class TileSpawner : ITileSpawner
 
     private System.Collections.IEnumerator SpawnAnimation(Tile tile)
     {
-        Vector3 targetScale = Vector3.one * 0.9f;
-        float duration = 0.2f;
+        Vector3 targetScale = new Vector3(0.9f, 0.9f, 0.9f);
+        float duration = 0.15f;
         float elapsed = 0f;
 
         while (elapsed < duration)
@@ -55,19 +61,17 @@ public class TileSpawner : ITileSpawner
         tile.transform.localScale = targetScale;
     }
 
-    private List<Vector2Int> GetEmptyPositions()
+    private void GetEmptyPositions()
     {
-        List<Vector2Int> empty = new List<Vector2Int>(grid.Size * grid.Size);
+        emptyPositionsCache.Clear();
 
         for (int x = 0; x < grid.Size; x++)
         {
             for (int y = 0; y < grid.Size; y++)
             {
                 if (grid[x, y] == null)
-                    empty.Add(new Vector2Int(x, y));
+                    emptyPositionsCache.Add(new Vector2Int(x, y));
             }
         }
-
-        return empty;
     }
 }
