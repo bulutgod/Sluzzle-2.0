@@ -39,26 +39,46 @@ public class TileSpawner : ITileSpawner
         grid[x, y] = tile;
 
         tile.transform.localScale = Vector3.zero;
-        CoroutineRunner.Instance.StartCoroutine(SpawnAnimation(tile));
+        CoroutineRunner.Instance.StartCoroutine(ImprovedSpawnAnimation(tile));
     }
 
-    private System.Collections.IEnumerator SpawnAnimation(Tile tile)
+    private System.Collections.IEnumerator ImprovedSpawnAnimation(Tile tile)
     {
         Vector3 targetScale = new Vector3(0.9f, 0.9f, 0.9f);
-        float duration = 0.15f;
+        float duration = 0.25f;
         float elapsed = 0f;
+
+        // Baþlangýç rotasyonu
+        float startRotation = Random.Range(-180f, 180f);
+        tile.transform.rotation = Quaternion.Euler(0, 0, startRotation);
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
-            t = 1f - Mathf.Pow(1f - t, 3f);
 
-            tile.transform.localScale = Vector3.Lerp(Vector3.zero, targetScale, t);
+            // Elastik ease-out efekti
+            float scale = t < 0.5f
+                ? 2f * t * t
+                : 1f - Mathf.Pow(-2f * t + 2f, 2f) / 2f;
+
+            // Overshoot efekti
+            if (t > 0.8f)
+            {
+                scale = 1f + Mathf.Sin((t - 0.8f) * 25f) * 0.1f * (1f - t);
+            }
+
+            tile.transform.localScale = targetScale * scale;
+
+            // Rotasyonu düzelt
+            float rotation = Mathf.Lerp(startRotation, 0f, t * t);
+            tile.transform.rotation = Quaternion.Euler(0, 0, rotation);
+
             yield return null;
         }
 
         tile.transform.localScale = targetScale;
+        tile.transform.rotation = Quaternion.identity;
     }
 
     private void GetEmptyPositions()

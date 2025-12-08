@@ -40,6 +40,12 @@ public class MoveHandler : IMoveHandler
         else
         {
             CameraShake.Instance.Shake(0.15f, 0.1f);
+
+            // Baþarýsýz hamle - streak sýfýrla
+            if (StreakCounter.Instance != null)
+            {
+                StreakCounter.Instance.ResetStreak();
+            }
         }
     }
 
@@ -189,8 +195,36 @@ public class MoveHandler : IMoveHandler
             factory.LevelUp(survivor);
             grid[merge.targetX, merge.targetY] = survivor;
 
-            int score = scoreCalculator.CalculateMergeScore(merge.level, merge.tiles.Count);
-            scoreSystem.AddScore(score);
+            // Combo artýr
+            if (ComboSystem.Instance != null)
+            {
+                ComboSystem.Instance.AddCombo();
+            }
+
+            // Streak artýr
+            if (StreakCounter.Instance != null)
+            {
+                StreakCounter.Instance.IncrementStreak();
+            }
+
+            // Skor hesapla (combo multiplier ile)
+            int baseScore = scoreCalculator.CalculateMergeScore(merge.level, merge.tiles.Count);
+            int comboMultiplier = ComboSystem.Instance != null ? ComboSystem.Instance.GetComboMultiplier() : 1;
+            int finalScore = baseScore * comboMultiplier;
+
+            scoreSystem.AddScore(finalScore);
+
+            // Floating text göster
+            Vector3 scoreTextPos = config.GetWorldPosition(merge.targetX, merge.targetY);
+            string scoreText = comboMultiplier > 1 ? $"+{finalScore} (x{comboMultiplier})" : $"+{finalScore}";
+            FloatingText.Create(scoreTextPos, scoreText, Color.yellow);
+
+            // Partikül efekti
+            if (ParticleEffects.Instance != null)
+            {
+                Color tileColor = survivor.GetComponent<SpriteRenderer>().color;
+                ParticleEffects.Instance.PlayMergeEffect(scoreTextPos, tileColor);
+            }
 
             int animComplete = 0;
             survivor.PlayMergeAnimation(() => animComplete = 1);
