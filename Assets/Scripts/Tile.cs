@@ -5,15 +5,22 @@ public class Tile : MonoBehaviour
     public int level { get; set; }
     private SpriteRenderer spriteRenderer;
     private TileMover mover;
+    private ModernTileVisuals modernVisuals;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         mover = GetComponent<TileMover>();
+        modernVisuals = GetComponent<ModernTileVisuals>();
 
         if (mover == null)
         {
             mover = gameObject.AddComponent<TileMover>();
+        }
+
+        if (modernVisuals == null)
+        {
+            modernVisuals = gameObject.AddComponent<ModernTileVisuals>();
         }
     }
 
@@ -25,8 +32,14 @@ public class Tile : MonoBehaviour
 
     public void SetColor(Color color)
     {
-        if (spriteRenderer != null)
+        if (modernVisuals != null)
+        {
+            modernVisuals.UpdateColor(color);
+        }
+        else if (spriteRenderer != null)
+        {
             spriteRenderer.color = color;
+        }
     }
 
     public void AnimateMoveTo(Vector3 targetPosition, float duration, System.Action onComplete = null)

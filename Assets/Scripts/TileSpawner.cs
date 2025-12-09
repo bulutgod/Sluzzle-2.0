@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 
 public class TileSpawner : ITileSpawner
 {
@@ -43,12 +42,11 @@ public class TileSpawner : ITileSpawner
         CoroutineRunner.Instance.StartCoroutine(ImprovedSpawnAnimation(tile));
     }
 
-    private IEnumerator ImprovedSpawnAnimation(Tile tile)
+    private System.Collections.IEnumerator ImprovedSpawnAnimation(Tile tile)
     {
-        // Check if tile still exists at the start
-        if (tile == null) yield break;
+        if (tile == null) yield break; // Null kontrolü
 
-        Vector3 targetScale = new Vector3(0.9f, 0.9f, 0.9f);
+        Vector3 targetScale = new Vector3(0.4f, 0.4f, 0.4f);
         float duration = 0.25f;
         float elapsed = 0f;
 
@@ -58,8 +56,7 @@ public class TileSpawner : ITileSpawner
 
         while (elapsed < duration)
         {
-            // Check if tile was destroyed during animation
-            if (tile == null) yield break;
+            if (tile == null) yield break; // Her frame null kontrolü
 
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
@@ -84,7 +81,6 @@ public class TileSpawner : ITileSpawner
             yield return null;
         }
 
-        // Final null check before setting final values
         if (tile != null)
         {
             tile.transform.localScale = targetScale;
