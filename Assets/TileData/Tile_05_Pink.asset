@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd95ba881aa3a6d40852a23b6e66fc89, type: 3}
   m_Name: Tile_05_Pink
   m_EditorClassIdentifier: Assembly-CSharp::TileData
-  tileColor: {r: 0.9137255, g: 0.11764706, b: 0.3882353, a: 1}
+  tileColor: {r: 0.9137255, g: 0.11764703, b: 0.6444723, a: 1}
   scoreValue: 50
