@@ -39,52 +39,40 @@ public class TileSpawner : ITileSpawner
         grid[x, y] = tile;
 
         tile.transform.localScale = Vector3.zero;
+
+        // JellyEffect'e doðru scale'i ver
+        JellyEffect jelly = tile.GetComponent<JellyEffect>();
+        if (jelly != null)
+        {
+            jelly.SetOriginalScale(new Vector3(0.4f, 0.4f, 0.4f)); // Senin kullandýðýn scale
+        }
+
         CoroutineRunner.Instance.StartCoroutine(ImprovedSpawnAnimation(tile));
     }
 
     private System.Collections.IEnumerator ImprovedSpawnAnimation(Tile tile)
     {
-        if (tile == null) yield break; // Null kontrolü
+        if (tile == null) yield break;
 
-        Vector3 targetScale = new Vector3(0.4f, 0.4f, 0.4f);
-        float duration = 0.25f;
+        Vector3 targetScale = new Vector3(0.4f, 0.4f, 0.4f); // Senin scale deðerin
+        float duration = 0.15f;
         float elapsed = 0f;
-
-        // Baþlangýç rotasyonu
-        float startRotation = Random.Range(-180f, 180f);
-        tile.transform.rotation = Quaternion.Euler(0, 0, startRotation);
 
         while (elapsed < duration)
         {
-            if (tile == null) yield break; // Her frame null kontrolü
+            if (tile == null) yield break;
 
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
+            t = 1f - Mathf.Pow(1f - t, 3f);
 
-            // Elastik ease-out efekti
-            float scale = t < 0.5f
-                ? 2f * t * t
-                : 1f - Mathf.Pow(-2f * t + 2f, 2f) / 2f;
-
-            // Overshoot efekti
-            if (t > 0.8f)
-            {
-                scale = 1f + Mathf.Sin((t - 0.8f) * 25f) * 0.1f * (1f - t);
-            }
-
-            tile.transform.localScale = targetScale * scale;
-
-            // Rotasyonu düzelt
-            float rotation = Mathf.Lerp(startRotation, 0f, t * t);
-            tile.transform.rotation = Quaternion.Euler(0, 0, rotation);
-
+            tile.transform.localScale = Vector3.Lerp(Vector3.zero, targetScale, t);
             yield return null;
         }
 
         if (tile != null)
         {
             tile.transform.localScale = targetScale;
-            tile.transform.rotation = Quaternion.identity;
         }
     }
 

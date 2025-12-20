@@ -41,7 +41,10 @@ public class MoveHandler : IMoveHandler
         {
             CameraShake.Instance.Shake(0.15f, 0.1f);
 
-            // Baþarýsýz hamle - streak sýfýrla
+            // Baþarýsýz hamle - duvara çarpma jelly efekti
+            ApplyWallBounceEffect(direction);
+
+            // Streak sýfýrla
             if (StreakCounter.Instance != null)
             {
                 StreakCounter.Instance.ResetStreak();
@@ -275,6 +278,25 @@ public class MoveHandler : IMoveHandler
         {
             DX = Mathf.RoundToInt(direction.x);
             DY = Mathf.RoundToInt(direction.y);
+        }
+    }
+
+    // Duvara çarpýnca tüm tile'lara jelly efekti
+    private void ApplyWallBounceEffect(Vector2 direction)
+    {
+        for (int x = 0; x < grid.Size; x++)
+        {
+            for (int y = 0; y < grid.Size; y++)
+            {
+                if (grid[x, y] != null)
+                {
+                    JellyEffect jelly = grid[x, y].GetComponent<JellyEffect>();
+                    if (jelly != null)
+                    {
+                        jelly.PlayJellyBounce(direction);
+                    }
+                }
+            }
         }
     }
 }

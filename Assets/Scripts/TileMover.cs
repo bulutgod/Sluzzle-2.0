@@ -5,6 +5,17 @@ public class TileMover : MonoBehaviour
 {
     private Coroutine moveCoroutine;
     private Coroutine scaleCoroutine;
+    private JellyEffect jellyEffect;
+    private Vector3 lastMoveDirection;
+
+    private void Awake()
+    {
+        jellyEffect = GetComponent<JellyEffect>();
+        if (jellyEffect == null)
+        {
+            jellyEffect = gameObject.AddComponent<JellyEffect>();
+        }
+    }
 
     public void MoveTo(Vector3 targetPosition, float duration, System.Action onComplete = null)
     {
@@ -12,6 +23,9 @@ public class TileMover : MonoBehaviour
         {
             StopCoroutine(moveCoroutine);
         }
+
+        // Hareket yönünü hesapla
+        lastMoveDirection = (targetPosition - transform.position).normalized;
 
         moveCoroutine = StartCoroutine(MoveCoroutine(targetPosition, duration, onComplete));
     }
@@ -43,33 +57,27 @@ public class TileMover : MonoBehaviour
         }
 
         transform.position = target;
+
+        // Varýnca jelly bounce efekti
+        if (jellyEffect != null)
+        {
+            jellyEffect.PlayJellyBounce(lastMoveDirection);
+        }
+
         onComplete?.Invoke();
     }
 
     private IEnumerator MergeAnimationCoroutine(System.Action onComplete)
     {
-        Vector3 originalScale = transform.localScale;
-        float duration = 0.2f;
-        float elapsed = 0f;
-
-        while (elapsed < duration / 2)
+        // Jelly merge efekti oynat
+        if (jellyEffect != null)
         {
-            elapsed += Time.deltaTime;
-            float t = elapsed / (duration / 2);
-            transform.localScale = Vector3.Lerp(originalScale, originalScale * 1.2f, t);
-            yield return null;
+            jellyEffect.PlayJellyMerge();
         }
 
-        elapsed = 0f;
-        while (elapsed < duration / 2)
-        {
-            elapsed += Time.deltaTime;
-            float t = elapsed / (duration / 2);
-            transform.localScale = Vector3.Lerp(originalScale * 1.2f, originalScale, t);
-            yield return null;
-        }
+        // Jelly efektinin bitmesini bekle
+        yield return new WaitForSeconds(0.4f);
 
-        transform.localScale = originalScale;
         onComplete?.Invoke();
     }
 
@@ -84,6 +92,11 @@ public class TileMover : MonoBehaviour
         {
             StopCoroutine(moveCoroutine);
             moveCoroutine = null;
+        }
+
+        if (jellyEffect != null)
+        {
+            jellyEffect.ResetScale();
         }
     }
 }

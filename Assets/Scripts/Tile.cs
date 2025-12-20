@@ -5,22 +5,22 @@ public class Tile : MonoBehaviour
     public int level { get; set; }
     private SpriteRenderer spriteRenderer;
     private TileMover mover;
-    private ModernTileVisuals modernVisuals;
+    private JellyEffect jellyEffect;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         mover = GetComponent<TileMover>();
-        modernVisuals = GetComponent<ModernTileVisuals>();
+        jellyEffect = GetComponent<JellyEffect>();
 
         if (mover == null)
         {
             mover = gameObject.AddComponent<TileMover>();
         }
 
-        if (modernVisuals == null)
+        if (jellyEffect == null)
         {
-            modernVisuals = gameObject.AddComponent<ModernTileVisuals>();
+            jellyEffect = gameObject.AddComponent<JellyEffect>();
         }
     }
 
@@ -32,14 +32,8 @@ public class Tile : MonoBehaviour
 
     public void SetColor(Color color)
     {
-        if (modernVisuals != null)
-        {
-            modernVisuals.UpdateColor(color);
-        }
-        else if (spriteRenderer != null)
-        {
+        if (spriteRenderer != null)
             spriteRenderer.color = color;
-        }
     }
 
     public void AnimateMoveTo(Vector3 targetPosition, float duration, System.Action onComplete = null)
