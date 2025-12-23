@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewTile", menuName = "SlideMerge/Tile Data")]
 public class TileData : ScriptableObject

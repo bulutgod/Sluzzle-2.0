@@ -198,6 +198,12 @@ public class MoveHandler : IMoveHandler
             factory.LevelUp(survivor);
             grid[merge.targetX, merge.targetY] = survivor;
 
+            // Level sistemine bildir - yeni tile level oluþturuldu
+            if (LevelManager.Instance != null)
+            {
+                LevelManager.Instance.OnTileMerged(survivor.level);
+            }
+
             // Combo artýr
             if (ComboSystem.Instance != null)
             {
@@ -239,6 +245,13 @@ public class MoveHandler : IMoveHandler
         }
 
         spawner.SpawnRandom();
+
+        // Yeni tile spawn olduktan sonra game over kontrolü
+        if (LevelManager.Instance != null)
+        {
+            LevelManager.Instance.CheckGameOver(grid);
+        }
+
         isAnimating = false;
     }
 

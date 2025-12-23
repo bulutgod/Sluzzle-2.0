@@ -11,7 +11,7 @@ public class MenuManager : MonoBehaviour
 
     [Header("Visual Feedback (Optional)")]
     [SerializeField] private Color selectedColor = Color.green;
-    [SerializeField] private Color normalColor = Color.white;
+    [SerializeField] private Color normalColor = Color.white;   
 
     private int currentSelectedSize = 5;
 
