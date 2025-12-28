@@ -10,7 +10,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<LevelDataSO> levels = new List<LevelDataSO>();
     [SerializeField] private int currentLevelIndex = 0;
 
-    //[Header("Events")]
     public event Action<LevelObjective> OnObjectiveProgress;
     public event Action OnLevelComplete;
     public event Action OnLevelFailed;
@@ -32,17 +31,15 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        // Eğer sonsuz mod ise level sistemi çalışmasın
         bool isEndlessMode = PlayerPrefs.GetInt("IsEndlessMode", 0) == 1;
 
         if (isEndlessMode)
         {
             Debug.Log("🎮 Sonsuz Mod aktif - Level sistemi devre dışı");
-            this.enabled = false; // Bu script'i devre dışı bırak
+            this.enabled = false;
             return;
         }
 
-        // Ana menüden seçilen level'i yükle
         int selectedLevel = MainMenuLevelSelector.GetSelectedLevel();
         LoadLevel(selectedLevel);
     }
@@ -64,7 +61,6 @@ public class LevelManager : MonoBehaviour
         currentLevelIndex = levelIndex;
         currentLevel = levels[levelIndex];
 
-        // Objective'leri sıfırla
         foreach (var objective in currentLevel.objectives)
         {
             objective.currentCount = 0;
@@ -77,7 +73,6 @@ public class LevelManager : MonoBehaviour
     {
         if (currentLevel == null) return;
 
-        // Her objective'i kontrol et
         foreach (var objective in currentLevel.objectives)
         {
             if (objective.tileLevel == tileLevel && objective.currentCount < objective.targetCount)
@@ -92,16 +87,65 @@ public class LevelManager : MonoBehaviour
         CheckLevelComplete();
     }
 
-    // Board doldu veya hareket kalmadı mı kontrol et
+    // ✨ YENİ: Ekranda şu anda kaç tane tile var kontrol et
+    public void CheckLevelCompleteByCurrentBoard(IGrid grid)
+    {
+        if (currentLevel == null) return;
+
+        // Ekrandaki her level'dan kaç tane tile var say
+        Dictionary<int, int> currentBoardCounts = new Dictionary<int, int>();
+
+        for (int x = 0; x < grid.Size; x++)
+        {
+            for (int y = 0; y < grid.Size; y++)
+            {
+                if (grid[x, y] != null)
+                {
+                    int tileLevel = grid[x, y].level;
+                    
+                    if (!currentBoardCounts.ContainsKey(tileLevel))
+                    {
+                        currentBoardCounts[tileLevel] = 0;
+                    }
+                    
+                    currentBoardCounts[tileLevel]++;
+                }
+            }
+        }
+
+        // Objective'leri kontrol et
+        bool allObjectivesMet = true;
+        
+        foreach (var objective in currentLevel.objectives)
+        {
+            int currentCount = currentBoardCounts.ContainsKey(objective.tileLevel) 
+                ? currentBoardCounts[objective.tileLevel] 
+                : 0;
+
+            // UI'yi güncelle (eski sistem)
+            objective.currentCount = currentCount;
+            OnObjectiveProgress?.Invoke(objective);
+
+            if (currentCount < objective.targetCount)
+            {
+                allObjectivesMet = false;
+            }
+        }
+
+        // Eğer tüm objective'ler aynı anda karşılanıyorsa
+        if (allObjectivesMet)
+        {
+            OnLevelComplete?.Invoke();
+            Debug.Log($"🎉 Level {currentLevel.levelNumber} tamamlandı! (Tüm tile'lar aynı anda ekranda)");
+        }
+    }
+
     public void CheckGameOver(IGrid grid)
     {
-        // Eğer level zaten tamamlandıysa game over olmaz
         if (IsLevelComplete()) return;
 
-        // Board tamamen dolu mu?
         if (IsBoardFull(grid))
         {
-            // Hala hareket edebilir mi kontrol et
             if (!CanMakeAnyMove(grid))
             {
                 OnLevelFailed?.Invoke();
@@ -127,7 +171,6 @@ public class LevelManager : MonoBehaviour
 
     private bool CanMakeAnyMove(IGrid grid)
     {
-        // Her yönü kontrol et
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
 
         foreach (var direction in directions)
@@ -231,28 +274,23 @@ public class LevelManager : MonoBehaviour
     {
         if (currentLevelIndex + 1 < levels.Count)
         {
-            // Bir sonraki level'i aç
             MainMenuLevelSelector.UnlockNextLevel();
-
             LoadLevel(currentLevelIndex + 1);
         }
         else
         {
             Debug.Log("🏆 Tüm leveller tamamlandı!");
-            // Ana menüye dön veya tebrik ekranı göster
             UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
         }
     }
 
     public void RestartLevel()
     {
-        // Sahneyi yeniden yükle
         UnityEngine.SceneManagement.SceneManager.LoadScene(
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
         );
     }
 
-    // Getter'lar
     public LevelDataSO GetCurrentLevel() => currentLevel;
     public int GetCurrentLevelIndex() => currentLevelIndex;
     public int GetTotalLevels() => levels.Count;

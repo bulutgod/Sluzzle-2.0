@@ -8,6 +8,7 @@ public class InGameCanvasController : MonoBehaviour
     public GameObject pausePanel;
     public Button pauseButton;
     public GameManager gameManagerScript;
+    public GameObject levelInfoPanel;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class InGameCanvasController : MonoBehaviour
         menuPanel.SetActive(false);
         pausePanel.SetActive(true);
         gameManagerScript.gameObject.SetActive(false);
+        levelInfoPanel.SetActive(false);
     }
  
 }

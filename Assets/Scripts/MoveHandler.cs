@@ -41,10 +41,10 @@ public class MoveHandler : IMoveHandler
         {
             CameraShake.Instance.Shake(0.15f, 0.1f);
 
-            // Baþarýsýz hamle - duvara çarpma jelly efekti
+            // BaÅŸarÄ±sÄ±z hamle - duvara Ã§arpma jelly efekti
             ApplyWallBounceEffect(direction);
 
-            // Streak sýfýrla
+            // Streak sÄ±fÄ±rla
             if (StreakCounter.Instance != null)
             {
                 StreakCounter.Instance.ResetStreak();
@@ -198,19 +198,19 @@ public class MoveHandler : IMoveHandler
             factory.LevelUp(survivor);
             grid[merge.targetX, merge.targetY] = survivor;
 
-            // Level sistemine bildir - yeni tile level oluþturuldu
+            // Level sistemine bildir - yeni tile level oluÅŸturuldu
             if (LevelManager.Instance != null)
             {
                 LevelManager.Instance.OnTileMerged(survivor.level);
             }
 
-            // Combo artýr
+            // Combo artÄ±r
             if (ComboSystem.Instance != null)
             {
                 ComboSystem.Instance.AddCombo();
             }
 
-            // Streak artýr
+            // Streak artÄ±r
             if (StreakCounter.Instance != null)
             {
                 StreakCounter.Instance.IncrementStreak();
@@ -223,12 +223,12 @@ public class MoveHandler : IMoveHandler
 
             scoreSystem.AddScore(finalScore);
 
-            // Floating text göster
+            // Floating text gÃ¶ster
             Vector3 scoreTextPos = config.GetWorldPosition(merge.targetX, merge.targetY);
             string scoreText = comboMultiplier > 1 ? $"+{finalScore} (x{comboMultiplier})" : $"+{finalScore}";
             FloatingText.Create(scoreTextPos, scoreText, Color.yellow);
 
-            // Partikül efekti
+            // PartikÃ¼l efekti
             if (ParticleEffects.Instance != null)
             {
                 Color tileColor = survivor.GetComponent<SpriteRenderer>().color;
@@ -246,9 +246,10 @@ public class MoveHandler : IMoveHandler
 
         spawner.SpawnRandom();
 
-        // Yeni tile spawn olduktan sonra game over kontrolü
+        // âœ¨ YENÄ°: Ekrandaki tile'larÄ± kontrol et (aynÄ± anda olma durumu)
         if (LevelManager.Instance != null)
         {
+            LevelManager.Instance.CheckLevelCompleteByCurrentBoard(grid);
             LevelManager.Instance.CheckGameOver(grid);
         }
 
@@ -294,7 +295,7 @@ public class MoveHandler : IMoveHandler
         }
     }
 
-    // Duvara çarpýnca tüm tile'lara jelly efekti
+    // Duvara Ã§arpÄ±nca tÃ¼m tile'lara jelly efekti
     private void ApplyWallBounceEffect(Vector2 direction)
     {
         for (int x = 0; x < grid.Size; x++)
