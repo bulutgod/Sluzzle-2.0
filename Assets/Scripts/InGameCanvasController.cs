@@ -31,6 +31,8 @@ public class InGameCanvasController : MonoBehaviour
         menuPanel.SetActive(false);
         pausePanel.SetActive(true);
         gameManagerScript.gameObject.SetActive(false);
+        //gameManagerScript.backgroundTilePrefab.gameObject.SetActive(false);
+        //gameManagerScript.colorTilePrefab.gameObject.SetActive(false);
         levelInfoPanel.SetActive(false);
     }
  

@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     [Header("Prefabs")]
-    [SerializeField] private GameObject backgroundTilePrefab;
-    [SerializeField] private GameObject colorTilePrefab;
+    public GameObject backgroundTilePrefab;
+    public GameObject colorTilePrefab;
     [SerializeField] private TileData[] tileLevels;
 
     [Header("Board Settings")]

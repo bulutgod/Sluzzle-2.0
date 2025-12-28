@@ -269,21 +269,30 @@ public class LevelManager : MonoBehaviour
 
         return true;
     }
-
     public void NextLevel()
     {
+        Debug.Log($" Current Level: {currentLevelIndex}, Total Levels: {levels.Count}");
+    
         if (currentLevelIndex + 1 < levels.Count)
         {
+            Debug.Log($" Sonraki level'e geçiliyor: {currentLevelIndex + 1}");
+        
+            // Level'i aç
             MainMenuLevelSelector.UnlockNextLevel();
+        
+            // ✨ YENİ: Seçili level'i de güncelle
+            PlayerPrefs.SetInt("SelectedLevel", currentLevelIndex + 1);
+            PlayerPrefs.Save();
+        
+            // Aynı sahnede bir sonraki level'i yükle
             LoadLevel(currentLevelIndex + 1);
         }
         else
         {
-            Debug.Log("🏆 Tüm leveller tamamlandı!");
+            Debug.Log(" Tüm leveller tamamlandı! Ana menüye dönülüyor.");
             UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
         }
     }
-
     public void RestartLevel()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(
