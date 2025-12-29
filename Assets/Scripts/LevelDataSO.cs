@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class LevelObjective
 {
     [Header("Hedef")]
-    public int tileLevel; // Hangi seviye tile (0=Beyaz, 1=Sarý, 2=Turuncu vs.)
-    public int targetCount; // Kaç tane yapýlmasý gerekiyor
+    public int tileLevel; 
+    public int targetCount; 
 
-    [HideInInspector] public int currentCount; // Þu ana kadar kaç tane yapýldý
+    [HideInInspector] public int currentCount; 
 }
 
 [CreateAssetMenu(fileName = "NewLevel", menuName = "Sluzzle/Level Data")]

@@ -19,7 +19,7 @@ public class CanvasController : MonoBehaviour
         levelSelectPanel.SetActive(false);
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         classicMode.onClick.AddListener(ClassicActive);

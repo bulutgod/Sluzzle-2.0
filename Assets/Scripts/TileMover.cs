@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 
 public class TileMover : MonoBehaviour
@@ -24,7 +24,7 @@ public class TileMover : MonoBehaviour
             StopCoroutine(moveCoroutine);
         }
 
-        // Hareket yönünü hesapla
+        // Hareket yÃ¶nÃ¼nÃ¼ hesapla
         lastMoveDirection = (targetPosition - transform.position).normalized;
 
         moveCoroutine = StartCoroutine(MoveCoroutine(targetPosition, duration, onComplete));
@@ -37,7 +37,16 @@ public class TileMover : MonoBehaviour
             StopCoroutine(scaleCoroutine);
         }
 
-        scaleCoroutine = StartCoroutine(MergeAnimationCoroutine(onComplete));
+        
+        if (gameObject.activeInHierarchy)
+        {
+            scaleCoroutine = StartCoroutine(MergeAnimationCoroutine(onComplete));
+        }
+        else
+        {
+            
+            onComplete?.Invoke();
+        }
     }
 
     private IEnumerator MoveCoroutine(Vector3 target, float duration, System.Action onComplete)
@@ -47,6 +56,12 @@ public class TileMover : MonoBehaviour
 
         while (elapsed < duration)
         {
+            
+            if (this == null || gameObject == null)
+            {
+                yield break;
+            }
+
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
 
@@ -56,27 +71,52 @@ public class TileMover : MonoBehaviour
             yield return null;
         }
 
-        transform.position = target;
-
-        // Varýnca jelly bounce efekti
-        if (jellyEffect != null)
+        
+        if (this != null && gameObject != null)
         {
-            jellyEffect.PlayJellyBounce(lastMoveDirection);
-        }
+            transform.position = target;
 
-        onComplete?.Invoke();
+            
+            if (jellyEffect != null)
+            {
+                jellyEffect.PlayJellyBounce(lastMoveDirection);
+            }
+
+            onComplete?.Invoke();
+        }
     }
 
     private IEnumerator MergeAnimationCoroutine(System.Action onComplete)
     {
-        // Jelly merge efekti oynat
+        
+        if (this == null || gameObject == null || !gameObject.activeInHierarchy)
+        {
+            onComplete?.Invoke();
+            yield break;
+        }
+
+        
         if (jellyEffect != null)
         {
             jellyEffect.PlayJellyMerge();
         }
 
-        // Jelly efektinin bitmesini bekle
-        yield return new WaitForSeconds(0.4f);
+        
+        float elapsed = 0f;
+        float waitTime = 0.4f;
+
+        while (elapsed < waitTime)
+        {
+            
+            if (this == null || gameObject == null || !gameObject.activeInHierarchy)
+            {
+                onComplete?.Invoke();
+                yield break;
+            }
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
 
         onComplete?.Invoke();
     }

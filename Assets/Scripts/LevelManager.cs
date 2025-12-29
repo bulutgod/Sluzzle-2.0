@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour
 
         if (isEndlessMode)
         {
-            Debug.Log("🎮 Sonsuz Mod aktif - Level sistemi devre dışı");
+            Debug.Log("Sonsuz Mod aktif - Level sistemi devre dışı");
             this.enabled = false;
             return;
         }
@@ -66,7 +66,7 @@ public class LevelManager : MonoBehaviour
             objective.currentCount = 0;
         }
 
-        Debug.Log($"✅ Level {currentLevel.levelNumber} yüklendi: {currentLevel.levelName}");
+        Debug.Log($"Level {currentLevel.levelNumber} yüklendi: {currentLevel.levelName}");
     }
 
     public void OnTileMerged(int tileLevel)
@@ -80,19 +80,19 @@ public class LevelManager : MonoBehaviour
                 objective.currentCount++;
                 OnObjectiveProgress?.Invoke(objective);
 
-                Debug.Log($"🎯 Level {tileLevel} tile oluşturuldu! ({objective.currentCount}/{objective.targetCount})");
+                Debug.Log($"Level {tileLevel} tile oluşturuldu! ({objective.currentCount}/{objective.targetCount})");
             }
         }
 
         CheckLevelComplete();
     }
 
-    // ✨ YENİ: Ekranda şu anda kaç tane tile var kontrol et
+    
     public void CheckLevelCompleteByCurrentBoard(IGrid grid)
     {
         if (currentLevel == null) return;
 
-        // Ekrandaki her level'dan kaç tane tile var say
+       
         Dictionary<int, int> currentBoardCounts = new Dictionary<int, int>();
 
         for (int x = 0; x < grid.Size; x++)
@@ -113,7 +113,7 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        // Objective'leri kontrol et
+        
         bool allObjectivesMet = true;
         
         foreach (var objective in currentLevel.objectives)
@@ -122,7 +122,7 @@ public class LevelManager : MonoBehaviour
                 ? currentBoardCounts[objective.tileLevel] 
                 : 0;
 
-            // UI'yi güncelle (eski sistem)
+            
             objective.currentCount = currentCount;
             OnObjectiveProgress?.Invoke(objective);
 
@@ -132,11 +132,11 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        // Eğer tüm objective'ler aynı anda karşılanıyorsa
+        
         if (allObjectivesMet)
         {
             OnLevelComplete?.Invoke();
-            Debug.Log($"🎉 Level {currentLevel.levelNumber} tamamlandı! (Tüm tile'lar aynı anda ekranda)");
+            Debug.Log($"Level {currentLevel.levelNumber} tamamlandı! (Tüm tile'lar aynı anda ekranda)");
         }
     }
 
@@ -149,7 +149,7 @@ public class LevelManager : MonoBehaviour
             if (!CanMakeAnyMove(grid))
             {
                 OnLevelFailed?.Invoke();
-                Debug.Log("❌ Board dolu ve hareket kalmadı! Level başarısız.");
+                Debug.Log("Board dolu ve hareket kalmadı! Level başarısız.");
             }
         }
     }
@@ -251,7 +251,7 @@ public class LevelManager : MonoBehaviour
         if (IsLevelComplete())
         {
             OnLevelComplete?.Invoke();
-            Debug.Log($"🎉 Level {currentLevel.levelNumber} tamamlandı!");
+            Debug.Log($"Level {currentLevel.levelNumber} tamamlandı!");
         }
     }
 
@@ -271,27 +271,43 @@ public class LevelManager : MonoBehaviour
     }
     public void NextLevel()
     {
-        Debug.Log($" Current Level: {currentLevelIndex}, Total Levels: {levels.Count}");
-    
-        if (currentLevelIndex + 1 < levels.Count)
+        int nextIndex = currentLevelIndex + 1;
+
+        Debug.Log($" NextLevel: Şu anki={currentLevelIndex}, Sonraki={nextIndex}, Toplam={levels.Count}");
+
+        
+        if (levels == null || levels.Count == 0)
         {
-            Debug.Log($" Sonraki level'e geçiliyor: {currentLevelIndex + 1}");
-        
-            // Level'i aç
-            MainMenuLevelSelector.UnlockNextLevel();
-        
-            // ✨ YENİ: Seçili level'i de güncelle
-            PlayerPrefs.SetInt("SelectedLevel", currentLevelIndex + 1);
-            PlayerPrefs.Save();
-        
-            // Aynı sahnede bir sonraki level'i yükle
-            LoadLevel(currentLevelIndex + 1);
+            Debug.LogError("Levels listesi boş! Inspector'dan level ekle!");
+            return;
         }
-        else
+
+        
+        if (nextIndex >= levels.Count)
         {
-            Debug.Log(" Tüm leveller tamamlandı! Ana menüye dönülüyor.");
+            Debug.Log("Son level tamamlandı! Ana menüye dönülüyor...");
             UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
+            return;
         }
+
+        Debug.Log($" Level {nextIndex} için sahne yükleniyor...");
+
+        
+        int unlockedLevels = PlayerPrefs.GetInt("UnlockedLevels", 1);
+        if (nextIndex >= unlockedLevels)
+        {
+            PlayerPrefs.SetInt("UnlockedLevels", nextIndex + 1);
+            Debug.Log($" Level {nextIndex + 1} açıldı");
+        }
+
+        PlayerPrefs.SetInt("SelectedLevel", nextIndex);
+        PlayerPrefs.SetInt("IsEndlessMode", 0); 
+        PlayerPrefs.Save();
+
+        
+        UnityEngine.SceneManagement.SceneManager.LoadScene(
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
+        );
     }
     public void RestartLevel()
     {

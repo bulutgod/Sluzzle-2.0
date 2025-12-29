@@ -28,6 +28,7 @@ public class PauseCanvasController : MonoBehaviour
         gameManagerScript.gameObject.SetActive(true);
         inGameCanvasControllerScript.menuPanel.SetActive(true);
         inGameCanvasControllerScript.pausePanel.SetActive(false);
+        inGameCanvasControllerScript.levelInfoPanel.SetActive(true);
     }
     private void HomeButton()
     {

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
 using System.Collections;
 
@@ -28,7 +28,7 @@ public class ScoreUI : MonoBehaviour
         {
             scoreText.text = scorePrefix + score.ToString();
 
-            // Pulse animasyonu oynat
+            
             if (score > 0)
             {
                 PlayPulseAnimation();
@@ -38,6 +38,12 @@ public class ScoreUI : MonoBehaviour
 
     private void PlayPulseAnimation()
     {
+        
+        if (scoreText == null || !gameObject.activeInHierarchy)
+        {
+            return;
+        }
+
         if (pulseCoroutine != null)
         {
             StopCoroutine(pulseCoroutine);
@@ -52,9 +58,15 @@ public class ScoreUI : MonoBehaviour
         float elapsed = 0f;
         float halfDuration = pulseDuration / 2f;
 
-        // Büyüme
+        
         while (elapsed < halfDuration)
         {
+            
+            if (this == null || scoreText == null || !gameObject.activeInHierarchy)
+            {
+                yield break;
+            }
+
             elapsed += Time.deltaTime;
             float t = elapsed / halfDuration;
             scoreText.transform.localScale = Vector3.Lerp(normalScale, normalScale * pulseScale, t);
@@ -63,15 +75,34 @@ public class ScoreUI : MonoBehaviour
 
         elapsed = 0f;
 
-        // Küçülme
+        
         while (elapsed < halfDuration)
         {
+            
+            if (this == null || scoreText == null || !gameObject.activeInHierarchy)
+            {
+                yield break;
+            }
+
             elapsed += Time.deltaTime;
             float t = elapsed / halfDuration;
             scoreText.transform.localScale = Vector3.Lerp(normalScale * pulseScale, normalScale, t);
             yield return null;
         }
 
-        scoreText.transform.localScale = normalScale;
+        
+        if (scoreText != null)
+        {
+            scoreText.transform.localScale = normalScale;
+        }
+    }
+
+    
+    private void OnDestroy()
+    {
+        if (pulseCoroutine != null)
+        {
+            StopCoroutine(pulseCoroutine);
+        }
     }
 }
