@@ -55,7 +55,11 @@ public class MoveHandler : IMoveHandler
     private MoveResult ProcessMovesAndMerges(MoveData moveData)
     {
         MoveResult result = new MoveResult();
-        bool[,] willMerge = new bool[grid.Size, grid.Size];
+        bool[][] willMerge = new bool[grid.Size][];
+        for (int index = 0; index < grid.Size; index++)
+        {
+            willMerge[index] = new bool[grid.Size];
+        }
 
         for (int primary = 0; primary < grid.Size; primary++)
         {
@@ -99,9 +103,9 @@ public class MoveHandler : IMoveHandler
                         level = lineTiles[i].level
                     });
 
-                    willMerge[lineTiles[i].x, lineTiles[i].y] = true;
-                    willMerge[lineTiles[i + 1].x, lineTiles[i + 1].y] = true;
-                    willMerge[lineTiles[i + 2].x, lineTiles[i + 2].y] = true;
+                    willMerge[lineTiles[i].x][lineTiles[i].y] = true;
+                    willMerge[lineTiles[i + 1].x][lineTiles[i + 1].y] = true;
+                    willMerge[lineTiles[i + 2].x][lineTiles[i + 2].y] = true;
 
                     targetPos += step;
                     i += 3;
@@ -133,129 +137,137 @@ public class MoveHandler : IMoveHandler
     }
 
     private IEnumerator ExecuteMoveSequence(MoveResult result, MoveData moveData)
+{
+    isAnimating = true;
+
+    // Grid'den tile'ları temizle
+    foreach (var move in result.moves)
     {
-        isAnimating = true;
+        grid[move.fromX, move.fromY] = null;
+    }
 
-        foreach (var move in result.moves)
+    foreach (var merge in result.merges)
+    {
+        foreach (var tile in merge.tiles)
         {
-            grid[move.fromX, move.fromY] = null;
-        }
-
-        foreach (var merge in result.merges)
-        {
-            foreach (var tile in merge.tiles)
+            for (int x = 0; x < grid.Size; x++)
             {
-                for (int x = 0; x < grid.Size; x++)
+                for (int y = 0; y < grid.Size; y++)
                 {
-                    for (int y = 0; y < grid.Size; y++)
+                    if (grid[x, y] == tile)
                     {
-                        if (grid[x, y] == tile)
-                        {
-                            grid[x, y] = null;
-                        }
+                        grid[x, y] = null;
                     }
                 }
             }
         }
-
-        int completedMoves = 0;
-        int totalActions = result.moves.Count + result.merges.Count * 3;
-
-        foreach (var move in result.moves)
-        {
-            Vector3 targetPos = config.GetWorldPosition(move.toX, move.toY);
-            move.tile.AnimateMoveTo(targetPos, animationDuration, () => completedMoves++);
-        }
-
-        foreach (var merge in result.merges)
-        {
-            Vector3 targetPos = config.GetWorldPosition(merge.targetX, merge.targetY);
-            foreach (var tile in merge.tiles)
-            {
-                tile.AnimateMoveTo(targetPos, animationDuration, () => completedMoves++);
-            }
-        }
-
-        while (completedMoves < totalActions)
-        {
-            yield return null;
-        }
-
-        foreach (var move in result.moves)
-        {
-            grid[move.toX, move.toY] = move.tile;
-        }
-
-        foreach (var merge in result.merges)
-        {
-            Tile survivor = merge.tiles[merge.tiles.Count - 1];
-
-            for (int i = 0; i < merge.tiles.Count - 1; i++)
-            {
-                Object.Destroy(merge.tiles[i].gameObject);
-            }
-
-            factory.LevelUp(survivor);
-            grid[merge.targetX, merge.targetY] = survivor;
-
-            // Level sistemine bildir - yeni tile level oluşturuldu
-            if (LevelManager.Instance != null)
-            {
-                LevelManager.Instance.OnTileMerged(survivor.level);
-            }
-
-            // Combo artır
-            if (ComboSystem.Instance != null)
-            {
-                ComboSystem.Instance.AddCombo();
-            }
-
-            // Streak artır
-            if (StreakCounter.Instance != null)
-            {
-                StreakCounter.Instance.IncrementStreak();
-            }
-
-            // Skor hesapla (combo multiplier ile)
-            int baseScore = scoreCalculator.CalculateMergeScore(merge.level, merge.tiles.Count);
-            int comboMultiplier = ComboSystem.Instance != null ? ComboSystem.Instance.GetComboMultiplier() : 1;
-            int finalScore = baseScore * comboMultiplier;
-
-            scoreSystem.AddScore(finalScore);
-
-            // Floating text göster
-            Vector3 scoreTextPos = config.GetWorldPosition(merge.targetX, merge.targetY);
-            string scoreText = comboMultiplier > 1 ? $"+{finalScore} (x{comboMultiplier})" : $"+{finalScore}";
-            FloatingText.Create(scoreTextPos, scoreText, Color.yellow);
-
-            // Partikül efekti
-            if (ParticleEffects.Instance != null)
-            {
-                Color tileColor = survivor.GetComponent<SpriteRenderer>().color;
-                ParticleEffects.Instance.PlayMergeEffect(scoreTextPos, tileColor);
-            }
-
-            int animComplete = 0;
-            survivor.PlayMergeAnimation(() => animComplete = 1);
-
-            while (animComplete == 0)
-            {
-                yield return null;
-            }
-        }
-
-        spawner.SpawnRandom();
-
-        // ✨ YENİ: Ekrandaki tile'ları kontrol et (aynı anda olma durumu)
-        if (LevelManager.Instance != null)
-        {
-            LevelManager.Instance.CheckLevelCompleteByCurrentBoard(grid);
-            LevelManager.Instance.CheckGameOver(grid);
-        }
-
-        isAnimating = false;
     }
 
+    // HAREKET ANİMASYONLARI - hepsini aynı anda başlat
+    int completedMoves = 0;
+    int totalActions = result.moves.Count + result.merges.Count * 3;
+
+    foreach (var move in result.moves)
+    {
+        Vector3 targetPos = config.GetWorldPosition(move.toX, move.toY);
+        move.tile.AnimateMoveTo(targetPos, animationDuration, () => completedMoves++);
+    }
+
+    foreach (var merge in result.merges)
+    {
+        Vector3 targetPos = config.GetWorldPosition(merge.targetX, merge.targetY);
+        foreach (var tile in merge.tiles)
+        {
+            tile.AnimateMoveTo(targetPos, animationDuration, () => completedMoves++);
+        }
+    }
+
+    // Tüm hareket animasyonlarının bitmesini bekle
+    while (completedMoves < totalActions)
+    {
+        yield return null;
+    }
+
+    // Grid'i güncelle - moves
+    foreach (var move in result.moves)
+    {
+        grid[move.toX, move.toY] = move.tile;
+    }
+
+    // TÜM BİRLEŞMELERİ AYNI ANDA İŞLE
+    int completedMergeAnims = 0;
+    int totalMergeAnims = result.merges.Count;
+
+    foreach (var merge in result.merges)
+    {
+        Tile survivor = merge.tiles[merge.tiles.Count - 1];
+
+        // Diğer tile'ları yok et
+        for (int i = 0; i < merge.tiles.Count - 1; i++)
+        {
+            Object.Destroy(merge.tiles[i].gameObject);
+        }
+
+        // Level up
+        factory.LevelUp(survivor);
+        grid[merge.targetX, merge.targetY] = survivor;
+
+        // Level sistemine bildir
+        if (LevelManager.Instance != null)
+        {
+            LevelManager.Instance.OnTileMerged(survivor.level);
+        }
+
+        // Combo artır
+        if (ComboSystem.Instance != null)
+        {
+            ComboSystem.Instance.AddCombo();
+        }
+
+        // Streak artır
+        if (StreakCounter.Instance != null)
+        {
+            StreakCounter.Instance.IncrementStreak();
+        }
+
+        // Skor hesapla
+        int baseScore = scoreCalculator.CalculateMergeScore(merge.level, merge.tiles.Count);
+        int comboMultiplier = ComboSystem.Instance != null ? ComboSystem.Instance.GetComboMultiplier() : 1;
+        int finalScore = baseScore * comboMultiplier;
+        scoreSystem.AddScore(finalScore);
+
+        // Floating text
+        Vector3 scoreTextPos = config.GetWorldPosition(merge.targetX, merge.targetY);
+        string scoreText = comboMultiplier > 1 ? $"+{finalScore} (x{comboMultiplier})" : $"+{finalScore}";
+        FloatingText.Create(scoreTextPos, scoreText, Color.yellow);
+
+        // Partikül efekti
+        if (ParticleEffects.Instance != null)
+        {
+            Color tileColor = survivor.GetComponent<SpriteRenderer>().color;
+            ParticleEffects.Instance.PlayMergeEffect(scoreTextPos, tileColor);
+        }
+
+        // Animasyonu başlat - BEKLEMEDEN!
+        survivor.PlayMergeAnimation(() => completedMergeAnims++);
+    }
+
+    // TÜM birleşme animasyonlarının bitmesini bekle
+    while (completedMergeAnims < totalMergeAnims)
+    {
+        yield return null;
+    }
+
+    spawner.SpawnRandom();
+
+    if (LevelManager.Instance != null)
+    {
+        LevelManager.Instance.CheckLevelCompleteByCurrentBoard(grid);
+        LevelManager.Instance.CheckGameOver(grid);
+    }
+
+    isAnimating = false;
+}
     private class MoveInfo
     {
         public Tile tile;
@@ -295,7 +307,7 @@ public class MoveHandler : IMoveHandler
         }
     }
 
-    // Duvara çarpınca tüm tile'lara jelly efekti
+    
     private void ApplyWallBounceEffect(Vector2 direction)
     {
         for (int x = 0; x < grid.Size; x++)

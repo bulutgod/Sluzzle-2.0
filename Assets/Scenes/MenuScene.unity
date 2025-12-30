@@ -228,6 +228,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4802d4001c90de49bf5efcfe530c022, type: 2}
   - {fileID: 11400000, guid: 69d3f46cdd8d232418c6c1091e7e9c9f, type: 2}
   - {fileID: 11400000, guid: d53cdee222be7f64fac87af4e3eef013, type: 2}
+  - {fileID: 11400000, guid: 55d25613d597647fc92da00790a74785, type: 2}
+  - {fileID: 11400000, guid: 8b03d2e8481f64fe0bf657f1a92c8aa6, type: 2}
+  - {fileID: 11400000, guid: b727a432539d24f4ebcaa113f9ab1fa5, type: 2}
+  - {fileID: 11400000, guid: 70ea1ee2137c14f928927e44d1afed4f, type: 2}
+  - {fileID: 11400000, guid: 5c3227a929e4940e78c4bec0a99229dc, type: 2}
+  - {fileID: 11400000, guid: 67a93efa10122465d82a5db5420e3303, type: 2}
   levelButtonsContainer: {fileID: 1394047842}
   levelButtonPrefab: {fileID: 0}
   panelFadeDuration: 0.3
@@ -290,6 +296,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4802d4001c90de49bf5efcfe530c022, type: 2}
   - {fileID: 11400000, guid: 69d3f46cdd8d232418c6c1091e7e9c9f, type: 2}
   - {fileID: 11400000, guid: d53cdee222be7f64fac87af4e3eef013, type: 2}
+  - {fileID: 11400000, guid: 55d25613d597647fc92da00790a74785, type: 2}
+  - {fileID: 11400000, guid: 8b03d2e8481f64fe0bf657f1a92c8aa6, type: 2}
+  - {fileID: 11400000, guid: b727a432539d24f4ebcaa113f9ab1fa5, type: 2}
+  - {fileID: 11400000, guid: 70ea1ee2137c14f928927e44d1afed4f, type: 2}
+  - {fileID: 11400000, guid: 5c3227a929e4940e78c4bec0a99229dc, type: 2}
+  - {fileID: 11400000, guid: 67a93efa10122465d82a5db5420e3303, type: 2}
   currentLevelIndex: 0
 --- !u!4 &106264507
 Transform:
