@@ -21,7 +21,7 @@ public class InGameCanvasController : MonoBehaviour
         Time.timeScale = 1.0f;
         menuPanel.SetActive(true);
 
-        // Pause panel hazýrla
+        // Pause panel hazï¿½rla
         SetupPausePanel();
     }
 
@@ -38,6 +38,7 @@ public class InGameCanvasController : MonoBehaviour
             pauseCanvasGroup.alpha = 0f;
             pausePanel.transform.localScale = Vector3.zero;
             pausePanel.SetActive(false);
+            menuPanel.SetActive(true);
         }
     }
 
@@ -60,6 +61,7 @@ public class InGameCanvasController : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         menuPanel.SetActive(false);
+        //StartCoroutine(SetMainMenuPanelClose());
         if (gameManagerScript != null) gameManagerScript.gameObject.SetActive(false);
         if (levelInfoPanel != null) levelInfoPanel.SetActive(false);
 
@@ -119,4 +121,14 @@ public class InGameCanvasController : MonoBehaviour
         const float c3 = c1 + 1f;
         return 1f + c3 * Mathf.Pow(t - 1f, 3f) + c1 * Mathf.Pow(t - 1f, 2f);
     }
+
+    /*private IEnumerator SetMainMenuPanelClose()
+    {
+        if (pausePanel != null)
+        {
+            yield return new WaitForSeconds(1f);
+            menuPanel.SetActive(false);
+        }
+        
+    }*/
 }
