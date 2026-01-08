@@ -235,7 +235,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c3227a929e4940e78c4bec0a99229dc, type: 2}
   - {fileID: 11400000, guid: 67a93efa10122465d82a5db5420e3303, type: 2}
   levelButtonsContainer: {fileID: 1394047842}
-  levelButtonPrefab: {fileID: 0}
+  levelButtonPrefab: {fileID: 76080083358922165, guid: 506a7301a2c8f344dbf08f5e56bd7af2, type: 3}
   panelFadeDuration: 0.3
   buttonSpawnDelay: 0.05
   panelBackground: {fileID: 0}
@@ -1476,6 +1476,7 @@ GameObject:
   - component: {fileID: 1295923147}
   - component: {fileID: 1295923149}
   - component: {fileID: 1295923148}
+  - component: {fileID: 1295923150}
   m_Layer: 5
   m_Name: LevelSelectPanel
   m_TagString: Untagged
@@ -1543,6 +1544,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295923146}
   m_CullTransparentMesh: 1
+--- !u!114 &1295923150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295923146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ScrollRect
+  m_Content: {fileID: 1394047842}
+  m_Horizontal: 0
+  m_Vertical: 1
+  m_MovementType: 1
+  m_Elasticity: 0.1
+  m_Inertia: 1
+  m_DecelerationRate: 0.135
+  m_ScrollSensitivity: 1
+  m_Viewport: {fileID: 0}
+  m_HorizontalScrollbar: {fileID: 0}
+  m_VerticalScrollbar: {fileID: 0}
+  m_HorizontalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 0
+  m_HorizontalScrollbarSpacing: 0
+  m_VerticalScrollbarSpacing: 0
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1340682749
 GameObject:
   m_ObjectHideFlags: 0

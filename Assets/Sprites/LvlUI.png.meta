@@ -109,6 +109,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -116,12 +129,12 @@ TextureImporter:
       name: LvlUI_0
       rect:
         serializedVersion: 2
-        x: 129
+        x: 130
         y: 108
-        width: 243
-        height: 1558
+        width: 242
+        height: 1557
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -134,11 +147,2057 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: LvlUI_1
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1620
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84fba370524614ec6b73ecdcb8c572ee
+      internalID: -1939775592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_2
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1620
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0af0c512ac1f44ba19975ca62ccc6982
+      internalID: 933810069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_3
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1620
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ecfdd2e03ee745b79260335bab2a569
+      internalID: -2094062900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_4
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 1560
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63bf8f94b7acd49f0bf33b0b10dd9698
+      internalID: -1788660484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_5
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1560
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c027722354f04c4088db8d6e105a034
+      internalID: -36873782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_6
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1560
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6017bab83777d4e0794a9b6e9fa46359
+      internalID: 202097231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_7
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1560
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 674c545a52f6e4935b185ef997f56595
+      internalID: 34753883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_8
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 1500
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5f6111fa4cf54caba6770b67ccd38c2
+      internalID: 1442492683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_9
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1500
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c64ef5de11c0d4d9e945c60af62f2147
+      internalID: -1659570108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_10
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1500
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e867a4f652c0046e4a4a2c0f14a0a0ca
+      internalID: 2052362358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_11
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1500
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8efb8a40ef3de43849acd4d65764cf4b
+      internalID: -494412457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_12
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 1440
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c620fae6e4da040db90040d69df27e96
+      internalID: 1190387844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_13
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1440
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d90e71fa4891e458eb7a055531333668
+      internalID: 16178216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_14
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1440
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37a80e7d5d027409db348148aebf84d2
+      internalID: 1138493841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_15
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1440
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85a9d6f85fdeb4e979d68c2ae60cb866
+      internalID: -8501176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_16
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 1380
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f222b25e3aa594c21b8205f94bd4612a
+      internalID: 999358729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_17
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1380
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a64a963a4a6c14a3bb71e89adb8cb11f
+      internalID: 2069939724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_18
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1380
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5be0f922f09b745c4a809686ef4692ad
+      internalID: -559575836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_19
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1380
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 414a1dc34876046eabf4a45118702b20
+      internalID: 520134003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_20
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1320
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c9a6ced285db4fccac621a36fc9fdec
+      internalID: 1673106467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_21
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1320
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b71c194b2b14b4763b16f1d43eb317a9
+      internalID: -735935951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_22
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1260
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13fe9d9538a5043b2babc1fc943c4688
+      internalID: 1544766093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_23
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1260
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aeaab1046d4541aca95215f43ffa607
+      internalID: 888878628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_24
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 1200
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b585b64a3f7cc4d319411a15243bafc5
+      internalID: -1759325365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_25
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1200
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98475a62bca984a3aa12570d002fb52b
+      internalID: -2116964964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_26
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1200
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1c9d54df68f541009adbc58def941cb
+      internalID: 122937435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_27
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1200
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c4ded6469b044c01aff0ac643418f2b
+      internalID: -1491008275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_28
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 1140
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4f7e0dcc66bd4f31a8b3f4367232d03
+      internalID: -1592985823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_29
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1140
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05877e70edb844ea9b9aa7928b6a6c8f
+      internalID: -829675845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_30
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1140
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1070a8950395c4c58b76860304381628
+      internalID: -522451475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_31
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1140
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efd6fb4fbc99942179db8c277663edd6
+      internalID: -1149448031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_32
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 1080
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e42006ce3ccb462b8a1351ad169a1e7
+      internalID: 2032911627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_33
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1080
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9285a5ac81604292aefa857aa695aff
+      internalID: -556043126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_34
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1080
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0bf8bb9483bf41b68d9ec2b2f3d67c1
+      internalID: -1237285109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_35
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1080
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 330404764d32e40a4a855b0162cd5c77
+      internalID: -175643583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_36
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 1020
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21758f29c3bfd4968b0b2175753356c9
+      internalID: -22441607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_37
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1020
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 262d798abb1c54d7ca24d3923b7da96f
+      internalID: 729273310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_38
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1020
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fd00bb3c804d47c4818366f51d3d2e9
+      internalID: -900682554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_39
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1020
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99cea1c9655e74959a5622e8dcd9109c
+      internalID: 198711691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_40
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 960
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 174f6f65f33604bf18782d2f71b00d4d
+      internalID: 2135007048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_41
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 960
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84f9c1f65c49e4b63af944b8cdcb0a3a
+      internalID: -127057026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_42
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 960
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce03f292973fd473cbfeef551737f82e
+      internalID: -1363794904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_43
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 960
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d415017278efb4c9cb121dfb79422654
+      internalID: -1205865163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_44
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 900
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4891df502aa8462d998bcaae44b2331
+      internalID: 2010210217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_45
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 900
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e19d0cbb4910648d38e14582f32211d0
+      internalID: -564460566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_46
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 840
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d4b20e79921641a8a38940af660367d
+      internalID: 1740817929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_47
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 840
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a3e8ce61e75d4f78b66ad1710c8558c
+      internalID: -2132581099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_48
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 780
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ed1d9da554b24f6f8263124999ffe54
+      internalID: -1906800061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_49
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 780
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de9b278a72b4c483ea6d50e5793a5aad
+      internalID: 1526045583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_50
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 780
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a356f6f5e65794cb6b8ce01a5de2c530
+      internalID: 1891039559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_51
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 780
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c438469203aa1490f983f4bf18bd3260
+      internalID: -905852154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_52
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 720
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc1798ba42b024281a14607d2ec6c398
+      internalID: 713623700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_53
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 720
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9c6d31c32d794ce9a2fba51c1f4c83a
+      internalID: -355008972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_54
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 720
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5051835053a994e58bb035723a6aea60
+      internalID: 537874063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_55
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 720
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60c20810f441f4aaea98a924807bafe4
+      internalID: 1429952079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_56
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 660
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f36e89b218e2247d6a244308376cd13c
+      internalID: -847455665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_57
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 660
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c33bb9a990e348c2ab9c6e721af3ca9
+      internalID: -1882593773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_58
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 660
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f97ccf5a9e6e4dcbac28641c5e7ade3
+      internalID: 641766050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_59
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 660
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed255105814de45319d5488887f3a589
+      internalID: -1969573997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_60
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 600
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 426a981c7d5d14928beb70397ba3bd1a
+      internalID: 928614564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_61
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 600
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 644d2bb286fcd47848f63754ecd2de84
+      internalID: -1989692180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_62
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 600
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90e22e570b4014fa5bfcb85e5feed252
+      internalID: 1102349009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_63
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 600
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19a7ce6ea24234841b9d5e7e633feddc
+      internalID: -383039676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_64
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 540
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58c487208be4c46dab0319e6cd0e9233
+      internalID: -874642353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_65
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 540
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eb1aa7e685ff4b45b9f1c5eaf74cd43
+      internalID: -1618222753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_66
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 540
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 174865f869d3b47ceb1ea65a1d8505b4
+      internalID: -254775796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_67
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 540
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3835d399dfbc4e7da9be8afeb7d5111
+      internalID: 504088509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_68
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 480
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 789bd9c77a12549aa888c309e27088e3
+      internalID: -963062112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_69
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 480
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80eee0fce94044570931f01e3cbeeff8
+      internalID: -102145323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_70
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 420
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f152bd641ffd4d37993479c69d15332
+      internalID: 2078080779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_71
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 420
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96085275427b242858955d982136c488
+      internalID: 77679306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_72
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 360
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2923c7690d8f474aafd45d95e09f6a9
+      internalID: -1611221574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_73
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 360
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c35f7da60c814546a7dd747674e63b6
+      internalID: 856629945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_74
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 300
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fecbf13cd4eb444b588ec0d96080c289
+      internalID: -344334095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_75
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 300
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 208d6dc23f0744183984f857f0fd3f67
+      internalID: 1971780609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_76
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 300
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8007d31caa1144f278b3dfd05fed8168
+      internalID: -963422004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_77
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 300
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 048eb235cbe60429b965c9e51cf48abf
+      internalID: -1380193238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_78
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 240
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5b5bf368620247a2a11266fe1756caf
+      internalID: 274332480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_79
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 240
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 980a60b587af44009996f3c0567e6f5c
+      internalID: 1480274069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_80
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 240
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 506b04bac8175410b9e6ce5d3d6f0212
+      internalID: 2008948377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_81
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 240
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e779ebffeeaa64671882c1221a4d2ce0
+      internalID: -366089100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_82
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 180
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16ff8df62553048eeaf29d6a5e3772ce
+      internalID: -2073430756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_83
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 180
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d15aa1e535288460786b63984230484a
+      internalID: -1316321723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_84
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 180
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b33907b93f2ee49dcacabc2c1eac1310
+      internalID: -1202423023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_85
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 180
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 618b9353bcb7e4658a8b386ee76c63a6
+      internalID: -414162085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_86
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 120
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45d7959c7f9524f8fbf41ac9f0867c8a
+      internalID: -1259440633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_87
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 120
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d586dd1139b849eea28b273fcb6cfae
+      internalID: -431961742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_88
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 120
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 569177c61728640f8be83ad04b185a83
+      internalID: -1580771140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_89
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 120
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e81d178e503cb46628f2db954f4dc766
+      internalID: -2019251739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_90
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 60
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: effcb5a15f71e41ba92fd3ee50b6c172
+      internalID: -17838452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_91
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 60
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ddd3acd67e824c36b2e0c9dc90c7cbc
+      internalID: -2100554205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_92
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 60
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b67adf9c81bd643fd9ba0a169143cbfd
+      internalID: -1269969529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvlUI_93
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 60
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 861bf718e6c0848bdb21e99c99895b5f
+      internalID: 1942332974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c9f8388e415e5425a8007f8479001f93
     internalID: 0
     vertices: []
     indices: 
@@ -146,9 +2205,104 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":62.0,"y":60.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       LvlUI_0: 4420754603705641899
+      LvlUI_1: -1939775592
+      LvlUI_10: 2052362358
+      LvlUI_11: -494412457
+      LvlUI_12: 1190387844
+      LvlUI_13: 16178216
+      LvlUI_14: 1138493841
+      LvlUI_15: -8501176
+      LvlUI_16: 999358729
+      LvlUI_17: 2069939724
+      LvlUI_18: -559575836
+      LvlUI_19: 520134003
+      LvlUI_2: 933810069
+      LvlUI_20: 1673106467
+      LvlUI_21: -735935951
+      LvlUI_22: 1544766093
+      LvlUI_23: 888878628
+      LvlUI_24: -1759325365
+      LvlUI_25: -2116964964
+      LvlUI_26: 122937435
+      LvlUI_27: -1491008275
+      LvlUI_28: -1592985823
+      LvlUI_29: -829675845
+      LvlUI_3: -2094062900
+      LvlUI_30: -522451475
+      LvlUI_31: -1149448031
+      LvlUI_32: 2032911627
+      LvlUI_33: -556043126
+      LvlUI_34: -1237285109
+      LvlUI_35: -175643583
+      LvlUI_36: -22441607
+      LvlUI_37: 729273310
+      LvlUI_38: -900682554
+      LvlUI_39: 198711691
+      LvlUI_4: -1788660484
+      LvlUI_40: 2135007048
+      LvlUI_41: -127057026
+      LvlUI_42: -1363794904
+      LvlUI_43: -1205865163
+      LvlUI_44: 2010210217
+      LvlUI_45: -564460566
+      LvlUI_46: 1740817929
+      LvlUI_47: -2132581099
+      LvlUI_48: -1906800061
+      LvlUI_49: 1526045583
+      LvlUI_5: -36873782
+      LvlUI_50: 1891039559
+      LvlUI_51: -905852154
+      LvlUI_52: 713623700
+      LvlUI_53: -355008972
+      LvlUI_54: 537874063
+      LvlUI_55: 1429952079
+      LvlUI_56: -847455665
+      LvlUI_57: -1882593773
+      LvlUI_58: 641766050
+      LvlUI_59: -1969573997
+      LvlUI_6: 202097231
+      LvlUI_60: 928614564
+      LvlUI_61: -1989692180
+      LvlUI_62: 1102349009
+      LvlUI_63: -383039676
+      LvlUI_64: -874642353
+      LvlUI_65: -1618222753
+      LvlUI_66: -254775796
+      LvlUI_67: 504088509
+      LvlUI_68: -963062112
+      LvlUI_69: -102145323
+      LvlUI_7: 34753883
+      LvlUI_70: 2078080779
+      LvlUI_71: 77679306
+      LvlUI_72: -1611221574
+      LvlUI_73: 856629945
+      LvlUI_74: -344334095
+      LvlUI_75: 1971780609
+      LvlUI_76: -963422004
+      LvlUI_77: -1380193238
+      LvlUI_78: 274332480
+      LvlUI_79: 1480274069
+      LvlUI_8: 1442492683
+      LvlUI_80: 2008948377
+      LvlUI_81: -366089100
+      LvlUI_82: -2073430756
+      LvlUI_83: -1316321723
+      LvlUI_84: -1202423023
+      LvlUI_85: -414162085
+      LvlUI_86: -1259440633
+      LvlUI_87: -431961742
+      LvlUI_88: -1580771140
+      LvlUI_89: -2019251739
+      LvlUI_9: -1659570108
+      LvlUI_90: -17838452
+      LvlUI_91: -2100554205
+      LvlUI_92: -1269969529
+      LvlUI_93: 1942332974
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
