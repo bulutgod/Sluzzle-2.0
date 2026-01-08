@@ -23,37 +23,37 @@ public class MenuManager : MonoBehaviour
         button6x6.onClick.AddListener(() => OnBoardSizeSelected(6));
         button7x7.onClick.AddListener(() => OnBoardSizeSelected(7));
 
-        UpdateButtonVisuals();
+        //UpdateButtonVisuals();
     }
 
     private void OnBoardSizeSelected(int size)
     {
         currentSelectedSize = size;
         BoardSizeManager.Instance.SetBoardSize(size);
-        UpdateButtonVisuals();
+        //UpdateButtonVisuals();
 
         LoadGameScene();
     }
 
-    private void UpdateButtonVisuals()
-    {
-        SetButtonColor(button5x5, normalColor);
-        SetButtonColor(button6x6, normalColor);
-        SetButtonColor(button7x7, normalColor);
+    //private void UpdateButtonVisuals()
+    //{
+    //    SetButtonColor(button5x5, normalColor);
+    //    SetButtonColor(button6x6, normalColor);
+    //    SetButtonColor(button7x7, normalColor);
 
-        switch (currentSelectedSize)
-        {
-            case 5:
-                SetButtonColor(button5x5, selectedColor);
-                break;
-            case 6:
-                SetButtonColor(button6x6, selectedColor);
-                break;
-            case 7:
-                SetButtonColor(button7x7, selectedColor);
-                break;
-        }
-    }
+    //    switch (currentSelectedSize)
+    //    {
+    //        case 5:
+    //            SetButtonColor(button5x5, selectedColor);
+    //            break;
+    //        case 6:
+    //            SetButtonColor(button6x6, selectedColor);
+    //            break;
+    //        case 7:
+    //            SetButtonColor(button7x7, selectedColor);
+    //            break;
+    //    }
+    //}
 
     private void SetButtonColor(Button button, Color color)
     {
@@ -62,7 +62,7 @@ public class MenuManager : MonoBehaviour
             var colors = button.colors;
             colors.normalColor = color;
             colors.highlightedColor = color;
-            colors.selectedColor = color;
+            //colors.selectedColor = color;
             button.colors = colors;
         }
     }
