@@ -222,7 +222,6 @@ MonoBehaviour:
   mainPanel: {fileID: 484268446}
   levelSelectPanel: {fileID: 1295923146}
   classicModePanel: {fileID: 1258221820}
-  levelSelectCanvasGroup: {fileID: 0}
   allLevels:
   - {fileID: 11400000, guid: 3b441fd3cab90624bb6b75615d439c39, type: 2}
   - {fileID: 11400000, guid: f4802d4001c90de49bf5efcfe530c022, type: 2}
@@ -234,15 +233,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 70ea1ee2137c14f928927e44d1afed4f, type: 2}
   - {fileID: 11400000, guid: 5c3227a929e4940e78c4bec0a99229dc, type: 2}
   - {fileID: 11400000, guid: 67a93efa10122465d82a5db5420e3303, type: 2}
-  levelButtonsContainer: {fileID: 1394047842}
-  levelButtonPrefab: {fileID: 76080083358922165, guid: 506a7301a2c8f344dbf08f5e56bd7af2, type: 3}
-  panelFadeDuration: 0.3
-  buttonSpawnDelay: 0.05
-  panelBackground: {fileID: 0}
-  backgroundParticles: {fileID: 0}
+  level1Sprite: {fileID: -2094062900, guid: 459a7c5068ccd82479734f3811da5f0b, type: 3}
+  normalLevelSprite: {fileID: 933810069, guid: 459a7c5068ccd82479734f3811da5f0b, type: 3}
+  scrollRect: {fileID: 1295923150}
+  content: {fileID: 1394047842}
+  buttonHeight: 160
+  buttonWidth: 300
+  chainSpacing: 30
+  startOffset: 200
   gameSceneName: SampleScene
   audioSource: {fileID: 0}
-  buttonHoverSound: {fileID: 0}
   buttonClickSound: {fileID: 0}
   panelOpenSound: {fileID: 0}
 --- !u!114 &88862338
@@ -362,6 +362,95 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &409833397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 409833398}
+  - component: {fileID: 409833401}
+  - component: {fileID: 409833400}
+  - component: {fileID: 409833399}
+  m_Layer: 5
+  m_Name: ViewPort
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &409833398
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409833397}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1295923147}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &409833399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409833397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &409833400
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409833397}
+  m_CullTransparentMesh: 1
+--- !u!114 &409833401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409833397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Mask
+  m_ShowMaskGraphic: 1
 --- !u!1 &484268446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,6 +1588,7 @@ RectTransform:
   - {fileID: 1839534111}
   - {fileID: 1394047842}
   - {fileID: 1628703069}
+  - {fileID: 409833398}
   m_Father: {fileID: 518603093}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1559,12 +1649,12 @@ MonoBehaviour:
   m_Content: {fileID: 1394047842}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 1
-  m_Viewport: {fileID: 0}
+  m_Viewport: {fileID: 409833398}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
   m_HorizontalScrollbarVisibility: 0
@@ -1749,7 +1839,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394047841}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
@@ -2794,7 +2884,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4285505014672583483, guid: 3e33f13130dfda74ba1844cb31101e38, type: 3}
+  m_Sprite: {fileID: -5210701283121559928, guid: 5850f2e2b103a4863a1dad0387e7e1cd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
