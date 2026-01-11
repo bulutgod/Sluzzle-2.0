@@ -45,6 +45,7 @@ public class GameUIManager : MonoBehaviour
         public Image icon;
         public int lastCount;
         public Coroutine animCoroutine;
+        
     }
 
     private void Start()
@@ -243,12 +244,13 @@ public class GameUIManager : MonoBehaviour
         {
             GameObject itemGO = new GameObject($"Objective_{objective.tileLevel}");
             itemGO.transform.SetParent(objectivesContainer, false);
-
+            itemGO.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            
             RectTransform itemRect = itemGO.AddComponent<RectTransform>();
             itemRect.sizeDelta = new Vector2(200, 50);
 
             HorizontalLayoutGroup hlg = itemGO.AddComponent<HorizontalLayoutGroup>();
-            hlg.spacing = 10;
+            hlg.spacing = -20;
             hlg.childAlignment = TextAnchor.MiddleLeft;
             hlg.childControlWidth = false;
             hlg.childControlHeight = false;
@@ -257,6 +259,7 @@ public class GameUIManager : MonoBehaviour
             GameObject iconGO = new GameObject("Icon");
             iconGO.transform.SetParent(itemGO.transform, false);
             Image icon = iconGO.AddComponent<Image>();
+            
 
             if (tileLevels != null && objective.tileLevel < tileLevels.Length)
             {
@@ -281,7 +284,8 @@ public class GameUIManager : MonoBehaviour
                 gameObject = itemGO,
                 text = text,
                 icon = icon,
-                lastCount = 0
+                lastCount = 0,
+                
             };
 
             UpdateObjectiveText(item, objective);

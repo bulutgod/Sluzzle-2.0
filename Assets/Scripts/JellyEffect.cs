@@ -21,7 +21,7 @@ public class JellyEffect : MonoBehaviour
         }
     }
 
-    // Yöne göre jelly efekti (sað/sol/yukarý/aþaðý çarpma)
+    // Yï¿½ne gï¿½re jelly efekti (saï¿½/sol/yukarï¿½/aï¿½aï¿½ï¿½ ï¿½arpma)
     public void PlayJellyBounce(Vector2 direction)
     {
         EnsureScaleInitialized();
@@ -34,7 +34,7 @@ public class JellyEffect : MonoBehaviour
         jellyCoroutine = StartCoroutine(JellyBounceCoroutine(direction));
     }
 
-    // Merge olurken jelly efekti (tüm yönlerde sýkýþma-geniþleme)
+    // Merge olurken jelly efekti (tï¿½m yï¿½nlerde sï¿½kï¿½ï¿½ma-geniï¿½leme)
     public void PlayJellyMerge()
     {
         EnsureScaleInitialized();
@@ -51,7 +51,7 @@ public class JellyEffect : MonoBehaviour
     {
         float elapsed = 0f;
 
-        // Yön belirleme (x veya y ekseni)
+        // Yï¿½n belirleme (x veya y ekseni)
         bool isHorizontal = Mathf.Abs(direction.x) > Mathf.Abs(direction.y);
 
         while (elapsed < bounceDuration)
@@ -59,20 +59,20 @@ public class JellyEffect : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = elapsed / bounceDuration;
 
-            // Sinüs dalgasý ile jelly efekti
+            // Sinï¿½s dalgasï¿½ ile jelly efekti
             float bounceAmount = Mathf.Sin(t * Mathf.PI * 2f) * bounceStrength * (1f - t);
 
             Vector3 scale = originalScale;
 
             if (isHorizontal)
             {
-                // Yatay hareket - X ekseni sýkýþýr, Y ekseni geniþler
+                // Yatay hareket - X ekseni sï¿½kï¿½ï¿½ï¿½r, Y ekseni geniï¿½ler
                 scale.x = originalScale.x * (1f - bounceAmount * 0.5f);
                 scale.y = originalScale.y * (1f + bounceAmount);
             }
             else
             {
-                // Dikey hareket - Y ekseni sýkýþýr, X ekseni geniþler
+                // Dikey hareket - Y ekseni sï¿½kï¿½ï¿½ï¿½r, X ekseni geniï¿½ler
                 scale.x = originalScale.x * (1f + bounceAmount);
                 scale.y = originalScale.y * (1f - bounceAmount * 0.5f);
             }
@@ -89,7 +89,7 @@ public class JellyEffect : MonoBehaviour
         float elapsed = 0f;
         float halfDuration = bounceDuration / 2f;
 
-        // Faz 1: Sýkýþma (squeeze)
+        // Faz 1: Sï¿½kï¿½ï¿½ma (squeeze)
         while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
@@ -107,7 +107,7 @@ public class JellyEffect : MonoBehaviour
 
         elapsed = 0f;
 
-        // Faz 2: Geniþleme (pop out)
+        // Faz 2: Geniï¿½leme (pop out)
         while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
@@ -126,7 +126,7 @@ public class JellyEffect : MonoBehaviour
         transform.localScale = originalScale;
     }
 
-    // Harici çaðrý için
+    // Harici ï¿½aï¿½rï¿½ iï¿½in
     public void ResetScale()
     {
         if (jellyCoroutine != null)

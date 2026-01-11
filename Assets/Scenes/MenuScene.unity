@@ -222,6 +222,7 @@ MonoBehaviour:
   mainPanel: {fileID: 484268446}
   levelSelectPanel: {fileID: 1295923146}
   classicModePanel: {fileID: 1258221820}
+  sluzzleImage: {fileID: 1102265727}
   allLevels:
   - {fileID: 11400000, guid: 3b441fd3cab90624bb6b75615d439c39, type: 2}
   - {fileID: 11400000, guid: f4802d4001c90de49bf5efcfe530c022, type: 2}
@@ -233,14 +234,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 70ea1ee2137c14f928927e44d1afed4f, type: 2}
   - {fileID: 11400000, guid: 5c3227a929e4940e78c4bec0a99229dc, type: 2}
   - {fileID: 11400000, guid: 67a93efa10122465d82a5db5420e3303, type: 2}
-  level1Sprite: {fileID: -2094062900, guid: 459a7c5068ccd82479734f3811da5f0b, type: 3}
-  normalLevelSprite: {fileID: 933810069, guid: 459a7c5068ccd82479734f3811da5f0b, type: 3}
+  - {fileID: 11400000, guid: b4e7e22adeaa44c389ae6f915485f765, type: 2}
+  - {fileID: 11400000, guid: a13b375e414fa4b639b8cce393065947, type: 2}
+  - {fileID: 11400000, guid: b0673e4c333c94a1880235a4d869bdca, type: 2}
+  - {fileID: 11400000, guid: 3c24b3cacf3dc4b83ab57ed380d76fe5, type: 2}
+  - {fileID: 11400000, guid: 15898c0158d4b450d9bfc7a88c8eefcd, type: 2}
+  buttonSprite: {fileID: -2094062900, guid: 459a7c5068ccd82479734f3811da5f0b, type: 3}
   scrollRect: {fileID: 1295923150}
   content: {fileID: 1394047842}
-  buttonHeight: 160
-  buttonWidth: 300
-  chainSpacing: 30
-  startOffset: 200
+  levelButtonPrefab: {fileID: 798112081334806663, guid: c9ad4667453524942b989e091b63508f, type: 3}
   gameSceneName: SampleScene
   audioSource: {fileID: 0}
   buttonClickSound: {fileID: 0}
@@ -262,6 +264,7 @@ MonoBehaviour:
   classicModePanel: {fileID: 1258221820}
   levelSelectPanel: {fileID: 1295923146}
   menuPanel: {fileID: 484268446}
+  sluzzleImage: {fileID: 1102265727}
 --- !u!1 &106264505
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +305,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 70ea1ee2137c14f928927e44d1afed4f, type: 2}
   - {fileID: 11400000, guid: 5c3227a929e4940e78c4bec0a99229dc, type: 2}
   - {fileID: 11400000, guid: 67a93efa10122465d82a5db5420e3303, type: 2}
+  - {fileID: 11400000, guid: b4e7e22adeaa44c389ae6f915485f765, type: 2}
+  - {fileID: 11400000, guid: a13b375e414fa4b639b8cce393065947, type: 2}
+  - {fileID: 11400000, guid: b0673e4c333c94a1880235a4d869bdca, type: 2}
+  - {fileID: 11400000, guid: 3c24b3cacf3dc4b83ab57ed380d76fe5, type: 2}
+  - {fileID: 11400000, guid: 15898c0158d4b450d9bfc7a88c8eefcd, type: 2}
   currentLevelIndex: 0
 --- !u!4 &106264507
 Transform:
@@ -1839,7 +1847,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394047841}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
@@ -1848,14 +1856,14 @@ MonoBehaviour:
     m_Left: 0
     m_Right: 0
     m_Top: 0
-    m_Bottom: 0
+    m_Bottom: -720
   m_ChildAlignment: 1
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 150, y: 150}
-  m_Spacing: {x: 20, y: 20}
+  m_StartCorner: 2
+  m_StartAxis: 1
+  m_CellSize: {x: 400, y: 400}
+  m_Spacing: {x: 0, y: -100}
   m_Constraint: 1
-  m_ConstraintCount: 4
+  m_ConstraintCount: 1
 --- !u!1 &1415691052
 GameObject:
   m_ObjectHideFlags: 0

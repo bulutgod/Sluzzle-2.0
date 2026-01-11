@@ -103,7 +103,7 @@ public class TileMover : MonoBehaviour
 
         
         float elapsed = 0f;
-        float waitTime = 0.4f;
+        float waitTime = 0.1f;
 
         while (elapsed < waitTime)
         {

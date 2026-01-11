@@ -11,21 +11,18 @@ public class MainMenuLevelSelector : MonoBehaviour
     [SerializeField] private GameObject mainPanel;
     [SerializeField] private GameObject levelSelectPanel;
     [SerializeField] private GameObject classicModePanel;
-
+    [SerializeField] private GameObject sluzzleImage;
+    
     [Header("Level Data")]
     [SerializeField] private LevelDataSO[] allLevels;
 
-    [Header("Button Sprites")]
-    [SerializeField] private Sprite level1Sprite;
-    [SerializeField] private Sprite normalLevelSprite;
+    [Header("Button Sprite")]
+    [SerializeField] private Sprite buttonSprite;
 
     [Header("Scroll Setup")]
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private RectTransform content;
-    [SerializeField] private float buttonHeight = 600f; // DAHA BÜYÜK
-    [SerializeField] private float buttonWidth = 500f; // DAHA BÜYÜK
-    [SerializeField] private float chainSpacing = 5f;
-    [SerializeField] private float startOffset = 1; // Level 1 daha aşağıda
+    [SerializeField] private GameObject levelButtonPrefab; // Senin hazırladığın prefab
 
     [Header("Scene Names")]
     [SerializeField] private string gameSceneName = "SampleScene";
@@ -39,20 +36,8 @@ public class MainMenuLevelSelector : MonoBehaviour
     private const string UNLOCKED_LEVELS_KEY = "UnlockedLevels";
     private const string SELECTED_LEVEL_KEY = "SelectedLevel";
 
-    private List<LevelButtonItem> buttonPool = new List<LevelButtonItem>();
-    private int currentTopIndex = 0;
+    private List<GameObject> levelButtons = new List<GameObject>();
     private int totalLevels;
-    private int visibleButtonCount = 5;
-
-    private class LevelButtonItem
-    {
-        public GameObject gameObject;
-        public RectTransform rectTransform;
-        public Image backgroundImage;
-        public TextMeshProUGUI numberText;
-        public Button button;
-        public int levelIndex;
-    }
 
     private void Start()
     {
@@ -64,7 +49,11 @@ public class MainMenuLevelSelector : MonoBehaviour
     public void ShowMainPanel()
     {
         Time.timeScale = 1f;
-        if (mainPanel != null) mainPanel.SetActive(true);
+        if (mainPanel != null)
+        {
+            mainPanel.SetActive(true); 
+            sluzzleImage.SetActive(true);
+        }
         if (levelSelectPanel != null) levelSelectPanel.SetActive(false);
         if (classicModePanel != null) classicModePanel.SetActive(false);
     }
@@ -75,167 +64,124 @@ public class MainMenuLevelSelector : MonoBehaviour
         if (levelSelectPanel != null) levelSelectPanel.SetActive(true);
 
         PlaySound(panelOpenSound);
-        InitializeInfiniteScroll();
+        CreateAllLevels();
     }
 
-    private void InitializeInfiniteScroll()
+    private void CreateAllLevels()
     {
-        foreach (var item in buttonPool)
+        // NULL kontrol
+        if (levelButtonPrefab == null)
         {
-            if (item.gameObject != null)
-                Destroy(item.gameObject);
+            Debug.LogError("levelButtonPrefab atanmamış! Inspector'dan bir prefab ata.");
+            return;
         }
-        buttonPool.Clear();
-
-        if (content != null)
+        if (content == null)
         {
-            float totalHeight = (totalLevels * (buttonHeight + chainSpacing)) + startOffset;
-            content.sizeDelta = new Vector2(content.sizeDelta.x, totalHeight);
-        }
-
-        for (int i = 0; i < visibleButtonCount; i++)
-        {
-            CreateLevelButton(i);
+            Debug.LogError("content atanmamış! LevelButtonsContainer'ı ata.");
+            return;
         }
 
-        if (scrollRect != null)
+        // Önceki butonları temizle
+        foreach (var btn in levelButtons)
         {
-            scrollRect.onValueChanged.AddListener(OnScroll);
-            scrollRect.inertia = true; // Kaydırma çalışsın
-            scrollRect.decelerationRate = 0.98f; // Yavaşça dursun
-            scrollRect.movementType = ScrollRect.MovementType.Clamped; // Elastic YOK
+            if (btn != null) Destroy(btn);
         }
+        levelButtons.Clear();
 
-        if (scrollRect != null)
+        // Grid Layout Group kullan (zaten var)
+        GridLayoutGroup gridLayout = content.GetComponent<GridLayoutGroup>();
+        if (gridLayout == null)
         {
-            scrollRect.verticalNormalizedPosition = 0f;
+            gridLayout = content.gameObject.AddComponent<GridLayoutGroup>();
         }
+        gridLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+        gridLayout.constraintCount = 1; // Tek sütun
+        gridLayout.childAlignment = TextAnchor.LowerCenter; // Aşağıdan başla
+        gridLayout.startAxis = GridLayoutGroup.Axis.Vertical;
+        gridLayout.startCorner = GridLayoutGroup.Corner.LowerLeft; // AŞAĞIDAN YUKARI
 
-        UpdateVisibleButtons();
-    }
-
-    private void CreateLevelButton(int poolIndex)
-    {
-        if (content == null) return;
-
-        GameObject buttonObj = new GameObject($"LevelButton_{poolIndex}");
-        buttonObj.transform.SetParent(content, false);
-
-        RectTransform rect = buttonObj.AddComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(buttonWidth, buttonHeight); // Sprite'ın boyutu
-        rect.anchorMin = new Vector2(0.5f, 0f);
-        rect.anchorMax = new Vector2(0.5f, 0f);
-        rect.pivot = new Vector2(0.5f, 0f);
-        rect.anchoredPosition = new Vector2(0, (poolIndex * (buttonHeight + chainSpacing)) + startOffset);
-
-        Button btn = buttonObj.AddComponent<Button>();
-        Image bgImage = buttonObj.AddComponent<Image>();
-        bgImage.sprite = normalLevelSprite;
-        bgImage.preserveAspect = false; // Sprite'ı serbest boyutlandır
-        bgImage.type = Image.Type.Simple; // Normal scaling
-
-        // Level numarası
-        GameObject textObj = new GameObject("LevelNumber");
-        textObj.transform.SetParent(buttonObj.transform, false);
-
-        RectTransform textRect = textObj.AddComponent<RectTransform>();
-        textRect.anchorMin = Vector2.zero;
-        textRect.anchorMax = Vector2.one;
-        textRect.sizeDelta = Vector2.zero;
-        textRect.anchoredPosition = Vector2.zero;
-
-        TextMeshProUGUI numberText = textObj.AddComponent<TextMeshProUGUI>();
-        numberText.text = (poolIndex + 1).ToString();
-        numberText.fontSize = 150; // Font da büyütsün
-        numberText.fontStyle = FontStyles.Bold;
-        numberText.alignment = TextAlignmentOptions.Center;
-        numberText.color = Color.white;
-        numberText.outlineWidth = 0.3f;
-        numberText.outlineColor = new Color(0, 0, 0, 0.8f);
-
-        LevelButtonItem item = new LevelButtonItem
+        // Content Size Fitter ekle
+        ContentSizeFitter fitter = content.GetComponent<ContentSizeFitter>();
+        if (fitter == null)
         {
-            gameObject = buttonObj,
-            rectTransform = rect,
-            backgroundImage = bgImage,
-            numberText = numberText,
-            button = btn,
-            levelIndex = poolIndex
-        };
-
-        buttonPool.Add(item);
-
-        btn.onClick.AddListener(() => OnLevelButtonClicked(item.levelIndex));
-
-        ColorBlock colors = btn.colors;
-        colors.normalColor = Color.white;
-        colors.highlightedColor = new Color(1.1f, 1.1f, 1.1f);
-        colors.pressedColor = new Color(0.9f, 0.9f, 0.9f);
-        btn.colors = colors;
-    }
-
-    private void OnScroll(Vector2 scrollPosition)
-    {
-        UpdateVisibleButtons();
-    }
-
-    private void UpdateVisibleButtons()
-    {
-        if (content == null || buttonPool.Count == 0) return;
-
-        float contentY = -content.anchoredPosition.y;
-        int firstVisibleIndex = Mathf.Max(0, Mathf.FloorToInt((contentY - startOffset) / (buttonHeight + chainSpacing)));
-
-        if (firstVisibleIndex != currentTopIndex)
-        {
-            currentTopIndex = firstVisibleIndex;
-            RepositionButtons();
+            fitter = content.gameObject.AddComponent<ContentSizeFitter>();
         }
-    }
+        fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
 
-    private void RepositionButtons()
-    {
-        for (int i = 0; i < buttonPool.Count; i++)
+        int unlockedLevels = PlayerPrefs.GetInt(UNLOCKED_LEVELS_KEY, 1);
+
+        // Tüm levelleri oluştur
+        for (int i = 0; i < totalLevels; i++)
         {
-            LevelButtonItem item = buttonPool[i];
-            int newLevelIndex = currentTopIndex + i;
-
-            if (newLevelIndex >= totalLevels)
+            int levelIndex = i;
+            bool isUnlocked = levelIndex < unlockedLevels;
+            
+            GameObject buttonObj = Instantiate(levelButtonPrefab, content);
+            
+            // Sprite'ı ayarla (hepsi aynı)
+            Image bgImage = buttonObj.GetComponent<Image>();
+            if (bgImage != null)
             {
-                item.gameObject.SetActive(false);
-                continue;
+                bgImage.sprite = buttonSprite;
             }
 
-            item.gameObject.SetActive(true);
-            item.levelIndex = newLevelIndex;
-
-            // Pozisyon güncelle
-            item.rectTransform.anchoredPosition = new Vector2(0, (newLevelIndex * (buttonHeight + chainSpacing)) + startOffset);
-
-            // Sprite değiştir
-            if (newLevelIndex == 0)
+            // Numarayı ayarla - TÜM TextMeshPro bileşenlerini kontrol et
+            TextMeshProUGUI[] allTexts = buttonObj.GetComponentsInChildren<TextMeshProUGUI>(true);
+            
+            if (allTexts.Length > 0)
             {
-                item.backgroundImage.sprite = level1Sprite;
+                foreach (var txt in allTexts)
+                {
+                    txt.text = (levelIndex + 1).ToString();
+                    txt.transform.SetAsLastSibling(); // En üste çıkar (render sırasında)
+                    txt.color = Color.firebrick;// Rengi beyaz yap
+                    txt.fontSize = 80; // Font büyüt
+                }
             }
             else
             {
-                item.backgroundImage.sprite = normalLevelSprite;
+                Debug.LogWarning($"Level {levelIndex + 1} butonunda TextMeshProUGUI bulunamadı!");
             }
 
-            // NUMARA GÜNCELLE
-            item.numberText.text = (newLevelIndex + 1).ToString();
-        }
-    }
+            // Button click - SADECE UNLOCK ISE
+            Button btn = buttonObj.GetComponent<Button>();
+            if (btn != null)
+            {
+                btn.interactable = isUnlocked;
+                if (isUnlocked)
+                {
+                    btn.onClick.AddListener(() => OnLevelButtonClicked(levelIndex));
+                }
+            }
 
-    public void StartEndlessMode()
-    {
-        PlayerPrefs.SetInt("IsEndlessMode", 1);
-        PlayerPrefs.Save();
-        SceneManager.LoadScene(gameSceneName);
+            // Kilitli görünüm
+            if (!isUnlocked)
+            {
+                if (bgImage != null)
+                {
+                    bgImage.color = new Color(0.5f, 0.5f, 0.5f); // Gri yap
+                }
+            }
+
+            levelButtons.Add(buttonObj);
+        }
+
+        // Scroll'u en alta al (Level 1'den başla)
+        Canvas.ForceUpdateCanvases();
+        scrollRect.verticalNormalizedPosition = 0f;
     }
 
     private void OnLevelButtonClicked(int levelIndex)
     {
+        int unlockedLevels = PlayerPrefs.GetInt(UNLOCKED_LEVELS_KEY, 1);
+        
+        // Kilitli level kontrolü
+        if (levelIndex >= unlockedLevels)
+        {
+            Debug.Log($"Level {levelIndex + 1} kilitli!");
+            return;
+        }
+
         StartCoroutine(LevelSelectAnimation(levelIndex));
     }
 
@@ -246,9 +192,24 @@ public class MainMenuLevelSelector : MonoBehaviour
 
         PlayerPrefs.SetInt(SELECTED_LEVEL_KEY, levelIndex);
         PlayerPrefs.SetInt("IsEndlessMode", 0);
+        
+        // LEVEL MODE HER ZAMAN 6x6
+        BoardSizeManager.Instance.SetBoardSize(6);
+        
         PlayerPrefs.Save();
 
-        Debug.Log($"Level {levelIndex + 1} başlatılıyor!");
+        Debug.Log($"Level {levelIndex + 1} başlatılıyor! (6x6 grid)");
+        SceneManager.LoadScene(gameSceneName);
+    }
+
+    public void StartEndlessMode()
+    {
+        PlayerPrefs.SetInt("IsEndlessMode", 1);
+        
+        // Classic mode → Kullanıcının seçtiği size'ı kullan (5, 6, veya 7)
+        // BoardSizeManager zaten seçilen değeri tutuyor, değiştirme
+        
+        PlayerPrefs.Save();
         SceneManager.LoadScene(gameSceneName);
     }
 
@@ -290,10 +251,5 @@ public class MainMenuLevelSelector : MonoBehaviour
         shadow.transform.SetAsFirstSibling();
 
         Destroy(shadow.GetComponent<TitleAnimator>());
-    }
-
-    void Update()
-    {
-        UpdateVisibleButtons();
     }
 }
