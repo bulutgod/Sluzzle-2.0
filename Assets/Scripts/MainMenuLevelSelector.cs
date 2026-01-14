@@ -133,9 +133,9 @@ public class MainMenuLevelSelector : MonoBehaviour
                 foreach (var txt in allTexts)
                 {
                     txt.text = (levelIndex + 1).ToString();
-                    txt.transform.SetAsLastSibling(); // En üste çıkar (render sırasında)
-                    txt.color = Color.firebrick;// Rengi beyaz yap
-                    txt.fontSize = 80; // Font büyüt
+                    txt.transform.SetAsLastSibling(); 
+                    txt.color = Color.darkOrange;
+                    txt.fontSize = 80; 
                 }
             }
             else
