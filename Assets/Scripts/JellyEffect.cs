@@ -4,8 +4,8 @@ using System.Collections;
 public class JellyEffect : MonoBehaviour
 {
     [Header("Jelly Settings")]
-    [SerializeField] private float bounceStrength = 0.2f;
-    [SerializeField] private float bounceDuration = 0.3f;
+    [SerializeField] private float bounceStrength = 0.1f;
+    [SerializeField] private float bounceDuration = 0.2f;
     [SerializeField] private AnimationCurve bounceCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     private Vector3 originalScale;

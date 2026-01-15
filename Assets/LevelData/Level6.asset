@@ -15,10 +15,10 @@ MonoBehaviour:
   levelNumber: 6
   levelName: 6
   objectives:
-  - tileLevel: 3
-    targetCount: 7
+  - tileLevel: 1
+    targetCount: 3
     currentCount: 0
-  - tileLevel: 2
-    targetCount: 2
+  - tileLevel: 4
+    targetCount: 1
     currentCount: 0
   description: 

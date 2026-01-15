@@ -2333,7 +2333,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b0673e4c333c94a1880235a4d869bdca, type: 2}
   - {fileID: 11400000, guid: 3c24b3cacf3dc4b83ab57ed380d76fe5, type: 2}
   - {fileID: 11400000, guid: 15898c0158d4b450d9bfc7a88c8eefcd, type: 2}
+  - {fileID: 11400000, guid: 51270278a0c95480cae3e66429c41824, type: 2}
+  - {fileID: 11400000, guid: 1a9756914ca9a4714956fe79123e1eff, type: 2}
+  - {fileID: 11400000, guid: 8ef5e9f7a5a1b4518b4df669575bf0df, type: 2}
+  - {fileID: 11400000, guid: 45accce41572f4c7b96d236307ac1d49, type: 2}
+  - {fileID: 11400000, guid: ebd491063f078433a84b5051a23a3bbb, type: 2}
+  - {fileID: 11400000, guid: 79242bab0f199410d933707a973a81c6, type: 2}
+  - {fileID: 11400000, guid: f309d01885f184a008967fe5872f8c53, type: 2}
+  - {fileID: 11400000, guid: 6f2ea9a57285449e6b83feaef6895033, type: 2}
+  - {fileID: 11400000, guid: f44c353fe5796465ab5f9db500f8356f, type: 2}
+  - {fileID: 11400000, guid: 13b3eb88e0e074613b66f2316ae8ae2e, type: 2}
   currentLevelIndex: 7
+  completionVerifyDelay: 1
 --- !u!1 &1490843104
 GameObject:
   m_ObjectHideFlags: 0
@@ -3595,7 +3606,7 @@ MonoBehaviour:
   m_StartCorner: 2
   m_StartAxis: 1
   m_CellSize: {x: 200, y: 200}
-  m_Spacing: {x: 0, y: 0}
+  m_Spacing: {x: 0, y: -10}
   m_Constraint: 1
   m_ConstraintCount: 3
 --- !u!1 &2033383870

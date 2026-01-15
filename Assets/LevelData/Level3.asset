@@ -15,10 +15,13 @@ MonoBehaviour:
   levelNumber: 3
   levelName: 3
   objectives:
+  - tileLevel: 1
+    targetCount: 2
+    currentCount: 0
+  - tileLevel: 2
+    targetCount: 3
+    currentCount: 0
   - tileLevel: 3
     targetCount: 1
-    currentCount: 0
-  - tileLevel: 4
-    targetCount: 4
     currentCount: 0
   description: 

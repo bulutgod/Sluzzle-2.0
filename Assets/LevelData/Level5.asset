@@ -16,9 +16,6 @@ MonoBehaviour:
   levelName: 5
   objectives:
   - tileLevel: 3
-    targetCount: 1
-    currentCount: 0
-  - tileLevel: 2
-    targetCount: 5
+    targetCount: 3
     currentCount: 0
   description: 

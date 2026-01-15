@@ -29,6 +29,12 @@ public class MoveHandler : IMoveHandler
     public void Execute(Vector2 direction)
     {
         if (isAnimating) return;
+    
+        // Level bittiyse (tamamlandı veya başarısız) input'u engelle
+        if (LevelManager.Instance != null && LevelManager.Instance.IsGameOver())
+        {
+            return;
+        }
 
         var moveData = new MoveData(direction, grid.Size);
         var result = ProcessMovesAndMerges(moveData);
@@ -40,11 +46,8 @@ public class MoveHandler : IMoveHandler
         else
         {
             CameraShake.Instance.Shake(0.15f, 0.1f);
-
-            // Başarısız hamle - duvara çarpma jelly efekti
             ApplyWallBounceEffect(direction);
 
-            // Streak sıfırla
             if (StreakCounter.Instance != null)
             {
                 StreakCounter.Instance.ResetStreak();
@@ -213,10 +216,10 @@ public class MoveHandler : IMoveHandler
         grid[merge.targetX, merge.targetY] = survivor;
 
         // Level sistemine bildir
-        if (LevelManager.Instance != null)
+        /*if (LevelManager.Instance != null)
         {
             LevelManager.Instance.OnTileMerged(survivor.level);
-        }
+        }*/
 
         // Combo artır
         if (ComboSystem.Instance != null)
