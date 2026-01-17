@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3a624d965d471264f8a284b8e1943c32
+guid: 5c69ac0a50d4d4f67965fe6ec5026a52
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1407350686718103429
-    second: NextLevelButtonUI_0
+      213: -4910088520043721169
+    second: a_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,17 +109,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NextLevelButtonUI_0
+      name: a_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 460
-        height: 109
+        x: 27
+        y: 19
+        width: 497
+        height: 497
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 58f0c3c3ef9e78310800000000000000
-      internalID: 1407350686718103429
+      spriteID: f2e021b718cdbdbb0800000000000000
+      internalID: -4910088520043721169
       vertices: []
       indices: 
       edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      NextLevelButtonUI_0: 1407350686718103429
+      a_0: -4910088520043721169
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

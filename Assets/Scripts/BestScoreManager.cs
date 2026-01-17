@@ -19,8 +19,10 @@ public class BestScoreManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private string bestScorePrefix = "BEST: ";
+    
+    private GameUIManager gameUIManager;
 
-    // Her board size için ayrý key
+    // Her board size iï¿½in ayrï¿½ key
     private const string BEST_SCORE_KEY_5X5 = "BestScore_5x5";
     private const string BEST_SCORE_KEY_6X6 = "BestScore_6x6";
     private const string BEST_SCORE_KEY_7X7 = "BestScore_7x7";
@@ -31,13 +33,13 @@ public class BestScoreManager : MonoBehaviour
 
     private void Start()
     {
-        // normalScale'i baþlat
+        // normalScale'i baï¿½lat
         if (bestScoreText != null)
         {
             normalScale = bestScoreText.transform.localScale;
         }
 
-        // Mevcut board size'ý al
+        // Mevcut board size'ï¿½ al
         currentBoardSize = BoardSizeManager.Instance.GetBoardSize();
         Debug.Log($"BestScoreManager initialized for {currentBoardSize}x{currentBoardSize} mode");
 
@@ -105,14 +107,14 @@ public class BestScoreManager : MonoBehaviour
             SaveBestScore(newScore);
             UpdateBestScoreUI();
 
-            // Panel animasyonunu sadece ilk kez göster
+            // Panel animasyonunu sadece ilk kez gï¿½ster
             if (!hasShownNewRecordPanel)
             {
                 ShowNewRecordAnimation();
                 hasShownNewRecordPanel = true;
             }
 
-            // Pulse animasyonunu her seferinde çalýþtýr
+            // Pulse animasyonunu her seferinde ï¿½alï¿½ï¿½tï¿½r
             PlayPulseAnimation();
         }
     }
@@ -143,7 +145,7 @@ public class BestScoreManager : MonoBehaviour
         float elapsed = 0f;
         float halfDuration = pulseDuration / 2f;
 
-        // Büyüme
+        // Bï¿½yï¿½me
         while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
@@ -154,7 +156,7 @@ public class BestScoreManager : MonoBehaviour
 
         elapsed = 0f;
 
-        // Küçülme
+        // Kï¿½ï¿½ï¿½lme
         while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
@@ -177,49 +179,57 @@ public class BestScoreManager : MonoBehaviour
 
     private IEnumerator NewRecordAnimationCoroutine()
     {
-        newRecordPanel.SetActive(true);
-
-        if (newRecordText != null)
+        if (gameUIManager.isEndlessMode == true)
         {
-            // Baþlangýç
-            newRecordText.transform.localScale = Vector3.zero;
-            CanvasGroup cg = newRecordPanel.GetComponent<CanvasGroup>();
-            if (cg == null) cg = newRecordPanel.AddComponent<CanvasGroup>();
+            newRecordPanel.SetActive(true);
 
-            // Pop-in animasyonu
-            float duration = 0.5f;
-            float elapsed = 0f;
-
-            while (elapsed < duration)
+            if (newRecordText != null)
             {
-                elapsed += Time.deltaTime;
-                float t = elapsed / duration;
-                // Elastic ease-out
-                float scale = Mathf.Sin(t * Mathf.PI * 2f) * (1f - t) * 0.3f + t;
-                newRecordText.transform.localScale = Vector3.one * scale;
-                yield return null;
+                // Baï¿½langï¿½ï¿½
+                newRecordText.transform.localScale = Vector3.zero;
+                CanvasGroup cg = newRecordPanel.GetComponent<CanvasGroup>();
+                if (cg == null) cg = newRecordPanel.AddComponent<CanvasGroup>();
+
+                // Pop-in animasyonu
+                float duration = 0.5f;
+                float elapsed = 0f;
+
+                while (elapsed < duration)
+                {
+                    elapsed += Time.deltaTime;
+                    float t = elapsed / duration;
+                    // Elastic ease-out
+                    float scale = Mathf.Sin(t * Mathf.PI * 2f) * (1f - t) * 0.3f + t;
+                    newRecordText.transform.localScale = Vector3.one * scale;
+                    yield return null;
+                }
+
+                newRecordText.transform.localScale = Vector3.one;
+
+                // Bekle
+                yield return new WaitForSeconds(2f);
+
+                // Fade out
+                elapsed = 0f;
+                duration = 0.5f;
+
+                while (elapsed < duration)
+                {
+                    elapsed += Time.deltaTime;
+                    float t = elapsed / duration;
+                    cg.alpha = 1f - t;
+                    yield return null;
+                }
+
+                newRecordPanel.SetActive(false);
+                cg.alpha = 1f;
             }
-
-            newRecordText.transform.localScale = Vector3.one;
-
-            // Bekle
-            yield return new WaitForSeconds(2f);
-
-            // Fade out
-            elapsed = 0f;
-            duration = 0.5f;
-
-            while (elapsed < duration)
-            {
-                elapsed += Time.deltaTime;
-                float t = elapsed / duration;
-                cg.alpha = 1f - t;
-                yield return null;
-            }
-
-            newRecordPanel.SetActive(false);
-            cg.alpha = 1f;
         }
+        else
+        {
+            newRecordPanel.SetActive(false);
+        }
+        
     }
 
     public int GetBestScore()
@@ -227,7 +237,7 @@ public class BestScoreManager : MonoBehaviour
         return currentBestScore;
     }
 
-    // Tüm mod high score'larýný görmek için (debug/stats için)
+    // Tï¿½m mod high score'larï¿½nï¿½ gï¿½rmek iï¿½in (debug/stats iï¿½in)
     public void GetAllBestScores(out int score5x5, out int score6x6, out int score7x7)
     {
         score5x5 = PlayerPrefs.GetInt(BEST_SCORE_KEY_5X5, 0);
@@ -235,7 +245,7 @@ public class BestScoreManager : MonoBehaviour
         score7x7 = PlayerPrefs.GetInt(BEST_SCORE_KEY_7X7, 0);
     }
 
-    // Tüm high score'larý sýfýrlamak için (settings menüsü için)
+    // Tï¿½m high score'larï¿½ sï¿½fï¿½rlamak iï¿½in (settings menï¿½sï¿½ iï¿½in)
     public void ResetAllBestScores()
     {
         PlayerPrefs.DeleteKey(BEST_SCORE_KEY_5X5);
@@ -243,14 +253,14 @@ public class BestScoreManager : MonoBehaviour
         PlayerPrefs.DeleteKey(BEST_SCORE_KEY_7X7);
         PlayerPrefs.Save();
 
-        LoadBestScore(); // Mevcut modu yeniden yükle
+        LoadBestScore(); // Mevcut modu yeniden yï¿½kle
         UpdateBestScoreUI();
         hasShownNewRecordPanel = false; // Reset flag
 
         Debug.Log("All best scores have been reset!");
     }
 
-    // Sadece mevcut mod high score'unu sýfýrla
+    // Sadece mevcut mod high score'unu sï¿½fï¿½rla
     public void ResetCurrentBestScore()
     {
         string key = GetBestScoreKey();

@@ -35,7 +35,8 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private float objectiveAnimDuration = 0.3f;
 
     private List<ObjectiveUIItem> objectiveItems = new List<ObjectiveUIItem>();
-    private bool isEndlessMode;
+    public bool isEndlessMode;
+    [SerializeField] private TMP_FontAsset objectiveFont;
 
     // Objective UI Item class
     private class ObjectiveUIItem
@@ -276,6 +277,10 @@ public class GameUIManager : MonoBehaviour
             text.fontSize = 28;
             text.color = Color.white;
             text.alignment = TextAlignmentOptions.MidlineLeft;
+            if (objectiveFont != null)
+            {
+                text.font = objectiveFont;
+            }
             textGO.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 40);
 
             // Item kaydet

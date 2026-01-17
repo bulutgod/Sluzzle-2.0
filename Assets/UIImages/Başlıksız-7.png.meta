@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 010105dd03ed93242870b8725faf1f7b
+guid: 92b00a48115cf4e94b5e3c1af953cfb7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9095387756373097154
-    second: MainMenuButtonUI_0
+      213: -4667361346256427543
+    second: "Bas\u0327l\u0131ks\u0131z-7_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,17 +109,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MainMenuButtonUI_0
+      name: "Bas\u0327l\u0131ks\u0131z-7_0"
       rect:
         serializedVersion: 2
-        x: 5
-        y: 0
-        width: 425
-        height: 109
+        x: 81
+        y: 54
+        width: 2489
+        height: 891
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2ca3e0999fe493e70800000000000000
-      internalID: 9095387756373097154
+      spriteID: 9e52ff595933a3fb0800000000000000
+      internalID: -4667361346256427543
       vertices: []
       indices: 
       edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MainMenuButtonUI_0: 9095387756373097154
+      "Bas\u0327l\u0131ks\u0131z-7_0": -4667361346256427543
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
