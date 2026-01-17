@@ -179,8 +179,6 @@ public class BestScoreManager : MonoBehaviour
 
     private IEnumerator NewRecordAnimationCoroutine()
     {
-        if (gameUIManager.isEndlessMode == true)
-        {
             newRecordPanel.SetActive(true);
 
             if (newRecordText != null)
@@ -224,11 +222,14 @@ public class BestScoreManager : MonoBehaviour
                 newRecordPanel.SetActive(false);
                 cg.alpha = 1f;
             }
-        }
-        else
-        {
-            newRecordPanel.SetActive(false);
-        }
+            /*if (gameUIManager.isEndlessMode)
+            {
+                
+            }
+            else
+            {
+                newRecordPanel.SetActive(false);
+            }*/
         
     }
 
