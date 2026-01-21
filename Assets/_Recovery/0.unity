@@ -3617,11 +3617,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlockArtRevealer
   allArtWorks:
   - artworkName: Test
-    silhouetteSprite: {fileID: -3080413572611899275, guid: 498e851c154924ebc9b4d4b2873b07c7, type: 3}
+    silhouetteSprite: {fileID: 4798190473603950137, guid: e0f7241b8b4dba940ae48fd4a368394d, type: 3}
     pixelsPerBlock: 20
   blockSize: 40
   blockSpacing: 5
-  hiddenColor: {r: 0.15, g: 0.15, b: 0.2, a: 1}
+  hiddenColor: {r: 0, g: 0, b: 0, a: 1}
   blockContainer: {fileID: 1062138030}
   blockPrefab: {fileID: 2372638384856006086, guid: 448475fc114d141cabe24420999d64e1, type: 3}
 --- !u!1 &1839534110
@@ -3893,6 +3893,75 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 160}
   m_SizeDelta: {x: 248, y: 119}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &2125791378
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.001
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3330969
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3081994679161391779, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.444
+      objectReference: {fileID: 0}
+    - target: {fileID: -3081994679161391779, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.242
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_Name
+      value: cardprototipdeneme
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bef173c7a28184655bc8689da810c962, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bef173c7a28184655bc8689da810c962, type: 3}
 --- !u!1 &2137564885
 GameObject:
   m_ObjectHideFlags: 0
@@ -4109,3 +4178,4 @@ SceneRoots:
   - {fileID: 1415691055}
   - {fileID: 254413157}
   - {fileID: 106264507}
+  - {fileID: 2125791378}
