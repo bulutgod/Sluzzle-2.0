@@ -1,221 +1,218 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;
 
 public class MainMenuLevelSelector : MonoBehaviour
 {
-    [Header("UI Panels")]
+    [Header("Panels")]
     [SerializeField] private GameObject mainPanel;
-    [SerializeField] private GameObject levelSelectPanel;
-    [SerializeField] private GameObject classicModePanel;
+    [SerializeField] private GameObject artworkPanel;
     [SerializeField] private GameObject settingsCanvas;
     [SerializeField] private GameObject sluzzleImage;
-    
-    [Header("Level Data")]
-    [SerializeField] private LevelDataSO[] allLevels;
 
-    [Header("Button Sprite")]
-    [SerializeField] private Sprite buttonSprite;
+    [Header("Artwork Sistemi")]
+    [SerializeField] private BlockArtRevealer blockArtRevealer;
 
-    [Header("Scroll Setup")]
-    [SerializeField] private ScrollRect scrollRect;
-    [SerializeField] private RectTransform content;
-    [SerializeField] private GameObject levelButtonPrefab; // Senin hazırladığın prefab
-
-    [Header("Scene Names")]
-    [SerializeField] private string gameSceneName = "SampleScene";
+    [Header("Level Butonu")]
+    [SerializeField] private Button levelButton;
+    [SerializeField] private TextMeshProUGUI levelButtonText;
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip buttonClickSound;
-    [SerializeField] private AudioClip panelOpenSound;
+    [SerializeField] private AudioClip blockRevealSound;
 
-    [Header("Save System")]
-    private const string UNLOCKED_LEVELS_KEY = "UnlockedLevels";
-    private const string SELECTED_LEVEL_KEY = "SelectedLevel";
+    [Header("Scene")]
+    [SerializeField] private string gameSceneName = "SampleScene";
 
-    private List<GameObject> levelButtons = new List<GameObject>();
-    private int totalLevels;
+    private const string CURRENT_LEVEL_KEY = "CurrentLevel";
+    private const string REVEALED_BLOCKS_KEY = "RevealedBlocks";
 
-    private void Start()
+    private int currentLevel = 1;
+    private int revealedBlocks = 0;
+
+    
+
+    void Start()
     {
-        ShowMainPanel();
-        CreateTitleShadow();
-        totalLevels = allLevels != null ? allLevels.Length : 100;
+        RefreshUI();
+        LoadProgress();
+        UpdateLevelButton();
+    }
+
+    void OnEnable()
+    {
+        RefreshUI();
+    }
+
+    public void RefreshUI()
+    {
+        currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
+        
+        if (levelButtonText != null)
+        {
+            levelButtonText.text = $"Level {currentLevel}";
+        }
+    }
+
+    public void OnLevelButtonClick()
+    {
+        PlayerPrefs.SetInt("SelectedLevel", currentLevel);
+        PlayerPrefs.Save();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+    }
+
+    
+    /*void Start()
+    {
+        LoadProgress();
+    
+        bool justCompleted = PlayerPrefs.GetInt("LevelJustCompleted", 0) == 1;
+    
+        if (justCompleted)
+        {
+            // Flag'i burada sıfırla
+            PlayerPrefs.SetInt("LevelJustCompleted", 0);
+            PlayerPrefs.Save();
+        
+            Debug.Log($"Reveal başlıyor! RevealedBlocks: {revealedBlocks}");
+        
+            // Artwork reveal animasyonu
+            if (blockArtRevealer != null)
+            {
+                blockArtRevealer.CreateBlocksFromArtwork(0);
+                blockArtRevealer.SetupRevealOrder();
+            
+                // Önceki blokları anında göster
+                int previousRevealed = revealedBlocks - 1;
+                if (previousRevealed > 0)
+                {
+                    blockArtRevealer.RevealBlocksInstant(previousRevealed);
+                }
+            
+                // Yeni bloğu animasyonlu göster
+                StartCoroutine(RevealNewBlockWithDelay());
+            }
+
+            StartCoroutine(DoRevealAnimation());
+            UpdateLevelButton();
+        }
+    }*/
+
+    void LoadProgress()
+    {
+        currentLevel = PlayerPrefs.GetInt(CURRENT_LEVEL_KEY, 0);
+        revealedBlocks = PlayerPrefs.GetInt(REVEALED_BLOCKS_KEY, 0);
     }
 
     public void ShowMainPanel()
     {
-        Time.timeScale = 1f;
-        if (mainPanel != null)
-        {
-            mainPanel.SetActive(true); 
-            sluzzleImage.SetActive(true);
-        }
-        if (levelSelectPanel != null) levelSelectPanel.SetActive(false);
-        if (classicModePanel != null) classicModePanel.SetActive(false);
-        if (settingsCanvas != null) settingsCanvas.SetActive(false);
+        SetPanel(mainPanel, true);
+        SetPanel(sluzzleImage, true);
+        SetPanel(artworkPanel, false);
+        SetPanel(settingsCanvas, false);
     }
 
-    public void ShowLevelSelectPanel()
-    {
-        if (mainPanel != null) mainPanel.SetActive(false);
-        if (levelSelectPanel != null) levelSelectPanel.SetActive(true);
-
-        PlaySound(panelOpenSound);
-        CreateAllLevels();
-    }
-
-    private void CreateAllLevels()
-    {
-        // NULL kontrol
-        if (levelButtonPrefab == null)
-        {
-            Debug.LogError("levelButtonPrefab atanmamış! Inspector'dan bir prefab ata.");
-            return;
-        }
-        if (content == null)
-        {
-            Debug.LogError("content atanmamış! LevelButtonsContainer'ı ata.");
-            return;
-        }
-
-        // Önceki butonları temizle
-        foreach (var btn in levelButtons)
-        {
-            if (btn != null) Destroy(btn);
-        }
-        levelButtons.Clear();
-
-        // Grid Layout Group kullan (zaten var)
-        GridLayoutGroup gridLayout = content.GetComponent<GridLayoutGroup>();
-        if (gridLayout == null)
-        {
-            gridLayout = content.gameObject.AddComponent<GridLayoutGroup>();
-        }
-        gridLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-        gridLayout.constraintCount = 1; // Tek sütun
-        gridLayout.childAlignment = TextAnchor.LowerCenter; // Aşağıdan başla
-        gridLayout.startAxis = GridLayoutGroup.Axis.Vertical;
-        gridLayout.startCorner = GridLayoutGroup.Corner.LowerLeft; // AŞAĞIDAN YUKARI
-
-        // Content Size Fitter ekle
-        ContentSizeFitter fitter = content.GetComponent<ContentSizeFitter>();
-        if (fitter == null)
-        {
-            fitter = content.gameObject.AddComponent<ContentSizeFitter>();
-        }
-        fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-
-        int unlockedLevels = PlayerPrefs.GetInt(UNLOCKED_LEVELS_KEY, 1);
-
-        // Tüm levelleri oluştur
-        for (int i = 0; i < totalLevels; i++)
-        {
-            int levelIndex = i;
-            bool isUnlocked = levelIndex < unlockedLevels;
-            
-            GameObject buttonObj = Instantiate(levelButtonPrefab, content);
-            
-            // Sprite'ı ayarla (hepsi aynı)
-            Image bgImage = buttonObj.GetComponent<Image>();
-            if (bgImage != null)
-            {
-                bgImage.sprite = buttonSprite;
-            }
-
-            // Numarayı ayarla - TÜM TextMeshPro bileşenlerini kontrol et
-            TextMeshProUGUI[] allTexts = buttonObj.GetComponentsInChildren<TextMeshProUGUI>(true);
-            
-            if (allTexts.Length > 0)
-            {
-                foreach (var txt in allTexts)
-                {
-                    txt.text = (levelIndex + 1).ToString();
-                    txt.transform.SetAsLastSibling(); 
-                    txt.color = Color.darkOrange;
-                    txt.fontSize = 80; 
-                }
-            }
-            else
-            {
-                Debug.LogWarning($"Level {levelIndex + 1} butonunda TextMeshProUGUI bulunamadı!");
-            }
-
-            // Button click - SADECE UNLOCK ISE
-            Button btn = buttonObj.GetComponent<Button>();
-            if (btn != null)
-            {
-                btn.interactable = isUnlocked;
-                if (isUnlocked)
-                {
-                    btn.onClick.AddListener(() => OnLevelButtonClicked(levelIndex));
-                }
-            }
-
-            // Kilitli görünüm
-            if (!isUnlocked)
-            {
-                if (bgImage != null)
-                {
-                    bgImage.color = new Color(0.5f, 0.5f, 0.5f); // Gri yap
-                }
-            }
-
-            levelButtons.Add(buttonObj);
-        }
-
-        // Scroll'u en alta al (Level 1'den başla)
-        Canvas.ForceUpdateCanvases();
-        scrollRect.verticalNormalizedPosition = 0f;
-    }
-
-    private void OnLevelButtonClicked(int levelIndex)
-    {
-        int unlockedLevels = PlayerPrefs.GetInt(UNLOCKED_LEVELS_KEY, 1);
-        
-        // Kilitli level kontrolü
-        if (levelIndex >= unlockedLevels)
-        {
-            Debug.Log($"Level {levelIndex + 1} kilitli!");
-            return;
-        }
-
-        StartCoroutine(LevelSelectAnimation(levelIndex));
-    }
-
-    private IEnumerator LevelSelectAnimation(int levelIndex)
+    public void ShowArtworkPanel()
     {
         PlaySound(buttonClickSound);
-        yield return new WaitForSeconds(0.3f);
-
-        PlayerPrefs.SetInt(SELECTED_LEVEL_KEY, levelIndex);
-        PlayerPrefs.SetInt("IsEndlessMode", 0);
         
-        // LEVEL MODE HER ZAMAN 6x6
-        BoardSizeManager.Instance.SetBoardSize(6);
-        
-        PlayerPrefs.Save();
+        SetPanel(mainPanel, false);
+        SetPanel(sluzzleImage, false);
+        SetPanel(artworkPanel, true);
 
-        Debug.Log($"Level {levelIndex + 1} başlatılıyor! (6x6 grid)");
-        SceneManager.LoadScene(gameSceneName);
+        if (blockArtRevealer != null)
+        {
+            blockArtRevealer.CreateBlocksFromArtwork(0);
+            blockArtRevealer.SetupRevealOrder();
+            blockArtRevealer.RevealBlocksInstant(revealedBlocks);
+        }
+
+        UpdateLevelButton();
     }
 
-    public void StartEndlessMode()
+    void ShowArtworkPanelWithReveal()
     {
-        PlayerPrefs.SetInt("IsEndlessMode", 1);
+        Debug.Log($"=== ShowArtworkPanelWithReveal ===");
+        Debug.Log($"mainPanel: {mainPanel}, artworkPanel: {artworkPanel}");
+    
+        SetPanel(mainPanel, false);
+        SetPanel(sluzzleImage, false);
+        SetPanel(artworkPanel, true);
+    
+        Debug.Log($"artworkPanel şimdi active mi: {artworkPanel?.activeSelf}");
+
+        if (blockArtRevealer != null)
+        {
+            blockArtRevealer.CreateBlocksFromArtwork(0);
+            blockArtRevealer.SetupRevealOrder();
         
-        // Classic mode → Kullanıcının seçtiği size'ı kullan (5, 6, veya 7)
-        // BoardSizeManager zaten seçilen değeri tutuyor, değiştirme
+            int previousRevealed = revealedBlocks - 1;
+            if (previousRevealed > 0)
+            {
+                blockArtRevealer.RevealBlocksInstant(previousRevealed);
+            }
         
+            StartCoroutine(RevealNewBlockWithDelay());
+        }
+
+        UpdateLevelButton();
+    }
+
+    IEnumerator RevealNewBlockWithDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        
+        PlaySound(blockRevealSound);
+        
+        if (blockArtRevealer != null)
+        {
+            blockArtRevealer.RevealNextBlockAnimated();
+        }
+    }
+
+    void UpdateLevelButton()
+    {
+        Debug.Log($"### UpdateLevelButton - levelButtonText null mu: {levelButtonText == null}");
+    
+        if (levelButtonText != null)
+        {
+            levelButtonText.text = $"Level {currentLevel + 1}";
+            Debug.Log($"### Buton texti ayarlandı: Level {currentLevel}");
+        }
+        else
+        {
+            Debug.LogError("### levelButtonText NULL! Inspector'da ata!");
+        }
+    }
+
+    public void OnLevelButtonClicked()
+    {
+        PlaySound(buttonClickSound);
+
+        PlayerPrefs.SetInt("SelectedLevel", currentLevel);
+        PlayerPrefs.SetInt("IsEndlessMode", 0);
+        BoardSizeManager.Instance.SetBoardSize(6);
         PlayerPrefs.Save();
+
         SceneManager.LoadScene(gameSceneName);
     }
 
-    private void PlaySound(AudioClip clip)
+    public void BackToMain()
+    {
+        ShowMainPanel();
+        artworkPanel.SetActive(false);
+    }
+
+    void SetPanel(GameObject panel, bool active)
+    {
+        if (panel != null) panel.SetActive(active);
+    }
+
+    void PlaySound(AudioClip clip)
     {
         if (audioSource != null && clip != null)
         {
@@ -223,35 +220,32 @@ public class MainMenuLevelSelector : MonoBehaviour
         }
     }
 
-    public static void UnlockNextLevel()
-    {
-        int currentUnlocked = PlayerPrefs.GetInt(UNLOCKED_LEVELS_KEY, 1);
-        PlayerPrefs.SetInt(UNLOCKED_LEVELS_KEY, currentUnlocked + 1);
-        PlayerPrefs.Save();
-    }
-
     public static int GetSelectedLevel()
     {
-        return PlayerPrefs.GetInt(SELECTED_LEVEL_KEY, 0);
+        return PlayerPrefs.GetInt("SelectedLevel", 0);
     }
-
-    void CreateTitleShadow()
+    IEnumerator DoRevealAnimation()
     {
-        TextMeshProUGUI title = FindObjectOfType<TitleAnimator>()?.GetComponent<TextMeshProUGUI>();
-        if (title == null) return;
-
-        GameObject shadow = Instantiate(title.gameObject, title.transform.parent);
-        shadow.name = "TitleShadow";
-
-        TextMeshProUGUI shadowText = shadow.GetComponent<TextMeshProUGUI>();
-        shadowText.color = new Color(0, 0, 0, 0.3f);
-        shadowText.enableVertexGradient = false;
-
-        RectTransform rect = shadow.GetComponent<RectTransform>();
-        rect.anchoredPosition += new Vector2(4, -4);
-
-        shadow.transform.SetAsFirstSibling();
-
-        Destroy(shadow.GetComponent<TitleAnimator>());
+        yield return new WaitForSeconds(0.3f);
+    
+        Debug.Log(">>> 0.3 saniye geçti");
+    
+        if (blockArtRevealer != null)
+        {
+            int revealed = PlayerPrefs.GetInt("RevealedBlocks", 0);
+            Debug.Log($">>> RevealedBlocks: {revealed}");
+        
+            blockArtRevealer.CreateBlocksFromArtwork(0);
+            blockArtRevealer.SetupRevealOrder();
+        
+            if (revealed > 1)
+            {
+                blockArtRevealer.RevealBlocksInstant(revealed - 1);
+            }
+        
+            yield return new WaitForSeconds(0.3f);
+            blockArtRevealer.RevealNextBlockAnimated();
+        }
     }
+    
 }

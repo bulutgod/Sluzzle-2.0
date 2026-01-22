@@ -15,10 +15,7 @@ MonoBehaviour:
   levelNumber: 19
   levelName: 19
   objectives:
-  - tileLevel: 6
-    targetCount: 1
-    currentCount: 0
-  - tileLevel: 5
+  - tileLevel: 1
     targetCount: 1
     currentCount: 0
   description: 

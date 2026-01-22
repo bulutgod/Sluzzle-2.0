@@ -18,7 +18,4 @@ MonoBehaviour:
   - tileLevel: 1
     targetCount: 3
     currentCount: 0
-  - tileLevel: 4
-    targetCount: 1
-    currentCount: 0
   description: 

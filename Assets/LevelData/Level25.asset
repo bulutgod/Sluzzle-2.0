@@ -15,7 +15,7 @@ MonoBehaviour:
   levelNumber: 25
   levelName: 25
   objectives:
-  - tileLevel: 7
+  - tileLevel: 2
     targetCount: 1
     currentCount: 0
   description: 

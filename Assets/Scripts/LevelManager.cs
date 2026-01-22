@@ -279,27 +279,21 @@ public class LevelManager : MonoBehaviour
     
     public void NextLevel()
     {
+        Debug.Log("=== NextLevel çağrıldı ===");
+    
+        PlayerPrefs.SetInt("LevelJustCompleted", 1);
+        Debug.Log("LevelJustCompleted = 1 set edildi");
+    
         int nextIndex = currentLevelIndex + 1;
-
-        if (nextIndex >= levels.Count)
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
-            return;
-        }
-
-        int unlockedLevels = PlayerPrefs.GetInt("UnlockedLevels", 1);
-        if (nextIndex >= unlockedLevels)
-        {
-            PlayerPrefs.SetInt("UnlockedLevels", nextIndex + 1);
-        }
-
-        PlayerPrefs.SetInt("SelectedLevel", nextIndex);
-        PlayerPrefs.SetInt("IsEndlessMode", 0);
+        PlayerPrefs.SetInt("CurrentLevel", nextIndex);
+    
+        int revealed = PlayerPrefs.GetInt("RevealedBlocks", 0);
+        PlayerPrefs.SetInt("RevealedBlocks", revealed + 1);
+    
         PlayerPrefs.Save();
-
-        UnityEngine.SceneManagement.SceneManager.LoadScene(
-            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
-        );
+        Debug.Log("PlayerPrefs kaydedildi, MenuScene'e gidiyorum...");
+    
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
     }
 
     public void RestartLevel()

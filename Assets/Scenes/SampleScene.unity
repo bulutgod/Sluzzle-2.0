@@ -152,9 +152,9 @@ RectTransform:
   - {fileID: 1333682209}
   m_Father: {fileID: 1490843105}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -58, y: 776}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -74, y: -414}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &28460855
@@ -306,7 +306,7 @@ MonoBehaviour:
   bestScoreText: {fileID: 28460855}
   newRecordPanel: {fileID: 1138196449}
   newRecordText: {fileID: 2033383872}
-  bestScorePrefix: 'HIGHSCORE: '
+  bestScorePrefix: 
 --- !u!4 &349888446
 Transform:
   m_ObjectHideFlags: 0
@@ -490,8 +490,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -226, y: -417}
-  m_SizeDelta: {x: 255.39014, y: 86.92676}
+  m_AnchoredPosition: {x: -209, y: -414}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &405850473
 MonoBehaviour:
@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NEXT LEVEL
+  m_text: 'NEXT '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a55e9b3261e794e35892de29aa9c6eff, type: 2}
   m_sharedMaterial: {fileID: -914359729340036140, guid: a55e9b3261e794e35892de29aa9c6eff, type: 2}
@@ -2450,14 +2450,14 @@ RectTransform:
   m_GameObject: {fileID: 1333682208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.70832, y: 0.70832, z: 0.70832}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 28460854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -163.6, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -163.6, y: -32}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1333682210
@@ -3042,7 +3042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreUI
   scoreText: {fileID: 405850473}
-  scorePrefix: 'SCORE: '
+  scorePrefix: 
   pulseDuration: 0.3
   pulseScale: 1.2
 --- !u!1 &1713188816
@@ -3433,9 +3433,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1490843105}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -424, y: -414}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 101, y: -414}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1850374362

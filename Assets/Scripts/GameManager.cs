@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int fallbackFrameRate = 60;
 
     private int boardSize; 
+    private int currentLevel = 1;
     private IGrid grid;
     private IBoardGenerator boardGenerator;
     private IInputHandler inputHandler;
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour
         boardGenerator.Generate();
         tileSpawner.SpawnRandom();
         tileSpawner.SpawnRandom();
+        currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
     }
 
     void Update()
@@ -115,5 +118,11 @@ public class GameManager : MonoBehaviour
         {
             Application.targetFrameRate = fallbackFrameRate;
         }
+    }
+    public void OnLevelWin()
+    {
+        PlayerPrefs.SetInt("LevelJustCompleted", 1);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("MenuScene");
     }
 }
