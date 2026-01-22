@@ -11,6 +11,7 @@ public class MainMenuLevelSelector : MonoBehaviour
     [SerializeField] private GameObject mainPanel;
     [SerializeField] private GameObject levelSelectPanel;
     [SerializeField] private GameObject classicModePanel;
+    [SerializeField] private GameObject settingsCanvas;
     [SerializeField] private GameObject sluzzleImage;
     
     [Header("Level Data")]
@@ -56,6 +57,7 @@ public class MainMenuLevelSelector : MonoBehaviour
         }
         if (levelSelectPanel != null) levelSelectPanel.SetActive(false);
         if (classicModePanel != null) classicModePanel.SetActive(false);
+        if (settingsCanvas != null) settingsCanvas.SetActive(false);
     }
 
     public void ShowLevelSelectPanel()
