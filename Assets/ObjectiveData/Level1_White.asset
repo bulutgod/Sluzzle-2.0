@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b7b84ce06e044a1a55a19d83f8b287, type: 3}
+  m_Name: Level1_White
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectiveData
+  icon: {fileID: 1036455855553147398, guid: 8df28ce6e53ec414c8b2c44f62c265d6, type: 3}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  objectiveName: White
+  tileLevel: 1

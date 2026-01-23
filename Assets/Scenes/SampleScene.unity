@@ -984,22 +984,6 @@ MonoBehaviour:
   objectivesContainer: {fileID: 1947385105}
   levelCompletePanel: {fileID: 1213755742}
   levelFailedPanel: {fileID: 530366449}
-  tileLevels:
-  - {fileID: 11400000, guid: 04f3d4aba82c92c4292bccaa59b69906, type: 2}
-  - {fileID: 11400000, guid: 3fb3078ad3d751c469cb76a311b8cf02, type: 2}
-  - {fileID: 11400000, guid: f6864b8bb83c38846b82a57a641b0cdc, type: 2}
-  - {fileID: 11400000, guid: 57c9e48d0ee6c654abca93edd3609528, type: 2}
-  - {fileID: 11400000, guid: 63cee29e9c9990c47adbc20b8c92ca1e, type: 2}
-  - {fileID: 11400000, guid: bcba7982726a7714e8995d72f97334c9, type: 2}
-  - {fileID: 11400000, guid: 1493e33d5a2dea247a893f9cc045d05b, type: 2}
-  - {fileID: 11400000, guid: a60e7dfa73aa6b84eae4c926a4a8cffd, type: 2}
-  - {fileID: 11400000, guid: d1d57aec8114ca14d9484bd59bd72b78, type: 2}
-  - {fileID: 11400000, guid: 5154b4ce070b66e4aac39847c95ddbdf, type: 2}
-  - {fileID: 11400000, guid: 3e57c68a5fe98d04dbfce1a1c9ccab6a, type: 2}
-  - {fileID: 11400000, guid: 1f95898b2d700454fa0e838bf3443cd6, type: 2}
-  - {fileID: 11400000, guid: e85783c3968a40141902eb91e22b8028, type: 2}
-  - {fileID: 11400000, guid: 7b3c42fe205c6d54e8e0eca3a6b0c437, type: 2}
-  - {fileID: 11400000, guid: 76332e05150445f4b85d51bb7dc01773, type: 2}
   pauseButton: {fileID: 1714882868}
   pausePanel: {fileID: 1110539929}
   gameManagerObject: {fileID: 1619001711}
@@ -1262,7 +1246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.8, y: 0}
+  m_AnchoredPosition: {x: 45, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &698459242
@@ -1350,7 +1334,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -15.780006, w: 0}
+  m_margin: {x: 0, y: 0, z: 98.334946, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

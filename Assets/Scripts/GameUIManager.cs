@@ -20,7 +20,6 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Transform objectivesContainer;
     [SerializeField] private GameObject levelCompletePanel;
     [SerializeField] private GameObject levelFailedPanel;
-    [SerializeField] private TileData[] tileLevels;
 
     [Header("=== SHARED UI ===")]
     [SerializeField] private GameObject pauseButton;
@@ -220,85 +219,71 @@ public class GameUIManager : MonoBehaviour
     }
 
     private void CreateObjectiveUI(LevelDataSO level)
+{
+    if (objectivesContainer == null) return;
+
+    foreach (var item in objectiveItems)
     {
-        if (objectivesContainer == null) return;
-
-        // ✅ ÖNCEKİ OBJECTIVE'LERİ TEMİZLE
-        // Önce listeyi temizle
-        foreach (var item in objectiveItems)
-        {
-            if (item.animCoroutine != null)
-            {
-                StopCoroutine(item.animCoroutine);
-            }
-        }
-        objectiveItems.Clear();
-
-        // Sonra tüm child'ları yok et
-        for (int i = objectivesContainer.childCount - 1; i >= 0; i--)
-        {
-            DestroyImmediate(objectivesContainer.GetChild(i).gameObject);
-        }
-
-        // Yeni objective'leri oluştur
-        foreach (var objective in level.objectives)
-        {
-            GameObject itemGO = new GameObject($"Objective_{objective.tileLevel}");
-            itemGO.transform.SetParent(objectivesContainer, false);
-            itemGO.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            
-            RectTransform itemRect = itemGO.AddComponent<RectTransform>();
-            itemRect.sizeDelta = new Vector2(200, 50);
-
-            HorizontalLayoutGroup hlg = itemGO.AddComponent<HorizontalLayoutGroup>();
-            hlg.spacing = -20;
-            hlg.childAlignment = TextAnchor.MiddleLeft;
-            hlg.childControlWidth = false;
-            hlg.childControlHeight = false;
-
-            // Icon
-            GameObject iconGO = new GameObject("Icon");
-            iconGO.transform.SetParent(itemGO.transform, false);
-            Image icon = iconGO.AddComponent<Image>();
-            
-
-            if (tileLevels != null && objective.tileLevel < tileLevels.Length)
-            {
-                icon.color = tileLevels[objective.tileLevel].TileColor;
-            }
-
-            iconGO.GetComponent<RectTransform>().sizeDelta = new Vector2(40, 40);
-
-            // Text
-            GameObject textGO = new GameObject("Count");
-            textGO.transform.SetParent(itemGO.transform, false);
-
-            TextMeshProUGUI text = textGO.AddComponent<TextMeshProUGUI>();
-            text.fontSize = 28;
-            text.color = Color.white;
-            text.alignment = TextAlignmentOptions.MidlineLeft;
-            if (objectiveFont != null)
-            {
-                text.font = objectiveFont;
-            }
-            textGO.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 40);
-
-            // Item kaydet
-            ObjectiveUIItem item = new ObjectiveUIItem
-            {
-                gameObject = itemGO,
-                text = text,
-                icon = icon,
-                lastCount = 0,
-                
-            };
-
-            UpdateObjectiveText(item, objective);
-            objectiveItems.Add(item);
-        }
-
-        Debug.Log($"✅ {level.objectives.Count} objective oluşturuldu");
+        if (item.animCoroutine != null) StopCoroutine(item.animCoroutine);
     }
+    objectiveItems.Clear();
+
+    for (int i = objectivesContainer.childCount - 1; i >= 0; i--)
+    {
+        DestroyImmediate(objectivesContainer.GetChild(i).gameObject);
+    }
+
+    foreach (var objective in level.objectives)
+    {
+        GameObject itemGO = new GameObject($"Objective_{objective.objectiveData.objectiveName}");
+        itemGO.transform.SetParent(objectivesContainer, false);
+        itemGO.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+
+        RectTransform itemRect = itemGO.AddComponent<RectTransform>();
+        itemRect.sizeDelta = new Vector2(200, 50);
+
+        HorizontalLayoutGroup hlg = itemGO.AddComponent<HorizontalLayoutGroup>();
+        hlg.spacing = -20;
+        hlg.childAlignment = TextAnchor.MiddleLeft;
+        hlg.childControlWidth = false;
+        hlg.childControlHeight = false;
+
+        // Icon - Artık Sprite kullanıyor
+        GameObject iconGO = new GameObject("Icon");
+        iconGO.transform.SetParent(itemGO.transform, false);
+        Image icon = iconGO.AddComponent<Image>();
+
+        if (objective.objectiveData != null)
+        {
+            icon.sprite = objective.objectiveData.icon;
+            icon.color = objective.objectiveData.backgroundColor;
+        }
+
+        iconGO.GetComponent<RectTransform>().sizeDelta = new Vector2(40, 40);
+
+        // Text
+        GameObject textGO = new GameObject("Count");
+        textGO.transform.SetParent(itemGO.transform, false);
+
+        TextMeshProUGUI text = textGO.AddComponent<TextMeshProUGUI>();
+        text.fontSize = 28;
+        text.color = Color.white;
+        text.alignment = TextAlignmentOptions.MidlineLeft;
+        if (objectiveFont != null) text.font = objectiveFont;
+        textGO.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 40);
+
+        ObjectiveUIItem item = new ObjectiveUIItem
+        {
+            gameObject = itemGO,
+            text = text,
+            icon = icon,
+            lastCount = 0
+        };
+
+        UpdateObjectiveText(item, objective);
+        objectiveItems.Add(item);
+    }
+}
 
     private void OnObjectiveProgress(LevelObjective obj)
     {

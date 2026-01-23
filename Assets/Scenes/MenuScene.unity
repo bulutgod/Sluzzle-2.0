@@ -160,9 +160,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 88862335}
-  - component: {fileID: 88862336}
-  - component: {fileID: 88862337}
   - component: {fileID: 88862338}
+  - component: {fileID: 88862337}
+  - component: {fileID: 88862336}
   m_Layer: 5
   m_Name: MenuManager
   m_TagString: Untagged
@@ -198,14 +198,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 88862334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa9b2b3428ea14a4c9e1a9031df9175e, type: 3}
+  m_Script: {fileID: 11500000, guid: ab411d00e76081c4ca807da21b448ed8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuManager
-  button5x5: {fileID: 1872419531}
-  button6x6: {fileID: 922064915}
-  button7x7: {fileID: 1554681121}
-  selectedColor: {r: 0.38039216, g: 0.24705882, b: 0.8784314, a: 1}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasController
+  classicMode: {fileID: 1458932967}
+  levelMode: {fileID: 1340682751}
+  settingsButton: {fileID: 645544219}
+  classicModePanel: {fileID: 1258221820}
+  levelSelectPanel: {fileID: 1295923146}
+  menuPanel: {fileID: 484268446}
+  sluzzleImage: {fileID: 1102265727}
+  settingsCanvas: {fileID: 1470218980}
+  blockArtRevealer: {fileID: 1736521016}
+  audioSource: {fileID: 0}
+  blockRevealSound: {fileID: 0}
 --- !u!114 &88862337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +227,8 @@ MonoBehaviour:
   mainPanel: {fileID: 484268446}
   artworkPanel: {fileID: 1295923146}
   settingsCanvas: {fileID: 1470218980}
+  levelModePanel: {fileID: 1295923146}
+  classicModePanel: {fileID: 1258221820}
   sluzzleImage: {fileID: 1102265727}
   blockArtRevealer: {fileID: 1736521016}
   levelButton: {fileID: 523867665}
@@ -238,20 +246,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 88862334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab411d00e76081c4ca807da21b448ed8, type: 3}
+  m_Script: {fileID: 11500000, guid: fa9b2b3428ea14a4c9e1a9031df9175e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CanvasController
-  classicMode: {fileID: 1458932967}
-  levelMode: {fileID: 1340682751}
-  settingsButton: {fileID: 645544219}
-  classicModePanel: {fileID: 1258221820}
-  levelSelectPanel: {fileID: 1295923146}
-  menuPanel: {fileID: 484268446}
-  sluzzleImage: {fileID: 1102265727}
-  settingsCanvas: {fileID: 1470218980}
-  blockArtRevealer: {fileID: 1736521016}
-  audioSource: {fileID: 0}
-  blockRevealSound: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::MenuManager
+  button5x5: {fileID: 1872419531}
+  button6x6: {fileID: 922064915}
+  button7x7: {fileID: 1554681121}
+  selectedColor: {r: 0.38039216, g: 0.24705882, b: 0.8784314, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &106264505
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 106264507}
-  - component: {fileID: 106264506}
+  - component: {fileID: 106264508}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -269,7 +271,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &106264506
+--- !u!4 &106264507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106264505}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 600.6541, y: 1329.6788, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &106264508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -309,21 +326,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 13b3eb88e0e074613b66f2316ae8ae2e, type: 2}
   currentLevelIndex: 0
   completionVerifyDelay: 0.1
---- !u!4 &106264507
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 106264505}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 600.6541, y: 1329.6788, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &194844214
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +467,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 254413157}
-  - component: {fileID: 254413156}
+  - component: {fileID: 254413158}
   m_Layer: 0
   m_Name: BoardSizeManager
   m_TagString: Untagged
@@ -473,18 +475,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &254413156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254413155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eab8e296c8fcff84db5123a2bc35ae19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BoardSizeManager
 --- !u!4 &254413157
 Transform:
   m_ObjectHideFlags: 0
@@ -500,6 +490,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &254413158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254413155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab8e296c8fcff84db5123a2bc35ae19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoardSizeManager
 --- !u!114 &344199512 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7753493190921495630, guid: 60b1b5fa326c247feaf1841c4a9864c5, type: 3}
@@ -1125,7 +1127,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 645544220}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 88862334}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &645544220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1576,7 +1590,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 88862337}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenuLevelSelector, Assembly-CSharp
         m_MethodName: StartEndlessMode
         m_Mode: 1
@@ -1943,7 +1957,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 88862337}
         m_TargetAssemblyTypeName: MainMenuLevelSelector, Assembly-CSharp
-        m_MethodName: BackToMain
+        m_MethodName: ShowMainPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3713,7 +3727,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 88862337}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenuLevelSelector, Assembly-CSharp
         m_MethodName: StartEndlessMode
         m_Mode: 1
@@ -4037,7 +4051,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 88862337}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenuLevelSelector, Assembly-CSharp
         m_MethodName: StartEndlessMode
         m_Mode: 1
@@ -4266,7 +4280,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 88862337}
         m_TargetAssemblyTypeName: MainMenuLevelSelector, Assembly-CSharp
-        m_MethodName: BackToMain
+        m_MethodName: ShowMainPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

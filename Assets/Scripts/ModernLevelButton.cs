@@ -11,14 +11,14 @@ public class ModernLevelButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public Image iconImage;
     public TextMeshProUGUI levelNumberText;
     public GameObject lockIcon;
-    public GameObject[] stars; // 3 yýldýz
+    public GameObject[] stars; // 3 yï¿½ldï¿½z
     public GameObject glowEffect;
-    public GameObject newBadge; // Yeni açýlan level için "NEW" badge
+    public GameObject newBadge; // Yeni aï¿½ï¿½lan level iï¿½in "NEW" badge
 
     [Header("Colors")]
-    public Color unlockedColor = new Color(0.4f, 0.8f, 0.4f); // Yeþil
+    public Color unlockedColor = new Color(0.4f, 0.8f, 0.4f); // Yeï¿½il
     public Color lockedColor = new Color(0.5f, 0.5f, 0.5f); // Gri
-    public Color currentLevelColor = new Color(1f, 0.8f, 0.2f); // Altýn
+    public Color currentLevelColor = new Color(1f, 0.8f, 0.2f); // Altï¿½n
 
     [Header("Animation Settings")]
     public float hoverScale = 1.1f;
@@ -33,13 +33,13 @@ public class ModernLevelButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
     private Button button;
     private Coroutine scaleCoroutine;
 
-    // Candy Crush tarzý renkler
+    // Candy Crush tarzï¿½ renkler
     private Color[] candyColors = new Color[]
     {
-        new Color(0.95f, 0.3f, 0.4f),   // Kýrmýzý
+        new Color(0.95f, 0.3f, 0.4f),   // Kï¿½rmï¿½zï¿½
         new Color(1f, 0.6f, 0.2f),       // Turuncu
-        new Color(1f, 0.9f, 0.3f),       // Sarý
-        new Color(0.4f, 0.85f, 0.4f),    // Yeþil
+        new Color(1f, 0.9f, 0.3f),       // Sarï¿½
+        new Color(0.4f, 0.85f, 0.4f),    // Yeï¿½il
         new Color(0.3f, 0.7f, 0.95f),    // Mavi
         new Color(0.7f, 0.4f, 0.9f),     // Mor
         new Color(0.95f, 0.5f, 0.7f)     // Pembe
@@ -57,7 +57,7 @@ public class ModernLevelButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
         isUnlocked = unlocked;
         isCurrentLevel = isCurrent;
 
-        // Level numarasý
+        // Level numarasï¿½
         if (levelNumberText != null)
         {
             levelNumberText.text = (index + 1).ToString();
@@ -83,21 +83,21 @@ public class ModernLevelButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
             }
             else
             {
-                // Candy crush tarzý rastgele renk
+                // Candy crush tarzï¿½ rastgele renk
                 backgroundImage.color = candyColors[index % candyColors.Length];
             }
         }
 
-        // Yýldýzlarý ayarla
+        // Yï¿½ldï¿½zlarï¿½ ayarla
         SetStars(starCount);
 
-        // Glow efekti (sadece current level için)
+        // Glow efekti (sadece current level iï¿½in)
         if (glowEffect != null)
         {
             glowEffect.SetActive(isCurrent);
         }
 
-        // NEW badge (current level için)
+        // NEW badge (current level iï¿½in)
         if (newBadge != null)
         {
             newBadge.SetActive(isCurrent);
@@ -109,7 +109,7 @@ public class ModernLevelButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
             button.interactable = unlocked;
         }
 
-        // Current level ise pulse animasyonu baþlat
+        // Current level ise pulse animasyonu baï¿½lat
         if (isCurrent && unlocked)
         {
             StartCoroutine(PulseAnimation());
@@ -172,7 +172,7 @@ public class ModernLevelButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
         }
     }
 
-    // Pulse animasyonu (current level için)
+    // Pulse animasyonu (current level iï¿½in)
     private IEnumerator PulseAnimation()
     {
         while (isCurrentLevel)
@@ -240,7 +240,7 @@ public class ModernLevelButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
         transform.localScale = target;
     }
 
-    // Týklanýnca çaðrýlacak (buton click öncesi efekt)
+    // Tï¿½klanï¿½nca ï¿½aï¿½rï¿½lacak (buton click ï¿½ncesi efekt)
     public void OnButtonClick()
     {
         StartCoroutine(ClickAnimation());

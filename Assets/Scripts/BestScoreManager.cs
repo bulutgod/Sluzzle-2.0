@@ -22,7 +22,7 @@ public class BestScoreManager : MonoBehaviour
     
     private GameUIManager gameUIManager;
 
-    
+    // Her board size i�in ayr� key
     private const string BEST_SCORE_KEY_5X5 = "BestScore_5x5";
     private const string BEST_SCORE_KEY_6X6 = "BestScore_6x6";
     private const string BEST_SCORE_KEY_7X7 = "BestScore_7x7";
@@ -33,14 +33,16 @@ public class BestScoreManager : MonoBehaviour
 
     private void Start()
     {
-        
+        // normalScale'i ba�lat
         if (bestScoreText != null)
         {
             normalScale = bestScoreText.transform.localScale;
         }
-        
+
+        // Mevcut board size'� al
         currentBoardSize = BoardSizeManager.Instance.GetBoardSize();
-        
+        Debug.Log($"BestScoreManager initialized for {currentBoardSize}x{currentBoardSize} mode");
+
         LoadBestScore();
         UpdateBestScoreUI();
 
@@ -48,7 +50,8 @@ public class BestScoreManager : MonoBehaviour
         {
             newRecordPanel.SetActive(false);
         }
-        
+
+        // ScoreSystem'e abone ol
         GameManager gm = FindObjectOfType<GameManager>();
         if (gm != null && gm.ScoreSystem != null)
         {
@@ -69,6 +72,7 @@ public class BestScoreManager : MonoBehaviour
     {
         string key = GetBestScoreKey();
         currentBestScore = PlayerPrefs.GetInt(key, 0);
+        Debug.Log($"Loaded best score for {currentBoardSize}x{currentBoardSize}: {currentBestScore}");
     }
 
     private void SaveBestScore(int score)
@@ -77,6 +81,7 @@ public class BestScoreManager : MonoBehaviour
         string key = GetBestScoreKey();
         PlayerPrefs.SetInt(key, score);
         PlayerPrefs.Save();
+        Debug.Log($"Saved new best score for {currentBoardSize}x{currentBoardSize}: {score}");
     }
 
     private string GetBestScoreKey()
@@ -90,6 +95,7 @@ public class BestScoreManager : MonoBehaviour
             case 7:
                 return BEST_SCORE_KEY_7X7;
             default:
+                Debug.LogWarning($"Unknown board size: {currentBoardSize}, using 5x5 key");
                 return BEST_SCORE_KEY_5X5;
         }
     }
@@ -100,13 +106,15 @@ public class BestScoreManager : MonoBehaviour
         {
             SaveBestScore(newScore);
             UpdateBestScoreUI();
-            
+
+            // Panel animasyonunu sadece ilk kez g�ster
             if (!hasShownNewRecordPanel)
             {
                 ShowNewRecordAnimation();
                 hasShownNewRecordPanel = true;
             }
-            
+
+            // Pulse animasyonunu her seferinde �al��t�r
             PlayPulseAnimation();
         }
     }
@@ -136,7 +144,8 @@ public class BestScoreManager : MonoBehaviour
     {
         float elapsed = 0f;
         float halfDuration = pulseDuration / 2f;
-        
+
+        // B�y�me
         while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
@@ -146,7 +155,8 @@ public class BestScoreManager : MonoBehaviour
         }
 
         elapsed = 0f;
-        
+
+        // K���lme
         while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
@@ -173,10 +183,12 @@ public class BestScoreManager : MonoBehaviour
 
             if (newRecordText != null)
             {
+                // Ba�lang��
                 newRecordText.transform.localScale = Vector3.zero;
                 CanvasGroup cg = newRecordPanel.GetComponent<CanvasGroup>();
                 if (cg == null) cg = newRecordPanel.AddComponent<CanvasGroup>();
-                
+
+                // Pop-in animasyonu
                 float duration = 0.5f;
                 float elapsed = 0f;
 
@@ -184,16 +196,18 @@ public class BestScoreManager : MonoBehaviour
                 {
                     elapsed += Time.deltaTime;
                     float t = elapsed / duration;
-                    
+                    // Elastic ease-out
                     float scale = Mathf.Sin(t * Mathf.PI * 2f) * (1f - t) * 0.3f + t;
                     newRecordText.transform.localScale = Vector3.one * scale;
                     yield return null;
                 }
 
                 newRecordText.transform.localScale = Vector3.one;
-                
+
+                // Bekle
                 yield return new WaitForSeconds(2f);
-                
+
+                // Fade out
                 elapsed = 0f;
                 duration = 0.5f;
 
@@ -208,21 +222,31 @@ public class BestScoreManager : MonoBehaviour
                 newRecordPanel.SetActive(false);
                 cg.alpha = 1f;
             }
-            
+            /*if (gameUIManager.isEndlessMode)
+            {
+                
+            }
+            else
+            {
+                newRecordPanel.SetActive(false);
+            }*/
+        
     }
 
     public int GetBestScore()
     {
         return currentBestScore;
     }
-    
+
+    // T�m mod high score'lar�n� g�rmek i�in (debug/stats i�in)
     public void GetAllBestScores(out int score5x5, out int score6x6, out int score7x7)
     {
         score5x5 = PlayerPrefs.GetInt(BEST_SCORE_KEY_5X5, 0);
         score6x6 = PlayerPrefs.GetInt(BEST_SCORE_KEY_6X6, 0);
         score7x7 = PlayerPrefs.GetInt(BEST_SCORE_KEY_7X7, 0);
     }
-    
+
+    // T�m high score'lar� s�f�rlamak i�in (settings men�s� i�in)
     public void ResetAllBestScores()
     {
         PlayerPrefs.DeleteKey(BEST_SCORE_KEY_5X5);
@@ -230,12 +254,14 @@ public class BestScoreManager : MonoBehaviour
         PlayerPrefs.DeleteKey(BEST_SCORE_KEY_7X7);
         PlayerPrefs.Save();
 
-        LoadBestScore(); 
+        LoadBestScore(); // Mevcut modu yeniden y�kle
         UpdateBestScoreUI();
-        hasShownNewRecordPanel = false; 
-        
+        hasShownNewRecordPanel = false; // Reset flag
+
+        Debug.Log("All best scores have been reset!");
     }
-    
+
+    // Sadece mevcut mod high score'unu s�f�rla
     public void ResetCurrentBestScore()
     {
         string key = GetBestScoreKey();
@@ -244,7 +270,8 @@ public class BestScoreManager : MonoBehaviour
 
         LoadBestScore();
         UpdateBestScoreUI();
-        hasShownNewRecordPanel = false; 
-        
+        hasShownNewRecordPanel = false; // Reset flag
+
+        Debug.Log($"Best score for {currentBoardSize}x{currentBoardSize} has been reset!");
     }
 }

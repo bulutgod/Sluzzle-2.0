@@ -40,11 +40,11 @@ public class TileSpawner : ITileSpawner
 
         tile.transform.localScale = Vector3.zero;
 
-        // JellyEffect'e doðru scale'i ver
+        // JellyEffect'e doï¿½ru scale'i ver
         JellyEffect jelly = tile.GetComponent<JellyEffect>();
         if (jelly != null)
         {
-            jelly.SetOriginalScale(new Vector3(0.4f, 0.4f, 0.4f)); // Senin kullandýðýn scale
+            jelly.SetOriginalScale(new Vector3(0.4f, 0.4f, 0.4f)); // Senin kullandï¿½ï¿½ï¿½n scale
         }
 
         CoroutineRunner.Instance.StartCoroutine(ImprovedSpawnAnimation(tile));
@@ -54,7 +54,7 @@ public class TileSpawner : ITileSpawner
     {
         if (tile == null) yield break;
 
-        Vector3 targetScale = new Vector3(0.4f, 0.4f, 0.4f); // Senin scale deðerin
+        Vector3 targetScale = new Vector3(0.4f, 0.4f, 0.4f); // Senin scale deï¿½erin
         float duration = 0.15f;
         float elapsed = 0f;
 

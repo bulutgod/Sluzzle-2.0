@@ -8,17 +8,17 @@ public class TitleAnimator : MonoBehaviour
     [Header("Title Text")]
     [SerializeField] private TextMeshProUGUI titleText;
 
-    [Header("Animasyon Ayarlarý")]
+    [Header("Animasyon Ayarlarï¿½")]
     [SerializeField] private bool enableFloat = true;
     [SerializeField] private bool enableGlow = true;
     [SerializeField] private bool enableGradient = true;
     [SerializeField] private bool enableLetterAnimation = true;
 
-    [Header("Float Ayarlarý")]
+    [Header("Float Ayarlarï¿½")]
     [SerializeField] private float floatAmount = 10f;
     [SerializeField] private float floatSpeed = 2f;
 
-    [Header("Glow Ayarlarý")]
+    [Header("Glow Ayarlarï¿½")]
     [SerializeField] private float glowSpeed = 1.5f;
     [SerializeField] private float minGlow = 0.3f;
     [SerializeField] private float maxGlow = 0.8f;
@@ -34,20 +34,20 @@ public class TitleAnimator : MonoBehaviour
     [SerializeField] private float waveAmount = 5f;
     [SerializeField] private float waveSpeed = 3f;
 
-    [Header("Gölge")]
+    [Header("Gï¿½lge")]
     [SerializeField] private GameObject shadowObject;
 
     private Vector3 originalPosition;
     private RectTransform rectTransform;
     private Material textMaterial;
 
-    // Candy Crush tarzý renkler
+    // Candy Crush tarzï¿½ renkler
     private Color[] candyGradient = new Color[]
     {
-        new Color(1f, 0.35f, 0.5f),     // Pembe-Kýrmýzý
+        new Color(1f, 0.35f, 0.5f),     // Pembe-Kï¿½rmï¿½zï¿½
         new Color(1f, 0.6f, 0.2f),      // Turuncu
-        new Color(1f, 0.9f, 0.3f),      // Sarý
-        new Color(0.4f, 0.9f, 0.5f),    // Yeþil
+        new Color(1f, 0.9f, 0.3f),      // Sarï¿½
+        new Color(0.4f, 0.9f, 0.5f),    // Yeï¿½il
         new Color(0.3f, 0.7f, 1f),      // Mavi
         new Color(0.7f, 0.4f, 1f),      // Mor
     };
@@ -67,7 +67,7 @@ public class TitleAnimator : MonoBehaviour
     {
         if (titleText == null) return;
 
-        // Temel stil ayarlarý
+        // Temel stil ayarlarï¿½
         titleText.fontSize = 128;
         titleText.fontStyle = FontStyles.Bold;
         titleText.alignment = TextAlignmentOptions.Center;
@@ -81,17 +81,17 @@ public class TitleAnimator : MonoBehaviour
         {
             titleText.enableVertexGradient = true;
             titleText.colorGradient = new VertexGradient(
-                color1,                    // Sol üst
-                color2,                    // Sað üst  
+                color1,                    // Sol ï¿½st
+                color2,                    // Saï¿½ ï¿½st  
                 color3,                    // Sol alt
-                color1                     // Sað alt
+                color1                     // Saï¿½ alt
             );
         }
 
-        // Glow efekti için material ayarý
+        // Glow efekti iï¿½in material ayarï¿½
         if (enableGlow && titleText.fontMaterial != null)
         {
-            // Glow için material instance oluþtur
+            // Glow iï¿½in material instance oluï¿½tur
             textMaterial = new Material(titleText.fontMaterial);
             titleText.fontMaterial = textMaterial;
         }
@@ -119,7 +119,7 @@ public class TitleAnimator : MonoBehaviour
             WaveAnimation();
         }
 
-        // Gölgeyi takip ettir
+        // Gï¿½lgeyi takip ettir
         if (shadowObject != null)
         {
             shadowObject.transform.position = transform.position + new Vector3(4, -4, 0);
@@ -138,7 +138,7 @@ public class TitleAnimator : MonoBehaviour
         {
             float glow = Mathf.Lerp(minGlow, maxGlow, (Mathf.Sin(Time.time * glowSpeed) + 1f) / 2f);
 
-            // TMP'nin glow özelliklerini kullan
+            // TMP'nin glow ï¿½zelliklerini kullan
             textMaterial.SetFloat(ShaderUtilities.ID_GlowPower, glow);
             textMaterial.SetColor(ShaderUtilities.ID_GlowColor, glowColor);
         }
@@ -150,7 +150,7 @@ public class TitleAnimator : MonoBehaviour
 
         float t = Time.time * gradientSpeed;
 
-        // Renkleri döngüsel olarak deðiþtir
+        // Renkleri dï¿½ngï¿½sel olarak deï¿½iï¿½tir
         int index1 = Mathf.FloorToInt(t) % candyGradient.Length;
         int index2 = (index1 + 1) % candyGradient.Length;
         int index3 = (index1 + 2) % candyGradient.Length;
@@ -184,7 +184,7 @@ public class TitleAnimator : MonoBehaviour
 
             Vector3[] vertices = textInfo.meshInfo[materialIndex].vertices;
 
-            // Her harf için wave offset hesapla
+            // Her harf iï¿½in wave offset hesapla
             float offset = Mathf.Sin(Time.time * waveSpeed + i * 0.5f) * waveAmount;
 
             // 4 vertex'i de hareket ettir (her karakter 4 vertex)
@@ -194,7 +194,7 @@ public class TitleAnimator : MonoBehaviour
             vertices[vertexIndex + 3].y += offset;
         }
 
-        // Mesh'i güncelle
+        // Mesh'i gï¿½ncelle
         for (int i = 0; i < textInfo.meshInfo.Length; i++)
         {
             textInfo.meshInfo[i].mesh.vertices = textInfo.meshInfo[i].vertices;
@@ -202,7 +202,7 @@ public class TitleAnimator : MonoBehaviour
         }
     }
 
-    // Entrance animasyonu (sahne açýlýþýnda çaðýr)
+    // Entrance animasyonu (sahne aï¿½ï¿½lï¿½ï¿½ï¿½nda ï¿½aï¿½ï¿½r)
     public void PlayEntranceAnimation()
     {
         StartCoroutine(EntranceCoroutine());
@@ -210,7 +210,7 @@ public class TitleAnimator : MonoBehaviour
 
     private IEnumerator EntranceCoroutine()
     {
-        // Baþlangýçta görünmez ve yukarýda
+        // Baï¿½langï¿½ï¿½ta gï¿½rï¿½nmez ve yukarï¿½da
         titleText.alpha = 0f;
         Vector2 startPos = originalPosition + new Vector3(0, 100, 0);
         rectTransform.anchoredPosition = startPos;
@@ -259,7 +259,7 @@ public class TitleAnimator : MonoBehaviour
         }
     }
 
-    // Parýltý efekti (özel anlarda çaðýr)
+    // Parï¿½ltï¿½ efekti (ï¿½zel anlarda ï¿½aï¿½ï¿½r)
     public void PlaySparkle()
     {
         StartCoroutine(SparkleCoroutine());
@@ -269,7 +269,7 @@ public class TitleAnimator : MonoBehaviour
     {
         float originalSize = titleText.fontSize;
 
-        // Hýzlý scale up-down
+        // Hï¿½zlï¿½ scale up-down
         float duration = 0.3f;
         float elapsed = 0f;
 

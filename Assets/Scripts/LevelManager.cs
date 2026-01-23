@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -44,12 +44,26 @@ public class LevelManager : MonoBehaviour
 
         if (isEndlessMode)
         {
-            Debug.Log("Sonsuz Mod aktif - Level sistemi devre dışı");
             this.enabled = false;
             return;
         }
 
+        // Seçilen level'i al, ama önce listeyi kontrol et
+        if (levels == null || levels.Count == 0)
+        {
+            Debug.LogError("LevelManager'da hiç level tanımlanmamış! Lütfen en az bir level ekleyin.");
+            return;
+        }
+
         int selectedLevel = MainMenuLevelSelector.GetSelectedLevel();
+        
+        // Eğer seçilen level geçersizse (listeden büyük veya negatif), ilk level'i yükle
+        if (selectedLevel < 0 || selectedLevel >= levels.Count)
+        {
+            selectedLevel = 0;
+            Debug.LogWarning($"Geçersiz level seçildi ({selectedLevel}). İlk level yükleniyor.");
+        }
+
         LoadLevel(selectedLevel);
     }
 
@@ -78,7 +92,6 @@ public class LevelManager : MonoBehaviour
 
         Debug.Log($"Level {currentLevel.levelNumber} yüklendi: {currentLevel.levelName}");
     }
-
     // ARTIK KULLANILMIYOR - Boş bırakıldı
     public void OnTileMerged(int tileLevel)
     {
@@ -280,7 +293,7 @@ public class LevelManager : MonoBehaviour
     
     public void NextLevel()
     {
-        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1); // 1-based varsayalım
+        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0); // 1-based varsayalım
         int nextLevel = currentLevel + 1;
 
         PlayerPrefs.SetInt("CurrentLevel", nextLevel);
@@ -289,6 +302,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log($"[Level] NextLevel -> CurrentLevel set to {nextLevel}");
         SceneManager.LoadScene("MenuScene");
     }
+
     public void RestartLevel()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(

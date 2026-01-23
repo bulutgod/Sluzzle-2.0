@@ -39,6 +39,7 @@ public class BoardSizeManager : MonoBehaviour
         currentBoardSize = size;
         PlayerPrefs.SetInt(BOARD_SIZE_KEY, size);
         PlayerPrefs.Save();
+        Debug.Log($"Board size set to: {size}x{size}");
     }
 
     public int GetBoardSize()
@@ -56,5 +57,6 @@ public class BoardSizeManager : MonoBehaviour
         {
             currentBoardSize = 5; 
         }
+        Debug.Log($"Loaded board size: {currentBoardSize}x{currentBoardSize}");
     }
 }

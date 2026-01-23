@@ -5,7 +5,7 @@ public class ModernTileVisuals : MonoBehaviour
     [Header("3D Effect Settings")]
     [SerializeField] private float shadowOffset = 0.12f;
     [SerializeField] private Color shadowColor = new Color(0f, 0f, 0f, 0.4f);
-    [SerializeField] private float cornerRadius = 0.2f; // Daha yumuþak köþeler
+    [SerializeField] private float cornerRadius = 0.2f; // Daha yumuï¿½ak kï¿½ï¿½eler
 
     private GameObject shadowObject;
     private SpriteRenderer mainRenderer;
@@ -20,7 +20,7 @@ public class ModernTileVisuals : MonoBehaviour
 
     private void CreateShadow()
     {
-        // Gölge objesi oluþtur
+        // Gï¿½lge objesi oluï¿½tur
         shadowObject = new GameObject("Shadow");
         shadowObject.transform.SetParent(transform);
         shadowObject.transform.localPosition = new Vector3(0, -shadowOffset, 0.1f);
@@ -34,7 +34,7 @@ public class ModernTileVisuals : MonoBehaviour
 
     private void ApplyRoundedCorners()
     {
-        // Fotoðraftaki gibi yumuþak köþeli square sprite
+        // Fotoï¿½raftaki gibi yumuï¿½ak kï¿½ï¿½eli square sprite
         Texture2D texture = new Texture2D(256, 256);
         Color[] pixels = new Color[256 * 256];
 
@@ -46,7 +46,7 @@ public class ModernTileVisuals : MonoBehaviour
             for (int x = 0; x < 256; x++)
             {
                 Vector2 pos = new Vector2(x, y);
-                bool isInside = IsInsideRoundedSquare(pos, center, 120, radius); // 120 = biraz daha küçük
+                bool isInside = IsInsideRoundedSquare(pos, center, 120, radius); // 120 = biraz daha kï¿½ï¿½ï¿½k
 
                 pixels[y * 256 + x] = isInside ? Color.white : Color.clear;
             }
@@ -75,15 +75,15 @@ public class ModernTileVisuals : MonoBehaviour
         float dx = Mathf.Abs(pos.x - center.x);
         float dy = Mathf.Abs(pos.y - center.y);
 
-        // Merkez bölge
+        // Merkez bï¿½lge
         if (dx <= halfSize - radius && dy <= halfSize - radius)
             return true;
 
-        // Dýþarýda
+        // Dï¿½ï¿½arï¿½da
         if (dx > halfSize || dy > halfSize)
             return false;
 
-        // Köþeler - yumuþak geçiþ
+        // Kï¿½ï¿½eler - yumuï¿½ak geï¿½iï¿½
         if (dx > halfSize - radius && dy > halfSize - radius)
         {
             float cornerDist = Vector2.Distance(

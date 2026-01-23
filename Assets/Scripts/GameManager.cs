@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -46,8 +48,11 @@ public class GameManager : MonoBehaviour
         if (boardSize < 5 || boardSize > 7)
         {
             boardSize = defaultBoardSize;
+            Debug.LogWarning($"Invalid board size, using default: {defaultBoardSize}");
         }
-        
+
+        Debug.Log($"Initializing game with board size: {boardSize}x{boardSize}");
+
         InitializeSystems();
     }
 
@@ -71,6 +76,7 @@ public class GameManager : MonoBehaviour
                 moveHandler.Execute(direction.Value);
             }
         }
+        
     }
 
     private void InitializeSystems()
@@ -103,10 +109,12 @@ public class GameManager : MonoBehaviour
             if (maxRefreshRate > 60)
             {
                 Application.targetFrameRate = maxRefreshRate;
+                Debug.Log($"High refresh rate detected: {maxRefreshRate}Hz");
             }
             else
             {
                 Application.targetFrameRate = fallbackFrameRate;
+                Debug.Log($"Standard refresh rate: {fallbackFrameRate}Hz");
             }
         }
         else
@@ -116,8 +124,16 @@ public class GameManager : MonoBehaviour
     }
     public void OnLevelWin()
     {
+        // Level tamamlandığını işaretle
         PlayerPrefs.SetInt("LevelJustCompleted", 1);
         PlayerPrefs.Save();
+
+        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
+        PlayerPrefs.SetInt("CurrentLevel", currentLevel + 1);
+        PlayerPrefs.Save();
+
         SceneManager.LoadScene("MenuScene");
     }
+
+    
 }
