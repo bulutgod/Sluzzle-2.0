@@ -91,21 +91,17 @@ public class BlockArtRevealer : MonoBehaviour
 
     public void CreateBlocksFromArtwork(int artworkIndex)
     {
-        Debug.Log($"### CreateBlocksFromArtwork({artworkIndex}) çağrıldı");
-        
         ClearAllBlocks();
         currentArtWorkIndex = artworkIndex;
 
         if (artworkIndex >= allArtWorks.Count)
         {
-            Debug.LogError($"### artworkIndex ({artworkIndex}) >= allArtWorks.Count ({allArtWorks.Count})");
             return;
         }
 
         ArtWorkData artwork = allArtWorks[artworkIndex];
         if (artwork.silhouetteSprite == null)
         {
-            Debug.LogError("### silhouetteSprite NULL!");
             return;
         }
 
@@ -132,7 +128,6 @@ public class BlockArtRevealer : MonoBehaviour
 
         if (filledPositions.Count == 0)
         {
-            Debug.LogWarning("### Hiç dolu pozisyon bulunamadı!");
             return;
         }
 
@@ -159,8 +154,15 @@ public class BlockArtRevealer : MonoBehaviour
             rt.anchoredPosition = new Vector2(posX, posY);
             rt.sizeDelta = new Vector2(blockSize, blockSize);
 
-            Image img = blockObj.GetComponent<Image>();
+            Image img = blockObj.GetComponentInChildren<Image>();
+            if (img == null)
+            {
+                continue;
+            }
             img.color = hiddenColor;
+            img.enabled = true;
+            img.type = Image.Type.Simple;
+            img.raycastTarget = false;
             
             img.enabled = true;
 
@@ -176,8 +178,7 @@ public class BlockArtRevealer : MonoBehaviour
 
             allBlocks.Add(block);
         }
-
-        Debug.Log($"### {allBlocks.Count} blok oluşturuldu");
+        
     }
 
     void ClearAllBlocks()
@@ -213,12 +214,10 @@ public class BlockArtRevealer : MonoBehaviour
         }
 
         revealCount = 0;
-        Debug.Log($"### RevealOrder oluşturuldu: {revealOrder.Count} blok");
     }
 
     public void RevealBlocksInstant(int count)
     {
-        Debug.Log($"### RevealBlocksInstant({count}) çağrıldı");
         
         for (int i = 0; i < count && i < revealOrder.Count; i++)
         {
@@ -229,37 +228,28 @@ public class BlockArtRevealer : MonoBehaviour
         }
         revealCount = Mathf.Min(count, revealOrder.Count);
         
-        Debug.Log($"### {revealCount} blok instant açıldı");
     }
 
     public void RevealNextBlockAnimated()
     {
-        Debug.Log($"### RevealNextBlockAnimated - revealCount: {revealCount}");
-        Debug.Log($"### allBlocks sayısı: {allBlocks.Count}");
-        Debug.Log($"### revealOrder sayısı: {revealOrder.Count}");
-
         if (allBlocks == null || allBlocks.Count == 0)
         {
-            Debug.LogError("### allBlocks BOŞ!");
             return;
         }
 
         if (revealOrder == null || revealOrder.Count == 0)
         {
-            Debug.LogError("### revealOrder BOŞ!");
             return;
         }
 
         if (revealCount >= revealOrder.Count)
         {
-            Debug.LogWarning($"### Tüm bloklar zaten açık! revealCount: {revealCount}");
             return;
         }
 
         int blockIndex = revealOrder[revealCount];
         BlockInfo block = allBlocks[blockIndex];
-
-        Debug.Log($"### Blok {revealCount + 1} animasyonlu açılıyor...");
+        
         StartCoroutine(AnimateBlockReveal(block));
 
         revealCount++;
@@ -287,7 +277,6 @@ public class BlockArtRevealer : MonoBehaviour
         }
 
         rect.localScale = originalScale;
-        Debug.Log("### Animasyon tamamlandı!");
     }
 
     float EaseOutBack(float t)

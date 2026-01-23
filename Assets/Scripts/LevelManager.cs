@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -279,23 +280,15 @@ public class LevelManager : MonoBehaviour
     
     public void NextLevel()
     {
-        Debug.Log("=== NextLevel çağrıldı ===");
-    
-        PlayerPrefs.SetInt("LevelJustCompleted", 1);
-        Debug.Log("LevelJustCompleted = 1 set edildi");
-    
-        int nextIndex = currentLevelIndex + 1;
-        PlayerPrefs.SetInt("CurrentLevel", nextIndex);
-    
-        int revealed = PlayerPrefs.GetInt("RevealedBlocks", 0);
-        PlayerPrefs.SetInt("RevealedBlocks", revealed + 1);
-    
-        PlayerPrefs.Save();
-        Debug.Log("PlayerPrefs kaydedildi, MenuScene'e gidiyorum...");
-    
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
-    }
+        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1); // 1-based varsayalım
+        int nextLevel = currentLevel + 1;
 
+        PlayerPrefs.SetInt("CurrentLevel", nextLevel);
+        PlayerPrefs.Save();
+
+        Debug.Log($"[Level] NextLevel -> CurrentLevel set to {nextLevel}");
+        SceneManager.LoadScene("MenuScene");
+    }
     public void RestartLevel()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(

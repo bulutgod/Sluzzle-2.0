@@ -38,8 +38,22 @@ public class MainMenuLevelSelector : MonoBehaviour
 
     void Start()
     {
-        RefreshUI();
-        LoadProgress();
+        
+        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1); 
+        int revealedBlocks = currentLevel; 
+        
+        SetPanel(mainPanel, true);
+        SetPanel(sluzzleImage, false);
+        SetPanel(artworkPanel, false);
+        
+        if (blockArtRevealer != null)
+        {
+            blockArtRevealer.CreateBlocksFromArtwork(0);
+            blockArtRevealer.SetupRevealOrder();
+            
+            blockArtRevealer.RevealBlocksInstant(revealedBlocks);
+        }
+
         UpdateLevelButton();
     }
 
@@ -65,43 +79,6 @@ public class MainMenuLevelSelector : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
     }
 
-    
-    /*void Start()
-    {
-        LoadProgress();
-    
-        bool justCompleted = PlayerPrefs.GetInt("LevelJustCompleted", 0) == 1;
-    
-        if (justCompleted)
-        {
-            // Flag'i burada sıfırla
-            PlayerPrefs.SetInt("LevelJustCompleted", 0);
-            PlayerPrefs.Save();
-        
-            Debug.Log($"Reveal başlıyor! RevealedBlocks: {revealedBlocks}");
-        
-            // Artwork reveal animasyonu
-            if (blockArtRevealer != null)
-            {
-                blockArtRevealer.CreateBlocksFromArtwork(0);
-                blockArtRevealer.SetupRevealOrder();
-            
-                // Önceki blokları anında göster
-                int previousRevealed = revealedBlocks - 1;
-                if (previousRevealed > 0)
-                {
-                    blockArtRevealer.RevealBlocksInstant(previousRevealed);
-                }
-            
-                // Yeni bloğu animasyonlu göster
-                StartCoroutine(RevealNewBlockWithDelay());
-            }
-
-            StartCoroutine(DoRevealAnimation());
-            UpdateLevelButton();
-        }
-    }*/
-
     void LoadProgress()
     {
         currentLevel = PlayerPrefs.GetInt(CURRENT_LEVEL_KEY, 0);
@@ -119,16 +96,16 @@ public class MainMenuLevelSelector : MonoBehaviour
     public void ShowArtworkPanel()
     {
         PlaySound(buttonClickSound);
-        
         SetPanel(mainPanel, false);
         SetPanel(sluzzleImage, false);
         SetPanel(artworkPanel, true);
 
+        
         if (blockArtRevealer != null)
         {
             blockArtRevealer.CreateBlocksFromArtwork(0);
             blockArtRevealer.SetupRevealOrder();
-            blockArtRevealer.RevealBlocksInstant(revealedBlocks);
+            blockArtRevealer.RevealBlocksInstant(0); 
         }
 
         UpdateLevelButton();
@@ -136,15 +113,11 @@ public class MainMenuLevelSelector : MonoBehaviour
 
     void ShowArtworkPanelWithReveal()
     {
-        Debug.Log($"=== ShowArtworkPanelWithReveal ===");
-        Debug.Log($"mainPanel: {mainPanel}, artworkPanel: {artworkPanel}");
     
         SetPanel(mainPanel, false);
         SetPanel(sluzzleImage, false);
         SetPanel(artworkPanel, true);
-    
-        Debug.Log($"artworkPanel şimdi active mi: {artworkPanel?.activeSelf}");
-
+        
         if (blockArtRevealer != null)
         {
             blockArtRevealer.CreateBlocksFromArtwork(0);
@@ -176,16 +149,9 @@ public class MainMenuLevelSelector : MonoBehaviour
 
     void UpdateLevelButton()
     {
-        Debug.Log($"### UpdateLevelButton - levelButtonText null mu: {levelButtonText == null}");
-    
         if (levelButtonText != null)
         {
             levelButtonText.text = $"Level {currentLevel + 1}";
-            Debug.Log($"### Buton texti ayarlandı: Level {currentLevel}");
-        }
-        else
-        {
-            Debug.LogError("### levelButtonText NULL! Inspector'da ata!");
         }
     }
 
@@ -227,13 +193,10 @@ public class MainMenuLevelSelector : MonoBehaviour
     IEnumerator DoRevealAnimation()
     {
         yield return new WaitForSeconds(0.3f);
-    
-        Debug.Log(">>> 0.3 saniye geçti");
-    
+        
         if (blockArtRevealer != null)
         {
             int revealed = PlayerPrefs.GetInt("RevealedBlocks", 0);
-            Debug.Log($">>> RevealedBlocks: {revealed}");
         
             blockArtRevealer.CreateBlocksFromArtwork(0);
             blockArtRevealer.SetupRevealOrder();

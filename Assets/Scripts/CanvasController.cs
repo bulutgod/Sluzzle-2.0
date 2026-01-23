@@ -30,13 +30,9 @@ public class CanvasController : MonoBehaviour
         settingsButton.onClick.AddListener(SettingsActive);
 
         bool justCompleted = PlayerPrefs.GetInt("LevelJustCompleted", 0) == 1;
-    
-        Debug.Log($"### CanvasController Start - justCompleted: {justCompleted}");
-    
+        
         if (justCompleted)
         {
-            Debug.Log("### IF bloğuna GİRDİ");
-        
             PlayerPrefs.SetInt("LevelJustCompleted", 0);
             PlayerPrefs.Save();
         
@@ -45,13 +41,11 @@ public class CanvasController : MonoBehaviour
             levelSelectPanel.SetActive(true);
             sluzzleImage.SetActive(false);
             settingsCanvas.SetActive(false);
-        
-            Debug.Log("### DoReveal DIREKT çağrılıyor");
-            DoReveal();  // Invoke yerine direkt çağır
+            
+            DoReveal(); 
         }
         else
         {
-            Debug.Log("### ELSE bloğuna girdi - ana menü");
             menuPanel.SetActive(true);
             classicModePanel.SetActive(false);
             levelSelectPanel.SetActive(false);
@@ -62,28 +56,22 @@ public class CanvasController : MonoBehaviour
 
     void DoReveal()
     {
-        Debug.Log("### DoReveal İÇİNDEYİZ!");
-    
+        
         if (blockArtRevealer != null)
         {
             int revealed = PlayerPrefs.GetInt("RevealedBlocks", 0);
-            Debug.Log($"### RevealedBlocks: {revealed}");
         
             blockArtRevealer.CreateBlocksFromArtwork(0);
             blockArtRevealer.SetupRevealOrder();
         
             int previousBlocks = revealed - 1;
-            Debug.Log($"### Önceki bloklar (instant): {previousBlocks}");
         
             if (previousBlocks > 0)
             {
                 blockArtRevealer.RevealBlocksInstant(previousBlocks);
             }
-        
-            // Invoke SİLİNDİ - Direkt çağır
-            Debug.Log("### RevealNextBlockAnimated çağrılıyor");
+            
             blockArtRevealer.RevealNextBlockAnimated();
-            Debug.Log("### Bitti!");
             
         }
         MainMenuLevelSelector selector = FindObjectOfType<MainMenuLevelSelector>();
@@ -95,12 +83,10 @@ public class CanvasController : MonoBehaviour
 
     void RevealNewBlock()
     {
-        Debug.Log("### RevealNewBlock ÇAĞRILDI!");
         if (blockArtRevealer != null)
         {
-            Debug.Log("### RevealNextBlockAnimated çağrılıyor...");
             blockArtRevealer.RevealNextBlockAnimated();
-            Debug.Log("### RevealNextBlockAnimated tamamlandı");
+           
         }
     }
 

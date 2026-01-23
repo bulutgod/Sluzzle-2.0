@@ -46,11 +46,8 @@ public class GameManager : MonoBehaviour
         if (boardSize < 5 || boardSize > 7)
         {
             boardSize = defaultBoardSize;
-            Debug.LogWarning($"Invalid board size, using default: {defaultBoardSize}");
         }
-
-        Debug.Log($"Initializing game with board size: {boardSize}x{boardSize}");
-
+        
         InitializeSystems();
     }
 
@@ -106,12 +103,10 @@ public class GameManager : MonoBehaviour
             if (maxRefreshRate > 60)
             {
                 Application.targetFrameRate = maxRefreshRate;
-                Debug.Log($"High refresh rate detected: {maxRefreshRate}Hz");
             }
             else
             {
                 Application.targetFrameRate = fallbackFrameRate;
-                Debug.Log($"Standard refresh rate: {fallbackFrameRate}Hz");
             }
         }
         else
