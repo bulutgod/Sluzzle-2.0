@@ -30,6 +30,8 @@ public class MenuManager : MonoBehaviour
     {
         currentSelectedSize = size;
         BoardSizeManager.Instance.SetBoardSize(size);
+        PlayerPrefs.SetInt("IsEndlessMode", 1);
+        PlayerPrefs.Save();
         //UpdateButtonVisuals();
 
         LoadGameScene();
@@ -74,6 +76,8 @@ public class MenuManager : MonoBehaviour
 
     public void OnPlayButtonClicked()
     {
+        PlayerPrefs.SetInt("IsEndlessMode", 1);
+        PlayerPrefs.Save();
         LoadGameScene();
     }
 }
