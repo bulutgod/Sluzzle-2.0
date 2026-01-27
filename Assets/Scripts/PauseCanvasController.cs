@@ -32,6 +32,7 @@ public class PauseCanvasController : MonoBehaviour
     }
     private void HomeButton()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MenuScene");
     }
     

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b7b84ce06e044a1a55a19d83f8b287, type: 3}
   m_Name: Level3_Orange
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveData
-  icon: {fileID: -729764822863061952, guid: 9647705af83f94a9686ace112afa1140, type: 3}
+  icon: {fileID: 71000484790748250, guid: d8098ba3dfc704c14b6ed6593812f67f, type: 3}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   objectiveName: Orange
   tileLevel: 2

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b7b84ce06e044a1a55a19d83f8b287, type: 3}
   m_Name: Level4_Red
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveData
-  icon: {fileID: -7873986803163413899, guid: 660a2e1bf5d374142b703586cf398efc, type: 3}
+  icon: {fileID: -5926703013829764900, guid: 3a0f5fb40be154275826053edad19538, type: 3}
   backgroundColor: {r: 0.6320754, g: 0.1699448, b: 0.1699448, a: 1}
   objectiveName: Red
   tileLevel: 3

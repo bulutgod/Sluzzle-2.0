@@ -15,7 +15,13 @@ MonoBehaviour:
   levelNumber: 23
   levelName: 23
   objectives:
-  - tileLevel: 1
+  - objectiveData: {fileID: 11400000, guid: 469285eb7bdb4456abc1bfff6f832d1c, type: 2}
     targetCount: 1
+    currentCount: 0
+  - objectiveData: {fileID: 11400000, guid: 18e95d176fb3948bba9a1f1be9d01e74, type: 2}
+    targetCount: 3
+    currentCount: 0
+  - objectiveData: {fileID: 11400000, guid: 56bd78ba788f74362b12b6ebd8828ced, type: 2}
+    targetCount: 7
     currentCount: 0
   description: 

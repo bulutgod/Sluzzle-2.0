@@ -124,6 +124,7 @@ public class GameManager : MonoBehaviour
     }
     public void OnLevelWin()
     {
+        Debug.Log("[BUTON] Next Level butonuna basildi!");
         // Level tamamlandığını işaretle
         PlayerPrefs.SetInt("LevelJustCompleted", 1);
         PlayerPrefs.Save();
@@ -133,6 +134,11 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
 
         SceneManager.LoadScene("MenuScene");
+        
+        if (LevelManager.Instance != null)
+        {
+            LevelManager.Instance.NextLevel();
+        }
     }
 
     

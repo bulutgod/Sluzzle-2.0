@@ -19,7 +19,9 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelNameText;
     [SerializeField] private Transform objectivesContainer;
     [SerializeField] private GameObject levelCompletePanel;
-    [SerializeField] private GameObject levelFailedPanel;
+    [SerializeField] private GameObject levelFailedPanel1;
+    [SerializeField] private GameObject levelFailedPanel2;
+    [SerializeField] private TextMeshProUGUI countdownText;
 
     [Header("=== SHARED UI ===")]
     [SerializeField] private GameObject pauseButton;
@@ -61,7 +63,8 @@ public class GameUIManager : MonoBehaviour
 
         // ✅ Panelleri başlangıçta gizle
         HidePanelImmediate(levelCompletePanel);
-        HidePanelImmediate(levelFailedPanel);
+        HidePanelImmediate(levelFailedPanel1);
+        HidePanelImmediate(levelFailedPanel2);
         HidePanelImmediate(pausePanel);
 
         // ✅ Objective container'ı temizle (sahne yeniden yüklendiğinde)
@@ -431,7 +434,7 @@ public class GameUIManager : MonoBehaviour
         Debug.Log("💀 Level Failed!");
         StartCoroutine(ShowLevelFailedSequence());
     }
-
+    
     private IEnumerator ShowLevelFailedSequence()
     {
         yield return new WaitForSecondsRealtime(0.3f);
@@ -439,7 +442,27 @@ public class GameUIManager : MonoBehaviour
         if (gameManagerObject != null) gameManagerObject.SetActive(false);
         Time.timeScale = 0f;
 
-        yield return StartCoroutine(ShowPanelAnimation(levelFailedPanel));
+        yield return StartCoroutine(ShowPanelAnimation(levelFailedPanel1));
+        
+        yield return StartCoroutine(CountdownCoroutine(5f));
+        levelFailedPanel1.SetActive(false);
+        yield return StartCoroutine(ShowPanelAnimation(levelFailedPanel2));
+    }
+
+    private IEnumerator CountdownCoroutine(float duration)
+    {
+        int countdown = (int)duration;
+    
+        while (countdown >= 0)
+        {
+            if (countdownText != null)
+            {
+                countdownText.text = countdown.ToString();
+            }
+        
+            yield return new WaitForSecondsRealtime(1f);
+            countdown--;
+        }
     }
 
     #endregion
@@ -499,9 +522,13 @@ public class GameUIManager : MonoBehaviour
         {
             yield return StartCoroutine(HidePanelAnimation(levelCompletePanel));
         }
-        if (levelFailedPanel != null && levelFailedPanel.activeSelf)
+        if (levelFailedPanel1 != null && levelFailedPanel1.activeSelf)
         {
-            yield return StartCoroutine(HidePanelAnimation(levelFailedPanel));
+            yield return StartCoroutine(HidePanelAnimation(levelFailedPanel1));
+        }
+        if (levelFailedPanel2 != null && levelFailedPanel2.activeSelf)
+        {
+            yield return StartCoroutine(HidePanelAnimation(levelFailedPanel2));
         }
         if (pausePanel != null && pausePanel.activeSelf)
         {
@@ -539,13 +566,18 @@ public class GameUIManager : MonoBehaviour
         {
             yield return StartCoroutine(HidePanelAnimation(levelCompletePanel));
         }
-        if (levelFailedPanel != null && levelFailedPanel.activeSelf)
+        if (levelFailedPanel1 != null && levelFailedPanel1.activeSelf)
         {
-            yield return StartCoroutine(HidePanelAnimation(levelFailedPanel));
+            yield return StartCoroutine(HidePanelAnimation(levelFailedPanel1));
+        }
+        if (levelFailedPanel2 != null && levelFailedPanel2.activeSelf)
+        {
+            yield return StartCoroutine(HidePanelAnimation(levelFailedPanel2));
         }
 
-        Time.timeScale = 1f;
+        
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
     }
 
     #endregion

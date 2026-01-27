@@ -7,6 +7,7 @@ using System.Collections;
 
 public class MainMenuLevelSelector : MonoBehaviour
 {
+    public static MainMenuLevelSelector instance;
     [Header("Panels")]
     [SerializeField] private GameObject mainPanel;
     [SerializeField] private GameObject artworkPanel;
@@ -37,52 +38,80 @@ public class MainMenuLevelSelector : MonoBehaviour
     private int currentLevel = 1;
     private int revealedBlocks = 0;
 
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
-        LoadProgress(); // ← BU EKLENDİ
-
-        // Level tamamlanmış mı kontrol et
-        bool justCompleted = PlayerPrefs.GetInt(LEVEL_JUST_COMPLETED_KEY, 0) == 1;
+        LoadProgress();
+    
+        // STATIC FLAG KONTROL ET
+        bool justCompleted = LevelManager.JustCompletedLevel;
+    
+        Debug.Log($"[MainMenu] Static flag: {justCompleted}");
 
         if (justCompleted)
         {
-            // Level tamamlanmışsa:
-            PlayerPrefs.SetInt(LEVEL_JUST_COMPLETED_KEY, 0);
-            PlayerPrefs.Save();
+            LevelManager.JustCompletedLevel = false; // Temizle
+        
+            Debug.Log("[MainMenu] ✓✓✓ LEVEL TAMAMLANDI ✓✓✓");
 
-            // Artwork panelini aç
             SetPanel(mainPanel, false);
             SetPanel(sluzzleImage, false);
-            SetPanel(artworkPanel, true);
+            SetPanel(levelModePanel, true);
+            SetPanel(artworkPanel, false);
+            SetPanel(classicModePanel, false);
+            SetPanel(settingsCanvas, false);
 
-            // Blokları kur ve yeni rengi aç
-            if (blockArtRevealer != null)
-            {
-                blockArtRevealer.CreateBlocksFromArtwork(0);
-                blockArtRevealer.SetupRevealOrder();
-                
-                // Önceki blokları anında aç
-                int previousBlocks = currentLevel - 1;
-                if (previousBlocks > 0)
-                {
-                    blockArtRevealer.RevealBlocksInstant(previousBlocks);
-                }
-                
-                // Yeni bloğu animasyonlu aç
-                StartCoroutine(RevealNewBlockWithDelay());
-            }
+            StartCoroutine(ShowArtworkAfterDelay());
         }
         else
         {
-            // Normal giriş - Ana menü panelini aç
+            Debug.Log("[MainMenu] ✗✗✗ NORMAL BAŞLANGIÇ ✗✗✗");
+        
             SetPanel(mainPanel, true);
             SetPanel(sluzzleImage, true);
+            SetPanel(levelModePanel, false);
             SetPanel(artworkPanel, false);
+            SetPanel(classicModePanel, false);
+            SetPanel(settingsCanvas, false);
         }
 
         UpdateLevelButton();
     }
 
+    IEnumerator ShowArtworkAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+    
+        // Artwork panelini aç (LevelSelectPanel'in içinde)
+        SetPanel(artworkPanel, true);
+    
+        // Blokları kur ve animasyonu başlat
+        if (blockArtRevealer != null)
+        {
+            blockArtRevealer.CreateBlocksFromArtwork(0);
+            blockArtRevealer.SetupRevealOrder();
+        
+            int previousBlocks = currentLevel - 1;
+            if (previousBlocks > 0)
+            {
+                blockArtRevealer.RevealBlocksInstant(previousBlocks);
+            }
+        
+            yield return new WaitForSeconds(0.5f);
+            PlaySound(blockRevealSound);
+            blockArtRevealer.RevealNextBlockAnimated();
+        }
+    }
+    
     void LoadProgress() // ← BU EKLENDİ
     {
         currentLevel = PlayerPrefs.GetInt(CURRENT_LEVEL_KEY, 0);

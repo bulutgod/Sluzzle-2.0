@@ -19,6 +19,8 @@ public class LevelManager : MonoBehaviour
     public event Action OnLevelComplete;
     public event Action OnLevelFailed;
 
+    public static bool JustCompletedLevel= false;
+    
     private LevelDataSO currentLevel;
     private Coroutine levelCompleteVerifyCoroutine;
     private bool isLevelCompleted = false;
@@ -92,13 +94,7 @@ public class LevelManager : MonoBehaviour
 
         Debug.Log($"Level {currentLevel.levelNumber} yüklendi: {currentLevel.levelName}");
     }
-    // ARTIK KULLANILMIYOR - Boş bırakıldı
-    public void OnTileMerged(int tileLevel)
-    {
-        // Eski sistem - devre dışı
-        // Sadece CheckLevelCompleteByCurrentBoard kullanılıyor
-    }
-
+    
     public void CheckLevelCompleteByCurrentBoard(IGrid grid)
     {
         if (currentLevel == null || isLevelCompleted) return;
@@ -291,16 +287,20 @@ public class LevelManager : MonoBehaviour
 
     public bool IsLevelComplete() => isLevelCompleted;
     
+    // ReSharper disable Unity.PerformanceAnalysis
     public void NextLevel()
     {
-        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0); // 1-based varsayalım
+        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
         int nextLevel = currentLevel + 1;
-
+        
         PlayerPrefs.SetInt("CurrentLevel", nextLevel);
         PlayerPrefs.Save();
+        JustCompletedLevel = true;
 
         Debug.Log($"[Level] NextLevel -> CurrentLevel set to {nextLevel}");
+        Debug.Log($"[LevelManager] Static flag set: {JustCompletedLevel}");
         SceneManager.LoadScene("MenuScene");
+        Time.timeScale = 1f;
     }
 
     public void RestartLevel()

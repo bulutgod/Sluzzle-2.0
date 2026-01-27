@@ -15,7 +15,10 @@ MonoBehaviour:
   levelNumber: 25
   levelName: 25
   objectives:
-  - tileLevel: 2
+  - objectiveData: {fileID: 11400000, guid: 8b23e6b4c345e4748a6ec5948eed06d7, type: 2}
+    targetCount: 1
+    currentCount: 0
+  - objectiveData: {fileID: 11400000, guid: 321bc59a9f8424431ba2cf7a9628baa4, type: 2}
     targetCount: 1
     currentCount: 0
   description: 
