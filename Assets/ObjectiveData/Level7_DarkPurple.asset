@@ -15,4 +15,4 @@ MonoBehaviour:
   icon: {fileID: 4822024367135436220, guid: 00dc5fcbea83c4028b93dfb9ed30d0e3, type: 3}
   backgroundColor: {r: 0.6320754, g: 0.1699448, b: 0.1699448, a: 1}
   objectiveName: Red
-  tileLevel: 3
+  tileLevel: 6
