@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
     
     private LevelDataSO currentLevel;
     private Coroutine levelCompleteVerifyCoroutine;
-    private bool isLevelCompleted = false;
+    public bool isLevelCompleted = false;
     private bool isLevelFailed = false;
     private bool isVerifying = false;
 

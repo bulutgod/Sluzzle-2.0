@@ -22,6 +22,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private GameObject levelFailedPanel1;
     [SerializeField] private GameObject levelFailedPanel2;
     [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private GameObject winConfetti;
 
     [Header("=== SHARED UI ===")]
     [SerializeField] private GameObject pauseButton;
@@ -425,8 +426,9 @@ public class GameUIManager : MonoBehaviour
 
         if (gameManagerObject != null) gameManagerObject.SetActive(false);
         Time.timeScale = 0f;
-
         yield return StartCoroutine(ShowPanelAnimation(levelCompletePanel));
+        Time.timeScale = 1f;
+        winConfetti.SetActive(true);
     }
 
     private void OnLevelFailed()
